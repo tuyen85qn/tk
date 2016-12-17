@@ -1,10 +1,12 @@
 ﻿(function (app) {
     app.controller('rootController', rootController);
-    rootController.$inject = ['$scope', '$state'];
+    rootController.$inject = ['$state', 'authData', 'loginService', '$scope', 'authenticationService'];
 
-    function rootController($scope, $state) {
+    function rootController($state, authData, loginService, $scope, authenticationService) {
         $scope.logOut = function () {
+            loginService.logOut();
             $state.go('login');
-        };
+        }
+        $scope.authentication = authData.authenticationData;
     }
 })(angular.module('tk'));

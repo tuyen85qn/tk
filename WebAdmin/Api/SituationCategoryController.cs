@@ -14,6 +14,7 @@ using WebAdmin.Models;
 namespace WebAdmin.Api
 {
     [RoutePrefix("api/situationcategory")]
+    [Authorize]
     public class SituationCategoryController : ApiControllerBase
     {
         #region
