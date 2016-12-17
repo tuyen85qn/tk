@@ -1,0 +1,14 @@
+D:\tuyen\TK\TK\TK.Model\bin\Debug\TK.Model.dll.config
+D:\tuyen\TK\TK\TK.Model\bin\Debug\TK.Model.dll
+D:\tuyen\TK\TK\TK.Model\bin\Debug\TK.Model.pdb
+D:\tuyen\TK\TK\TK.Model\bin\Debug\EntityFramework.dll
+D:\tuyen\TK\TK\TK.Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\tuyen\TK\TK\TK.Model\bin\Debug\EntityFramework.xml
+D:\tuyen\TK\TK\TK.Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\tuyen\TK\TK\TK.Model\obj\Debug\TK.Model.dll
+D:\tuyen\TK\TK\TK.Model\obj\Debug\TK.Model.pdb
+D:\tuyen\TK\TK\TK.Model\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\tuyen\TK\TK\TK.Model\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\tuyen\TK\TK\TK.Model\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\tuyen\TK\TK\TK.Model\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\tuyen\TK\TK\TK.Model\obj\Debug\TK.Model.csprojResolveAssemblyReference.cache

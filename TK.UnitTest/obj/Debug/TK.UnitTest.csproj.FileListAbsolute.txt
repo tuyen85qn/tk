@@ -1,0 +1,7 @@
+D:\tuyen\TK\TK\TK.UnitTest\bin\Debug\TK.UnitTest.dll
+D:\tuyen\TK\TK\TK.UnitTest\bin\Debug\TK.UnitTest.pdb
+D:\tuyen\TK\TK\TK.UnitTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\tuyen\TK\TK\TK.UnitTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+D:\tuyen\TK\TK\TK.UnitTest\obj\Debug\TK.UnitTest.csprojResolveAssemblyReference.cache
+D:\tuyen\TK\TK\TK.UnitTest\obj\Debug\TK.UnitTest.dll
+D:\tuyen\TK\TK\TK.UnitTest\obj\Debug\TK.UnitTest.pdb

@@ -1,0 +1,18 @@
+﻿body {
+
+}
+input.ng-dirty{
+   border-bottom: 1px solid yellow;
+}
+input.ng-invalid.ng-dirty{
+   border-bottom: 1px solid red;
+}
+input.ng-valid.ng-dirty{
+   border-bottom: 1px solid green;
+}
+input.ng-invalid-minlength.ng-dirty{
+   border-bottom: 1px solid blue;
+}
+input.ng-invalid-maxlength.ng-dirty{
+   border-bottom: 1px solid blue;
+}
