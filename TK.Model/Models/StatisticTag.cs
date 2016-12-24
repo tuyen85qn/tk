@@ -13,7 +13,7 @@ namespace TK.Model.Models
     {
         [Key]
         [Column(Order = 1)]
-        public int ProductID { set; get; }
+        public int StatisticID { set; get; }
         [Key]
         [Column(TypeName = "varchar", Order = 2)]
         [MaxLength(50)]

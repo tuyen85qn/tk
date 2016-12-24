@@ -22,6 +22,8 @@ namespace TK.Model.Models
 
         [Required]
         public int SituationCategoryID { set; get; }
+        [StringLength(100)]
+        public string Hamlet { set; get; }            
               
         [MaxLength(256)]
         public string Image { set; get; }
@@ -42,10 +44,16 @@ namespace TK.Model.Models
         [ForeignKey("SituationCategoryID")]
         public virtual SituationCategory SituationCategory { set; get; }
 
-        [ForeignKey("SettleBodyID")]
-        public virtual SettleBody SettleBody { set; get; }
+        [ForeignKey("PoliceOrganizationID")]
+        public virtual PoliceOrganization PoliceOrganization { set; get; }
 
         [ForeignKey("ResolvedSituationID")]
-        public virtual ResolvedSituation ResolvedSituation { set; get; }
+        public virtual ResolvedSituation ResolvedSituation { set; get; }       
+        [ForeignKey("ProvinceID")]
+        public virtual Province Province { set; get; }
+        [ForeignKey("DistrictID")]
+        public virtual District District { set; get; }
+        [ForeignKey("WardID")]
+        public virtual Ward Ward { set; get; }
     }
 }

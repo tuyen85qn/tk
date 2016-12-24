@@ -33,31 +33,35 @@ namespace TK.Data.Migrations
         }
         private void CreateUser(TKDbContext context)
         {
-            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new TKDbContext()));
-
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new TKDbContext()));
-
-            var user = new ApplicationUser()
+            if(!context.Users.Any())
             {
-                UserName = "admin",
-                Email = "admin@gmail.com",
-                EmailConfirmed = true,
-                BirthDay = DateTime.Now,
-                FullName = "Administrator"
+                var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new TKDbContext()));
 
-            };
+                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new TKDbContext()));
 
-            manager.Create(user, "123567");
+                var user = new ApplicationUser()
+                {
+                    UserName = "admin",
+                    Email = "admin@gmail.com",
+                    EmailConfirmed = true,
+                    BirthDay = DateTime.Now,
+                    FullName = "Administrator"
 
-            if (!roleManager.Roles.Any())
-            {
-                roleManager.Create(new IdentityRole { Name = "Admin" });
-                roleManager.Create(new IdentityRole { Name = "User" });
+                };
+
+                manager.Create(user, "123567");
+
+                if (!roleManager.Roles.Any())
+                {
+                    roleManager.Create(new IdentityRole { Name = "Admin" });
+                    roleManager.Create(new IdentityRole { Name = "User" });
+                }
+
+                var adminUser = manager.FindByEmail("admin@gmail.com");
+
+                manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
             }
-
-            var adminUser = manager.FindByEmail("admin@gmail.com");
-
-            manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
+            
         }
     }
 }

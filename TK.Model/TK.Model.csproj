@@ -61,7 +61,14 @@
     <Compile Include="Abstract\GroupCase.cs" />
     <Compile Include="Abstract\IAuditable.cs" />
     <Compile Include="Abstract\IGroupCase.cs" />
+    <Compile Include="Models\ApplicationGroup.cs" />
+    <Compile Include="Models\ApplicationRole.cs" />
+    <Compile Include="Models\ApplicationRoleGroup.cs" />
+    <Compile Include="Models\ApplicationUserGroup.cs" />
+    <Compile Include="Models\Ward.cs" />
+    <Compile Include="Models\District.cs" />
     <Compile Include="Models\Footer.cs" />
+    <Compile Include="Models\Province.cs" />
     <Compile Include="Models\SituationCategory.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Situation.cs" />
@@ -71,7 +78,7 @@
     <Compile Include="Models\Statistic.cs" />
     <Compile Include="Models\StatisticCategory.cs" />
     <Compile Include="Models\ResolvedSituation.cs" />
-    <Compile Include="Models\SettleBody.cs" />
+    <Compile Include="Models\PoliceOrganization.cs" />
     <Compile Include="Models\StatisticTag.cs" />
     <Compile Include="Models\SupportOnline.cs" />
     <Compile Include="Models\SystemConfig.cs" />

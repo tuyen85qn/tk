@@ -9,7 +9,7 @@
         $scope.GetSeoTitle = GetSeoTitle;
 
         function loadSituationCategoryDetail() {
-            apiService.get('/api/situationcategory/getbyid/' + $stateParams.id, null,
+            apiService.get('/api/situationCategory/getbyid/' + $stateParams.id, null,
                 function (result) {
                     $scope.situationCategory = result.data;
                 },
@@ -18,7 +18,7 @@
                 });
         }
         function updateSituationCategory() {
-            apiService.put('/api/situationcategory/update', $scope.situationCategory,
+            apiService.put('/api/situationCategory/update', $scope.situationCategory,
                 function (result) {
                     notificationService.displaySuccess(result.data.Name + ' đã được cập nhật thành công.');
                     $state.go('situation_categories');
@@ -33,7 +33,7 @@
         }
 
         function loadParentCategories() {
-            apiService.get('/api/situationcategory/getallparents', null,
+            apiService.get('/api/situationCategory/getallparents', null,
                 function (result) {
                     $scope.parentCategories = result.data;
                 }, function (error) {

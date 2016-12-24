@@ -12,6 +12,10 @@ using TK.Data.Repositories;
 using TK.Service;
 using System.Web.Mvc;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
+using TK.Model.Models;
+using Microsoft.Owin.Security.DataProtection;
+using System.Web;
 
 [assembly: OwinStartup(typeof(WebAdmin.App_Start.Startup))]
 
@@ -37,14 +41,14 @@ namespace WebAdmin.App_Start
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
 
             builder.RegisterType<TKDbContext>().AsSelf().InstancePerRequest();
-    
+
 
             ////Asp.net Identity
-            //builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
-            //builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
-            //builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
-            //builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
-            //builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
+            builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
+            builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
+            builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
+            builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
+            builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
 
             // Repositories
             builder.RegisterAssemblyTypes(typeof(SituationCategoryRepository).Assembly)

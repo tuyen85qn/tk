@@ -1,3 +1,3 @@
 ﻿(function () {
-	angular.module('tk.common', ['ui.router','ngBootbox']);
+    angular.module('tk.common', ['ui.router', 'ngBootbox', 'checklist-model']);
 })();

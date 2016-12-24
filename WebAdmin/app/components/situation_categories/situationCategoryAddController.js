@@ -12,7 +12,7 @@
 
 
         function addSituationCategory() {
-            apiService.post('/api/situationcategory/create', $scope.situationCategory,
+            apiService.post('/api/situationCategory/create', $scope.situationCategory,
                 function (result) {
                     notificationService.displaySuccess(result.data.Name + ' đã được thêm mới.');
                     $state.go('situation_categories');
@@ -27,7 +27,7 @@
         }
 
         function loadParentCategories() {
-            apiService.get('/api/situationcategory/getallparents',null,
+            apiService.get('/api/situationCategory/getallparents', null,
                 function (result) {
                     $scope.parentCategories = result.data;
                 }, function (error) {

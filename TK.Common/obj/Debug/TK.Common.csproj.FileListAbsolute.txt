@@ -3,3 +3,7 @@ D:\tuyen\TK\TK\TK.Common\bin\Debug\TK.Common.pdb
 D:\tuyen\TK\TK\TK.Common\obj\Debug\TK.Common.csprojResolveAssemblyReference.cache
 D:\tuyen\TK\TK\TK.Common\obj\Debug\TK.Common.dll
 D:\tuyen\TK\TK\TK.Common\obj\Debug\TK.Common.pdb
+D:\tuyen\Develop\tk\TK.Common\bin\Debug\TK.Common.dll
+D:\tuyen\Develop\tk\TK.Common\bin\Debug\TK.Common.pdb
+D:\tuyen\Develop\tk\TK.Common\obj\Debug\TK.Common.dll
+D:\tuyen\Develop\tk\TK.Common\obj\Debug\TK.Common.pdb

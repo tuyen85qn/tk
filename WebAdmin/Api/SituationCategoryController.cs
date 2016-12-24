@@ -13,7 +13,7 @@ using WebAdmin.Models;
 
 namespace WebAdmin.Api
 {
-    [RoutePrefix("api/situationcategory")]
+    [RoutePrefix("api/situationCategory")]
     [Authorize]
     public class SituationCategoryController : ApiControllerBase
     {

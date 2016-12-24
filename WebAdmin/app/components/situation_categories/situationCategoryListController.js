@@ -21,7 +21,7 @@
                         id:id
                     }
                 };
-                apiService.del('/api/situationcategory/delete', config, function (result) {
+                apiService.del('/api/situationCategory/delete', config, function (result) {
                     notificationService.displaySuccess(result.data.Name + 'đã xóa thành công.');
                     search();
                 }, function (error) {
@@ -40,7 +40,7 @@
                 }
             };
 
-            apiService.get('/api/situationcategory/getall', config, function (result) {
+            apiService.get('/api/situationCategory/getall', config, function (result) {
                 if (result.data.TotalCount == 0) {
                     notificationService.displayWarning('Không tìm thấy bản ghi nào.');
                 }

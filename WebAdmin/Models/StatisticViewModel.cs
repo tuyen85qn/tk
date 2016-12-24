@@ -26,12 +26,13 @@ namespace WebAdmin.Models
         public bool? HotFlag { set; get; }
         public int? ViewCount { set; get; }
         public string Tags { set; get; }
-        public string Place { set; get; }
-
+        public int ProvinceID { set; get; }
+        public int DistrictID { set; get; }
+        public int WardID { set; get; }
         public int? TheInjured { set; get; }
         public int? TheDead { set; get; }
         public decimal? PropertyDamage { set; get; }
-        public int? SettleBodyID { set; get; }
+        public int? PoliceOrganizationID { set; get; }
         public int? ResolvedSituationID { set; get; }
         public DateTime? CreatedDate { set; get; }
 

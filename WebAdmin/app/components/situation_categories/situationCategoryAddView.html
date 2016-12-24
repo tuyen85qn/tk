@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-sm-4 pull-left">
                         <i class="fa fa-check text-success" ng-show="frmAddSituationCategory.name.$dirty && frmAddSituationCategory.name.$valid"></i> 
-                        <div ng-show="frmAddSituationCategory.name.$dirty && frmAddSituationCategory.name.$invalid" class="text-danger">
+                        <div ng-show="frmAddSituationCategory.name.$pristine && frmAddSituationCategory.name.$invalid" class="text-danger">
                             <i class="fa fa-times text-danger"></i>
                             <span ng-show="frmAddSituationCategory.$error.required">Tên danh mục không được bỏ trống</span>
                         </div>

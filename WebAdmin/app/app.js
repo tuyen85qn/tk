@@ -2,7 +2,10 @@
 (function () {
     angular.module('tk',
         ['tk.common',
-         'tk.situation_categories'])
+         'tk.situation_categories',
+         'tk.application_groups',
+         'tk.application_users',
+         'tk.application_roles'])
         .config(config)
         .config(configAuthentication);
 

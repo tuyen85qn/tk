@@ -1,0 +1,200 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Thêm mới tình hình
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li><a ui-sref="situations">Tình hình</a></li>
+        <li class="active">Thêm mới</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Horizontal Form -->
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Thêm mới</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" novalidate name="frmAddSituation" role="form" ng-submit="addSituation()">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Tên tình hình</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name ="name" required ng-change="GetSeoTitle()" ng-model="situation.Name">                                               
+                    </div>
+                    <div class="col-sm-4 pull-left">
+                        <i class="fa fa-check text-success" ng-show="frmAddSituation.name.$dirty && frmAddSituation.name.$valid"></i> 
+                        <div ng-show="frmAddSituation.name.$pristine && frmAddSituation.name.$invalid" class="text-danger">
+                            <i class="fa fa-times text-danger"></i>
+                            <span ng-show="frmAddSituation.$error.required">Tên tình hình không được bỏ trống</span>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Tiêu đề SEO</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="alias" ng-model="situation.Alias">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Mô tả ngắn</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="description" ng-model="situation.Description">
+                    </div>
+                </div>                
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Danh mục</label>
+                    <div class="col-sm-6">
+                        <select name="situationCategoryId" required class="form-control" ng-model="situation.SituationCategoryID" ng-options="option.ID as option.Name for option in situationCategories">
+                            <option value="">Danh mục tình hình</option>
+                        </select>
+                        <input type="hidden" name="situationCategoryId" ng-model="situation.SituationCategoryID" />
+                    </div>
+                    <div class="col-sm-4 pull-left">
+                        <i class="fa fa-check text-success" ng-show="frmAddSituation.situationCategoryId.$dirty && frmAddSituation.situationCategoryId.$valid"></i>
+                        <div ng-show="frmAddSituation.situationCategoryId.$pristine && frmAddSituation.situationCategoryId.$invalid" class="text-danger">
+                            <i class="fa fa-times text-danger"></i>
+                            <span ng-show="frmAddSituation.$error.required">Phải chọn danh mục</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Tỉnh/Thành phố</label>
+                    <div class="col-sm-6">
+                        <select name="provinceId" required class="form-control" ng-change="getDistrictByProvinceId(situation.ProvinceID)" ng-model="situation.ProvinceID" ng-options="option.ID as option.Name for option in provinces">
+                            <option value="">--Tỉnh/Thành phố--</option>
+                        </select>                      
+                    </div>
+                    <div class="col-sm-4 pull-left">
+                        <i class="fa fa-check text-success" ng-show="frmAddSituation.provinceId.$dirty && frmAddSituation.provinceId.$valid"></i>
+                        <div ng-show="frmAddSituation.provinceId.$pristine && frmAddSituation.provinceId.$invalid" class="text-danger">
+                            <i class="fa fa-times text-danger"></i>
+                            <span ng-show="frmAddSituation.$error.required">Phải chọn tỉnh/thành phố</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Quận/Huyện/Thị xã</label>
+                    <div class="col-sm-6">
+                        <select name="provinceId" required ng-change="getWardByDistrictId(situation.DistrictID)" class="form-control" ng-model="situation.DistrictID" ng-options="option.ID as option.Name for option in districts">
+                            <option value="">--Quận/Huyện/Thị xã--</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4 pull-left">
+                        <i class="fa fa-check text-success" ng-show="frmAddSituation.provinceId.$dirty && frmAddSituation.provinceId.$valid"></i>
+                        <div ng-show="frmAddSituation.provinceId.$pristine && frmAddSituation.provinceId.$invalid" class="text-danger">
+                            <i class="fa fa-times text-danger"></i>
+                            <span ng-show="frmAddSituation.$error.required">Phải chọn Quận/Huyện/Thị xã</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Xã/Phường/Thị Trấn</label>
+                    <div class="col-sm-6">
+                        <select name="provinceId" required class="form-control" ng-model="situation.WardID" ng-options="option.ID as option.Name for option in wards">
+                            <option value="">--Xã/Phường/Thị Trấn--</option>
+                        </select>
+                    </div>                    
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Thôn/Xóm/TDP</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="hamlet" ng-model="situation.Hamlet">
+                    </div>                   
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Chết</label>
+                    <div class="col-sm-6">
+                        <input type="number" class="form-control" name="dead" ng-model="situation.TheDead">
+                    </div>                    
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Bị thương</label>
+                    <div class="col-sm-6">
+                        <input type="number" class="form-control" name="injured" ng-model="situation.TheInjured">
+                    </div>                   
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Tổng thiệt hại</label>
+                    <div class="col-sm-6">
+                        <input type="number" class="form-control" name="propertyDamage" ng-model="situation.PropertyDamage">
+                    </div>
+                    <span>VNĐ</span>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Cơ quan thụ lý</label>
+                    <div class="col-sm-6">
+                        <select name="policeOrganizationId" required class="form-control" ng-model="situation.PoliceOrginazationID" ng-options="option.ID as option.Name for option in policeOrganizations">
+                            <option value="">Cơ quan thụ lý</option>
+                        </select>                        
+                    </div>
+                    <div class="col-sm-4 pull-left">
+                        <i class="fa fa-check text-success" ng-show="frmAddSituation.PoliceOrginazationID.$dirty && frmAddSituation.PoliceOrginazationID.$valid"></i>
+                        <div ng-show="frmAddSituation.PoliceOrginazationID.$pristine && frmAddSituation.PoliceOrginazationID.$invalid" class="text-danger">
+                            <i class="fa fa-times text-danger"></i>
+                            <span ng-show="frmAddSituation.$error.required">Phải chọn danh mục</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Tình trạng giải quyết</label>
+                    <div class="col-sm-6">
+                        <select name="resolvedSituationId" required class="form-control" ng-model="situation.ResolvedSituationID" ng-options="option.ID as option.Name for option in resolvedSituations">
+                            <option value="">Tình trạng giải quyết</option>
+                        </select>                        
+                    </div>
+                    <div class="col-sm-4 pull-left">
+                        <i class="fa fa-check text-success" ng-show="frmAddSituation.ResolvedSituationID.$dirty && frmAddSituation.ResolvedSituationID.$valid"></i>
+                        <div ng-show="frmAddSituation.ResolvedSituationID.$pristine && frmAddSituation.ResolvedSituationID.$invalid" class="text-danger">
+                            <i class="fa fa-times text-danger"></i>
+                            <span ng-show="frmAddSituation.$error.required">Phải chọn tình trạng giải quyết</span>
+                        </div>
+                    </div>
+                </div>                                   
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Meta Keyword</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="metaKeyword" ng-model="situationCategory.MetaKeyword">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Meta Description</label>
+                    <div class="col-sm-6">
+                        <textarea class="form-control" name="metaDescription" ng-model="situationCategory.MetaDescription"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Hình ảnh</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="image" ng-model="product.Image">                        
+                        <button class="btn btn-default" type="button" ng-click="chooseImage()">Chọn ảnh</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Thêm ảnh</label>
+                    <div class="col-sm-6">
+                        <ul class="list-inline">
+                            <li ng-repeat="img in moreImages"><img ng-src="{{img}}" width="100" /></li>
+                        </ul>
+                        <button class="btn btn-default" type="button" ng-click="chooseMoreImage()">Chọn ảnh</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-6">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="status" ng-model="situation.Status" ng-checked="situation.Status"> Kích hoạt
+                            </label>
+                        </div>                        
+                    </div>
+                </div>
+            </div><!-- /.box-body -->
+            <div class="box-footer">
+                <button ui-sref="situations" class="btn btn-default">Hủy</button>
+                <button type="submit" class="btn btn-success pull-right" >Lưu <i class="fa fa-save"></i></button>
+            </div><!-- /.box-footer -->
+        </form>
+    </div><!-- /.box -->
+</section><!-- /.content -->

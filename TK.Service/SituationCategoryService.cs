@@ -73,7 +73,5 @@ namespace TK.Service
         }
 
     }
-    class SituationCategoryCategoryService
-    {
-    }
+   
 }

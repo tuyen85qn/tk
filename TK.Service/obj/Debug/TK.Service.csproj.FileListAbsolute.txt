@@ -36,3 +36,4 @@ D:\tuyen\Develop\tk\TK.Service\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 D:\tuyen\Develop\tk\TK.Service\obj\Debug\TK.Service.csprojResolveAssemblyReference.cache
 D:\tuyen\Develop\tk\TK.Service\obj\Debug\TK.Service.dll
 D:\tuyen\Develop\tk\TK.Service\obj\Debug\TK.Service.pdb
+D:\tuyen\Develop\tk\TK.Service\bin\Debug\TK.Service.dll.config

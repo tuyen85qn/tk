@@ -23,11 +23,14 @@ namespace WebAdmin.Infrastructure.Extensions
             situation.HotFlag = situationVm.HotFlag;
             situation.ViewCount = situationVm.ViewCount;
             situation.Tags = situationVm.Tags;
-            situation.Place = situationVm.Place;
+            situation.ProvinceID = situationVm.ProvinceID;
+            situation.DistrictID = situationVm.DistrictID;
+            situation.WardID = situationVm.WardID;
+            situation.Hamlet = situationVm.Hamlet;
             situation.TheInjured = situationVm.TheInjured;
             situation.TheDead = situationVm.TheDead;
             situation.PropertyDamage = situationVm.PropertyDamage;
-            situation.SettleBodyID = situationVm.SettleBodyID;
+            situation.PoliceOrganizationID = situationVm.PoliceOrganizationID;
             situation.ResolvedSituationID = situationVm.ResolvedSituationID;
             situation.CreatedDate = situationVm.CreatedDate;
             situation.CreatedBy = situationVm.CreatedBy;
@@ -52,11 +55,13 @@ namespace WebAdmin.Infrastructure.Extensions
             statistic.HotFlag = statisticVm.HotFlag;
             statistic.ViewCount = statisticVm.ViewCount;
             statistic.Tags = statisticVm.Tags;
-            statistic.Place = statisticVm.Place;
+            statistic.ProvinceID = statisticVm.ProvinceID;
+            statistic.DistrictID = statisticVm.DistrictID;
+            statistic.WardID = statisticVm.WardID;
             statistic.TheInjured = statisticVm.TheInjured;
             statistic.TheDead = statisticVm.TheDead;
             statistic.PropertyDamage = statisticVm.PropertyDamage;
-            statistic.SettleBodyID = statisticVm.SettleBodyID;
+            statistic.PoliceOrganizationID = statisticVm.PoliceOrganizationID;
             statistic.ResolvedSituationID = statisticVm.ResolvedSituationID;
             statistic.CreatedDate = statisticVm.CreatedDate;
             statistic.CreatedBy = statisticVm.CreatedBy;
@@ -102,6 +107,31 @@ namespace WebAdmin.Infrastructure.Extensions
             situationCategory.MetaDescription = situationCategoryVm.MetaDescription;
             situationCategory.Status = situationCategoryVm.Status;
 
+        }
+        public static void UpdateApplicationGroup(this ApplicationGroup appGroup, ApplicationGroupViewModel appGroupViewModel)
+        {
+            appGroup.ID = appGroupViewModel.ID;
+            appGroup.Name = appGroupViewModel.Name;
+        }
+
+        public static void UpdateApplicationRole(this ApplicationRole appRole, ApplicationRoleViewModel appRoleViewModel, string action = "add")
+        {
+            if (action == "update")
+                appRole.Id = appRoleViewModel.Id;
+            else
+                appRole.Id = Guid.NewGuid().ToString();
+            appRole.Name = appRoleViewModel.Name;
+            appRole.Description = appRoleViewModel.Description;
+        }
+        public static void UpdateUser(this ApplicationUser appUser, ApplicationUserViewModel appUserViewModel, string action = "add")
+        {
+
+            appUser.Id = appUserViewModel.Id;
+            appUser.FullName = appUserViewModel.FullName;
+            appUser.BirthDay = appUserViewModel.BirthDay;
+            appUser.Email = appUserViewModel.Email;
+            appUser.UserName = appUserViewModel.UserName;
+            appUser.PhoneNumber = appUserViewModel.PhoneNumber;
         }
     }
 }

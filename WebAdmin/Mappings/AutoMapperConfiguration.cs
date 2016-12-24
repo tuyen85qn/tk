@@ -16,6 +16,9 @@ namespace WebAdmin.Mappings
             Mapper.CreateMap<Situation, SituationViewModel>();
             Mapper.CreateMap<StatisticCategory, StatisticCategoryViewModel>();
             Mapper.CreateMap<Statistic, StatisticViewModel>();
+            Mapper.CreateMap<ApplicationGroup, ApplicationGroupViewModel>();
+            Mapper.CreateMap<ApplicationUser, ApplicationUserViewModel>();
+            Mapper.CreateMap<ApplicationRole, ApplicationRoleViewModel>();
 
         }
         

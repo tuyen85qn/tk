@@ -40,10 +40,16 @@ namespace TK.Model.Models
         [ForeignKey("StatisticCategoryID")]
         public virtual StatisticCategory StatisticCategory { set; get; }
 
-        [ForeignKey("SettleBodyID")]
-        public virtual SettleBody SettleBody { set; get; }
+        [ForeignKey("PoliceOrganizationID")]
+        public virtual PoliceOrganization PoliceOrganization { set; get; }
 
         [ForeignKey("ResolvedSituationID")]
         public virtual ResolvedSituation ResolvedSituation { set; get; }
+        [ForeignKey("ProvinceID")]
+        public virtual Province Province { set; get; }
+        [ForeignKey("DistrictID")]
+        public virtual District District { set; get; }
+        [ForeignKey("WardID")]
+        public virtual Ward Ward { set; get; }
     }
 }
