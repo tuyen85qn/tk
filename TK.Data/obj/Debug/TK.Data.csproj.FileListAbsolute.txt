@@ -30,10 +30,7 @@ D:\tuyen\Develop\tk\TK.Data\bin\Debug\EntityFramework.SqlServer.xml
 D:\tuyen\Develop\tk\TK.Data\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 D:\tuyen\Develop\tk\TK.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
 D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.csprojResolveAssemblyReference.cache
-D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.Migrations.InitialDB.resources
-D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.csproj.GenerateResource.Cache
 D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.dll
 D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.pdb
-D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.Migrations.AddRenameIdentity.resources
-D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.Migrations.AddApplicationGroup.resources
-D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.Migrations.AddTableProvince.resources
+D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.Migrations.AddDB.resources
+D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.csproj.GenerateResource.Cache

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security.Cookies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ using WebAdmin.App_Start;
 namespace WebAdmin.Api
 {
     [RoutePrefix("api/account")]
+    [Authorize]
     public class AccountController : ApiController
     {
         private ApplicationSignInManager _signInManager;
@@ -51,8 +53,7 @@ namespace WebAdmin.Api
             }
         }
 
-        [HttpPost]
-        [AllowAnonymous]
+        [HttpPost]        
         [Route("login")]
         public async Task<HttpResponseMessage> Login(HttpRequestMessage request, string userName, string password, bool rememberMe)
         {
@@ -64,6 +65,13 @@ namespace WebAdmin.Api
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(userName, password, rememberMe, shouldLockout: false);
             return request.CreateResponse(HttpStatusCode.OK, result);
+        }
+        [HttpPost]        
+        [Route("logout")]
+        public HttpResponseMessage Logout(HttpRequestMessage request)
+        {
+            
+            return request.CreateResponse(HttpStatusCode.OK);
         }
 
     }

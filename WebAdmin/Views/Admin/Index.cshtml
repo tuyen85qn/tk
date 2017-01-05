@@ -15,7 +15,11 @@
     <link href="~/Assets/admin/libs/toastr/toastr.css" rel="stylesheet" />
     <!--angular-loading-bar-->
     <link href="~/Assets/admin/libs/angular-loading-bar/src/loading-bar.css" rel="stylesheet" />
+   
+    <link href="~/Assets/admin/libs/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="~/Assets/admin/libs/ng-ckeditor/ng-ckeditor.css" rel="stylesheet" />
     <!-- Theme style -->
+ 
     <link rel="stylesheet" href="/Assets/admin/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
@@ -33,33 +37,48 @@
     <div class="wrapper">
         <div ui-view></div>
     </div><!-- ./wrapper -->
-    <!-- jQuery 2.1.4 -->
+    <!-- jQuery 2.2.3 -->
     <script src="~/Assets/admin/libs/jquery/dist/jquery.js"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="~/Assets/admin/libs/bootstrap/dist/js/bootstrap.js"></script>
+    <!--moment-->
+    <script src="~/Assets/admin/libs/moment/moment.js"></script> 
+
+    <script src="~/Assets/admin/libs/moment/min/locales.js"></script>
+    <script src="~/Assets/admin/libs/moment/min/moment-with-locales.js"></script>
     <!--fastclick-->
     <script src="~/Assets/admin/libs/fastclick/lib/fastclick.js"></script>
     <!-- SlimScroll -->
     <script src="~/Assets/admin/libs/slimScroll/jquery.slimscroll.js"></script>
+    <!--datetimepicker-->
+    <script src="~/Assets/admin/libs/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js"></script>    
+   
     <!-- AdminLTE App -->
     <script src="/Assets/admin/js/app.min.js"></script>
-    <!-- Begin embed angularJS -->
+    <!-- Begin embed angularJS -->       
     <script src="~/Assets/admin/libs/angular/angular.js"></script>
     <script src="~/Assets/admin/libs/angular-ui-router/release/angular-ui-router.js"></script>
+
     <script src="~/Assets/admin/libs/toastr/toastr.js"></script>
     <script src="~/Assets/admin/libs/bootbox/bootbox.js"></script>
     <script src="~/Assets/admin/libs/ngBootbox/ngBootbox.js"></script>
+    <script src="~/Assets/admin/libs/ckeditor/ckeditor.js"></script>
+    <script src="~/Assets/admin/libs/ckfinder/ckfinder.js"></script>
+    <script src="~/Assets/admin/libs/ng-ckeditor/ng-ckeditor.js"></script>
     <script src="~/Assets/admin/libs/angular-local-storage/dist/angular-local-storage.js"></script>
     <script src="~/Assets/admin/libs/angular-loading-bar/src/loading-bar.js"></script>
-    <script src="~/Assets/admin/libs/checklist-model/checklist-model.js"></script>
+    <script src="~/Assets/admin/libs/checklist-model/checklist-model.js"></script>  
+  
 
 
     <script src="~/app/shared/modules/tk.common.js"></script>
     <script src="~/app/shared/directives/pagerDirective.js"></script>
+    <script src="~/app/shared/directives/datetimeDirective.js"></script>
     <script src="~/app/shared/services/apiService.js"></script>
     <script src="~/app/shared/services/notificationService.js"></script>
     <script src="~/app/shared/services/commonService.js"></script>
     <script src="~/app/shared/filters/statusFilter.js"></script>
+    <script src="~/app/shared/filters/datetimeFilter.js"></script>
     <script src="~/app/shared/services/authData.js"></script>
     <script src="~/app/shared/services/authenticationService.js"></script>
     <script src="~/app/shared/services/loginService.js"></script>
@@ -69,6 +88,7 @@
     <script src="~/app/components/application_groups/applicationGroups.module.js"></script>
     <script src="~/app/components/application_roles/applicationRoles.module.js"></script>
     <script src="~/app/components/application_users/applicationUsers.module.js"></script>
+    <script src="~/app/components/situations/situations.module.js"></script>
     <script src="~/app/app.js"></script>
     
 
@@ -91,6 +111,10 @@
     <script src="~/app/components/situation_categories/situationCategoryAddController.js"></script>
     <script src="~/app/components/situation_categories/situationCategoryListController.js"></script>
     <script src="~/app/components/situation_categories/situationCategoryEditController.js"></script>
+
+    <script src="~/app/components/situations/situationListController.js"></script>
+    <script src="~/app/components/situations/situationAddController.js"></script>
+    <script src="~/app/components/situations/situationEditController.js"></script>
 
 </body>
 </html>

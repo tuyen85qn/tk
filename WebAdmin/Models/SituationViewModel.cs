@@ -20,8 +20,8 @@ namespace WebAdmin.Models
 
       
         public int SituationCategoryID { set; get; }
+        public DateTime OccurenceDay { set; get; }
 
-      
         public string Image { set; get; }
 
        

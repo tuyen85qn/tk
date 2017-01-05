@@ -26,7 +26,7 @@
                       </div>
                       <div class="col-sm-4 pull-left">
                           <i class="fa fa-check text-success" ng-show="frmAddApplicationUser.name.$dirty && frmAddApplicationUser.name.$valid"></i>
-                          <div ng-show="frmAddApplicationUser.name.$pristine && frmAddApplicationUser.name.$invalid" class="text-danger">
+                          <div ng-show="frmAddApplicationUser.name.$dirty && frmAddApplicationUser.name.$invalid" class="text-danger">
                               <i class="fa fa-times text-danger"></i>
                               <span ng-show="frmAddApplicationUser.$error.required">Họ và tên không được bỏ trống</span>
                           </div>
@@ -39,7 +39,7 @@
                       </div>
                       <div class="col-sm-4 pull-left">
                           <i class="fa fa-check text-success" ng-show="frmAddApplicationUser.name.$dirty && frmAddApplicationUser.username.$valid"></i>
-                          <div ng-show="frmAddApplicationUser.username.$pristine && frmAddApplicationUser.username.$invalid" class="text-danger">
+                          <div ng-show="frmAddApplicationUser.username.$dirty && frmAddApplicationUser.username.$invalid" class="text-danger">
                               <i class="fa fa-times text-danger"></i>
                               <span ng-show="frmAddApplicationUser.$error.required">Tên tài khoản không được bỏ trống</span>
                           </div>
@@ -52,7 +52,7 @@
                       </div>
                       <div class="col-sm-4 pull-left">
                           <i class="fa fa-check text-success" ng-show="frmAddApplicationUser.password.$dirty && frmAddApplicationUser.password.$valid"></i>
-                          <div ng-show="frmAddApplicationUser.password.$pristine && frmAddApplicationUser.password.$invalid" class="text-danger">
+                          <div ng-show="frmAddApplicationUser.password.$dirty && frmAddApplicationUser.password.$invalid" class="text-danger">
                               <i class="fa fa-times text-danger"></i>
                               <span ng-show="frmAddApplicationUser.$error.minlength">Mật khẩu ít nhất phải 6 ký tự</span>
                               <span ng-show="frmAddApplicationUser.$error.required">Mật khẩu không được bỏ trống</span>
@@ -66,7 +66,7 @@
                       </div>
                       <div class="col-sm-4 pull-left">
                           <i class="fa fa-check text-success" ng-show="frmAddApplicationUser.email.$dirty && frmAddApplicationUser.email.$valid"></i>
-                          <div ng-show="frmAddApplicationUser.email.$pristine && frmAddApplicationUser.email.$invalid" class="text-danger">
+                          <div ng-show="frmAddApplicationUser.email.$dirty && frmAddApplicationUser.email.$invalid" class="text-danger">
                               <i class="fa fa-times text-danger"></i>
                               <span ng-show="frmAddApplicationUser.$error.email">Email không đúng định dạng</span>
                               <span ng-show="frmAddApplicationUser.$error.required">Email không được bỏ trống</span>
@@ -82,15 +82,15 @@
                   <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">Ngày sinh</label>
                       <div class="col-sm-6">
-                          <input type="date" class="form-control" name="brithday" ng-model="account.BirthDay" required>
-                      </div>
-                      <div class="col-sm-4 pull-left">
-                          <i class="fa fa-check text-success" ng-show="frmAddApplicationUser.birthday.$dirty && frmAddApplicationUser.birthday.$valid"></i>
-                          <div ng-show="frmAddApplicationUser.email.$pristine && frmAddApplicationUser.birthday.$invalid" class="text-danger">
-                              <i class="fa fa-times text-danger"></i>                              
-                              <span ng-show="frmAddApplicationUser.$error.required">Ngày sinh không được bỏ trống</span>
-                          </div>
-                      </div>                     
+                          <input class="form-control" type="text"
+                                 ng-model="account.BirthDay" datetime-directive options="{format:'YYYY-MM-DD'}" />
+                          <div class="col-sm-4 pull-left">
+                              <i class="fa fa-check text-success" ng-show="frmAddApplicationUser.birthday.$dirty && frmAddApplicationUser.birthday.$valid"></i>
+                              <div ng-show="frmAddApplicationUser.email.$dirty && frmAddApplicationUser.birthday.$invalid" class="text-danger">
+                                  <i class="fa fa-times text-danger"></i>
+                                  <span ng-show="frmAddApplicationUser.$error.required">Ngày sinh không được bỏ trống</span>
+                              </div>
+                          </div>               
                   </div>
                   <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">Danh sách nhóm</label>

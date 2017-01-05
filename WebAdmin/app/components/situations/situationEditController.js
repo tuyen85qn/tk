@@ -1,27 +1,57 @@
 ﻿(function (app) {
-    app.controller('situationCategoryEditController', situationCategoryEditController);
-    situationCategoryEditController.$inject = ['$scope', 'apiService', 'notificationService', 'commonService','$stateParams', '$state'];
+    app.controller('situationEditController', situationEditController);
+    situationEditController.$inject = ['$scope', 'apiService', 'notificationService', 'commonService', '$state', '$stateParams'];
 
-    function situationCategoryEditController($scope, apiService, notificationService, commonService, $stateParams, $state) {
-        $scope.situationCategory = null;
-        $scope.parentCategories = [];
-        $scope.updateSituationCategory = updateSituationCategory;
+    function situationEditController($scope, apiService, notificationService, commonService, $state, $stateParams) {
+        $scope.situation = null;     
+
+        $scope.situationCategories = [];
+        $scope.provinces = [];
+        $scope.districts = [];
+        $scope.wards = [];
+        $scope.resolvedSituations = [];
+        $scope.policeOrganizations = [];
+
+        $scope.updateSituation = updateSituation;
         $scope.GetSeoTitle = GetSeoTitle;
+        $scope.loadDetailSituation = loadDetailSituation;
 
-        function loadSituationCategoryDetail() {
-            apiService.get('/api/situationCategory/getbyid/' + $stateParams.id, null,
+        function loadDetailSituation()
+        {
+            apiService.get('/api/situation/getbyid/'+ $stateParams.id,null,
                 function (result) {
-                    $scope.situationCategory = result.data;
+                    $scope.situation = result.data;
                 },
                 function (error) {
-                    notificationService.displayError(error.Data);
+                    notificationService('Không thể load chi tiết tình hình');
                 });
         }
-        function updateSituationCategory() {
-            apiService.put('/api/situationCategory/update', $scope.situationCategory,
+        $scope.getDistrictByProvinceId = function getDistrictByProvinceId(id) {
+            $scope.districtid = false;
+            apiService.get('/api/district/getbyprovinceid/' + id, null,
+                function (result) {
+                    $scope.districts = result.data;
+                }, function (error) {
+                    notificationService.displayError('Không thể load được danh sách các quận, huyện, thị xã.');
+                });
+        }
+
+        $scope.getWardByDistrictId = function getWardByDistrictId(id) {
+            $scope.wardid = false;
+            apiService.get('/api/ward/getbydistrictid/' + id, null,
+                function (result) {
+                    $scope.wards = result.data;
+                }, function (error) {
+                    notificationService.displayError('Không load được danh sách các xã, phường, thị trấn.');
+                });
+        }
+
+
+        function updateSituation() {
+            apiService.put('/api/situation/update', $scope.situation,
                 function (result) {
                     notificationService.displaySuccess(result.data.Name + ' đã được cập nhật thành công.');
-                    $state.go('situation_categories');
+                    $state.go('situations');
 
                 }, function (error) {
                     notificationService.displayError('Cập nhật không thành công.');
@@ -29,19 +59,75 @@
         }
 
         function GetSeoTitle() {
-            $scope.situationCategory.Alias = commonService.getSeoTitle($scope.situationCategory.Name);
+            $scope.situation.Alias = commonService.getSeoTitle($scope.situation.Name);
         }
 
-        function loadParentCategories() {
-            apiService.get('/api/situationCategory/getallparents', null,
+        function loadProvinces() {
+            apiService.get('/api/province/getall', null,
                 function (result) {
-                    $scope.parentCategories = result.data;
+                    $scope.provinces = result.data;
                 }, function (error) {
-                    notificationSerivce.displayError('Can not get parent category.')
+                    notificationService.displayError('Không load được danh sách các tỉnh, thành phố.');
                 });
         }
 
-        loadSituationCategoryDetail();
-        loadParentCategories();
+        function loadSituationCategories() {
+            apiService.get('/api/situationCategory/getall', null,
+                function (result) {
+                    $scope.situationCategories = result.data;
+                },
+                function (error) {
+                    notificationService.displayError("Không thể load danh sách các mục lục tình hình");
+                });
+        }
+
+        function loadPoliceOrganizations() {
+            apiService.get('/api/policeOrganization/getall', null,
+                function (result) {
+                    $scope.policeOrganizations = result.data;
+                },
+                function (error) {
+                    notificationService.displayError("Không thể load danh sách các cơ quan giải quyết");
+                });
+        }
+
+        function loadResolvedSituations() {
+            apiService.get('/api/resolvedSituation/getall', null,
+                function (result) {
+                    $scope.resolvedSituations = result.data;
+                },
+                function (error) {
+                    notificationService.displayError("Không thể load tình trạng giải quyết");
+                });
+        }
+
+        $scope.ChooseImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.product.Image = fileUrl;
+                })
+            }
+            finder.popup();
+        }
+
+        $scope.moreImages = [];
+
+        $scope.ChooseMoreImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.moreImages.push(fileUrl);
+                })
+
+            }
+            finder.popup();
+        }
+
+        loadDetailSituation();
+        loadPoliceOrganizations();
+        loadResolvedSituations();
+        loadSituationCategories();
+        loadProvinces();
     }
-})(angular.module('tk.situation_categories'));
+})(angular.module('tk.situations'));

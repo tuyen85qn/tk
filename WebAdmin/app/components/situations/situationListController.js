@@ -1,13 +1,13 @@
 ﻿(function (app) {
-    app.controller('situationCategoryListController', situationCategoryListController);
-    situationCategoryListController.$inject = ['$scope', 'notificationService', 'apiService', '$filter','$ngBootbox']
-    function situationCategoryListController($scope, notificationService, apiService, $filter, $ngBootbox) {
-        $scope.loading = true;
-        $scope.data = [];
+    app.controller('situationListController', situationListController);
+    situationListController.$inject = ['$scope', 'notificationService', 'apiService', '$filter', '$ngBootbox']
+    function situationListController($scope, notificationService, apiService, $filter, $ngBootbox) {
+        $scope.loading = true;       
         $scope.page = 0;
         $scope.pageCount = 0;
         $scope.search = search;
-        $scope.filterExpression ="";       
+        $scope.filterExpression = "";
+        $scope.situations = [];
 
         function delSituation(id) {
             $ngBootbox.confirm('Bạn có chắc muốn xóa?')
@@ -33,17 +33,17 @@
             var config = {
                 params: {
                     page: page,
-                    pageSize: 10,
+                    pageSize:5,
                     filter: $scope.filterExpression
                 }
             }
 
             apiService.get('/api/situation/getlistpaging', config, function (result) {
-                $scope.data = result.data.Items;
+                $scope.situations = result.data.Items;
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;
                 $scope.totalCount = result.data.TotalCount;
-                $scope.loading = false;
+                $scope.loading = false;               
                 if ($scope.filterExpression && $scope.filterExpression.length) {
                     notificationService.displayInfo(result.data.Items.length + ' items found');
                 }

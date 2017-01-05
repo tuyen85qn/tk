@@ -25,7 +25,7 @@ namespace WebAdmin.Api
             _situationCategoryService = situationCategoryService;
         }
         #endregion
-        [Route("getall")]
+        [Route("getlistpaging")]
         [HttpGet]
         public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
         {
@@ -47,7 +47,7 @@ namespace WebAdmin.Api
                 return respone;
             });
         }
-        [Route("getallparents")]
+        [Route("getall")]
         [HttpGet]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {

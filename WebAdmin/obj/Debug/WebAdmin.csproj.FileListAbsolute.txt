@@ -156,3 +156,4 @@ D:\tuyen\Develop\tk\WebAdmin\bin\Newtonsoft.Json.xml
 D:\tuyen\Develop\tk\WebAdmin\bin\System.Net.Http.Formatting.xml
 D:\tuyen\Develop\tk\WebAdmin\bin\System.Web.Http.xml
 D:\tuyen\Develop\tk\WebAdmin\bin\System.Web.Http.WebHost.xml
+D:\tuyen\Develop\tk\WebAdmin\bin\CKFinder.dll

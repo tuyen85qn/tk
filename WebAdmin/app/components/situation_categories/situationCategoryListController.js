@@ -40,7 +40,7 @@
                 }
             };
 
-            apiService.get('/api/situationCategory/getall', config, function (result) {
+            apiService.get('/api/situationCategory/getlistpaging', config, function (result) {
                 if (result.data.TotalCount == 0) {
                     notificationService.displayWarning('Không tìm thấy bản ghi nào.');
                 }

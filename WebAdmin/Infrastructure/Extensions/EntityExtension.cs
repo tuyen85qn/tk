@@ -15,9 +15,9 @@ namespace WebAdmin.Infrastructure.Extensions
             situation.Name = situationVm.Name;
             situation.Alias = situationVm.Alias;
             situation.SituationCategoryID = situationVm.SituationCategoryID;
+            situation.OccurenceDay = situationVm.OccurenceDay;
             situation.Image = situationVm.Image;
-            situation.MoreImages = situationVm.MoreImages;
-            situation.Description = situationVm.Description;
+            situation.MoreImages = situationVm.MoreImages;           
             situation.Content = situationVm.Content;
             situation.HomeFlag = situationVm.HomeFlag;
             situation.HotFlag = situationVm.HotFlag;
@@ -48,8 +48,7 @@ namespace WebAdmin.Infrastructure.Extensions
             statistic.Alias = statisticVm.Alias;
             statistic.StatisticCategoryID = statisticVm.StatisticCategoryID;
             statistic.ToDate = statisticVm.ToDate;
-            statistic.FromDate = statisticVm.FromDate;
-            statistic.Description = statisticVm.Description;
+            statistic.FromDate = statisticVm.FromDate;       
             statistic.Content = statisticVm.Content;
             statistic.HomeFlag = statisticVm.HomeFlag;
             statistic.HotFlag = statisticVm.HotFlag;

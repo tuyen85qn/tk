@@ -19,7 +19,11 @@ namespace WebAdmin.Mappings
             Mapper.CreateMap<ApplicationGroup, ApplicationGroupViewModel>();
             Mapper.CreateMap<ApplicationUser, ApplicationUserViewModel>();
             Mapper.CreateMap<ApplicationRole, ApplicationRoleViewModel>();
-
+            Mapper.CreateMap<Province, ProvinceViewModel>();
+            Mapper.CreateMap<District, DistrictViewModel>();
+            Mapper.CreateMap<Ward, WardViewModel>();
+            Mapper.CreateMap<PoliceOrganization, PoliceOrganizationViewModel>();
+            Mapper.CreateMap<ResolvedSituation, ResolvedSituationViewModel>();
         }
         
     }

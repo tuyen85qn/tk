@@ -13,6 +13,7 @@ using WebAdmin.Models;
 namespace WebAdmin.Api
 {
    [RoutePrefix("api/province")]
+    [Authorize]
     public class ProvinceController : ApiControllerBase
     {
         #region

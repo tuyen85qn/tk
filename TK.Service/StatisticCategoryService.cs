@@ -11,18 +11,18 @@ namespace TK.Service
 {
     public interface IStatisticCategoryService
     {
-        void Add(StatisticCategory statisticCategory);
+        StatisticCategory Add(StatisticCategory statisticCategory);
 
         void Update(StatisticCategory statisticCategory);
 
-        void Delete(int id);
+        StatisticCategory Delete(int id);
 
         IEnumerable<StatisticCategory> GetAll(string keyword);
         IEnumerable<StatisticCategory> GetAll();
 
         StatisticCategory GetById(int id);
 
-        void SaveChanges();
+        void Save();
     }
 
     public class StatisticCategoryService : IStatisticCategoryService
@@ -36,14 +36,14 @@ namespace TK.Service
             this._unitOfWork = unitOfWork;
         }
 
-        public void Add(StatisticCategory statisticCategory)
+        public StatisticCategory Add(StatisticCategory statisticCategory)
         {
-            _statisticCategoryRepository.Add(statisticCategory);
+            return _statisticCategoryRepository.Add(statisticCategory);
         }
 
-        public void Delete(int id)
+        public StatisticCategory Delete(int id)
         {
-            _statisticCategoryRepository.Delete(id);
+            return _statisticCategoryRepository.Delete(id);
         }
 
         public IEnumerable<StatisticCategory> GetAll()
@@ -62,7 +62,7 @@ namespace TK.Service
             return _statisticCategoryRepository.GetSingleById(id);
         }
 
-        public void SaveChanges()
+        public void Save()
         {
             _unitOfWork.Commit();
         }

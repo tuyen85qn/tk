@@ -11,7 +11,7 @@ namespace TK.Service
 {
     public interface IProvinceService
     {
-        void Add(Province province);
+        Province Add(Province province);
 
         void Update(Province province);
 
@@ -36,9 +36,9 @@ namespace TK.Service
             this._unitOfWork = unitOfWork;
         }
 
-        public void Add(Province provinceRepository)
+        public Province Add(Province provinceRepository)
         {
-            _provinceRepository.Add(provinceRepository);
+            return _provinceRepository.Add(provinceRepository);
         }
 
         public Province Delete(int id)

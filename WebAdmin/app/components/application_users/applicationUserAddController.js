@@ -7,7 +7,8 @@
 
     function applicationUserAddController($scope, apiService, notificationService, $location, commonService) {
         $scope.account = {
-            Groups: []
+            Groups: [],
+            Birthday: Date.now()
         }
 
         $scope.addAccount = addAccount;
@@ -16,8 +17,8 @@
             apiService.post('/api/applicationUser/add', $scope.account, addSuccessed, addFailed);
         }
 
-        function addSuccessed() {
-            notificationService.displaySuccess($scope.account.Name + ' đã được thêm mới.');
+        function addSuccessed(result) {
+            notificationService.displaySuccess(result.data.Name + ' đã được thêm mới.');
 
             $location.url('application_users');
         }

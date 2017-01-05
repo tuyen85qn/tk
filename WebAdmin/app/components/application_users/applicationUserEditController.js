@@ -3,9 +3,9 @@
 
     app.controller('applicationUserEditController', applicationUserEditController);
 
-    applicationUserEditController.$inject = ['$scope', 'apiService', 'notificationService', '$location', '$stateParams'];
+    applicationUserEditController.$inject = ['$scope', 'apiService', 'notificationService', '$location', '$stateParams','$filter'];
 
-    function applicationUserEditController($scope, apiService, notificationService, $location, $stateParams) {
+    function applicationUserEditController($scope, apiService, notificationService, $location, $stateParams, $filter) {
         $scope.account = {}
 
 
@@ -18,6 +18,7 @@
             apiService.get('/api/applicationUser/detail/' + $stateParams.id, null,
             function (result) {
                 $scope.account = result.data;
+                $scope.account.BirthDay = $filter('datetime')($scope.account.BirthDay);
             },
             function (result) {
                 notificationService.displayError(result.data);

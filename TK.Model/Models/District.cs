@@ -11,8 +11,8 @@ namespace TK.Model.Models
     [Table("Districts")]
     public class District
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]  
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { set; get; }
         [StringLength(100)]
         public string Name { set; get; }

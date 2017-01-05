@@ -11,20 +11,20 @@
            
         }
 
-        function get(url, params, success, failure) {
+        function get(url, params, successCallback, failure) {
             authenticationService.setHeader();
             $http.get(url, params).then(function (result) {
-                success(result);
-            }, function (error) {
+                successCallback(result);
+            },function (error) {
                 failure(error);
             });
         }
 
-        function post(url, data, success, failure) {
+        function post(url, data, successCallback, failure) {
             authenticationService.setHeader();
             $http.post(url, data).then(function (result) {
-                success(result)
-            }, function (error) {
+                successCallback(result);
+            },function (error) {
                 console.log(error.status)
                 if (error.status === 401) {
                     notificationService.displayError('Authenticate is required.');
@@ -35,10 +35,10 @@
             });
         }
 
-        function put(url, data, success, failure) {
+        function put(url, data, successCallback, failure) {
             authenticationService.setHeader();
             $http.put(url, data).then(function (result) {
-                success(result);
+                successCallback(result);
             }, function (error) {
                 console.log(error.status)
                 if (error.status === 401) {
@@ -50,10 +50,10 @@
             });
         }
 
-        function del(url, data, success, failure) {
+        function del(url, data, successCallback, failure) {
             authenticationService.setHeader();
             $http.delete(url, data).then(function (result) {
-                success(result);
+                successCallback(result);
             }, function (error) {
                 console.log(error.status)
                 if (error.status === 401) {

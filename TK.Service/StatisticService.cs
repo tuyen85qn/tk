@@ -11,18 +11,18 @@ namespace TK.Service
 {
     public interface IStatisticService
     {
-        void Add(Statistic statistic);
+        Statistic Add(Statistic statistic);
 
         void Update(Statistic statistic);
 
-        void Delete(int id);
+        Statistic Delete(int id);
 
         IEnumerable<Statistic> GetAll(string keyword);
         IEnumerable<Statistic> GetAll();
 
         Statistic GetById(int id);
 
-        void SaveChanges();
+        void Save();
     }
 
     public class StatisticService : IStatisticService
@@ -36,14 +36,14 @@ namespace TK.Service
             this._unitOfWork = unitOfWork;
         }
 
-        public void Add(Statistic statistic)
+        public Statistic Add(Statistic statistic)
         {
-            _statisticRepository.Add(statistic);
+            return _statisticRepository.Add(statistic);
         }
 
-        public void Delete(int id)
+        public Statistic Delete(int id)
         {
-            _statisticRepository.Delete(id);
+            return _statisticRepository.Delete(id);
         }
 
         public IEnumerable<Statistic> GetAll()
@@ -53,7 +53,7 @@ namespace TK.Service
         public IEnumerable<Statistic> GetAll(string keyword)
         {
             if (!string.IsNullOrEmpty(keyword))
-                return _statisticRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword));
+                return _statisticRepository.GetMulti(x => x.Name.Contains(keyword));
             else
                 return _statisticRepository.GetAll();
         }
@@ -62,7 +62,7 @@ namespace TK.Service
             return _statisticRepository.GetSingleById(id);
         }
 
-        public void SaveChanges()
+        public void Save()
         {
             _unitOfWork.Commit();
         }

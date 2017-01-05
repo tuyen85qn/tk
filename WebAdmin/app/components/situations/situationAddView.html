@@ -37,11 +37,19 @@
                     <div class="col-sm-6">
                         <input type="text" class="form-control" name="alias" ng-model="situation.Alias">
                     </div>
-                </div>
+                </div>                
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Mô tả ngắn</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Ngày xảy ra</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" name="description" ng-model="situation.Description">
+                        <input type="text" class="form-control" name="occurenceday"
+                               datetime-directive options ="{format:'YYYY-MM-DD'}" ng-model="situation.OccurenceDay">
+                    </div>
+                    <div class="col-sm-4 pull-left">
+                        <i class="fa fa-check text-success" ng-show="frmAddSituation.occurenceday.$dirty && frmAddSituation.occurenceday.$valid"></i>
+                        <div ng-show="frmAddSituation.occurenceday.$pristine && frmAddSituation.occurenceday.$invalid" class="text-danger">
+                            <i class="fa fa-times text-danger"></i>
+                            <span ng-show="frmAddSituation.$error.required">Ngày xảy ra không được để trống</span>
+                        </div>
                     </div>
                 </div>                
                 <div class="form-group">
@@ -63,7 +71,7 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Tỉnh/Thành phố</label>
                     <div class="col-sm-6">
-                        <select name="provinceId" required class="form-control" ng-change="getDistrictByProvinceId(situation.ProvinceID)" ng-model="situation.ProvinceID" ng-options="option.ID as option.Name for option in provinces">
+                        <select name="province" required class="form-control" ng-change="getDistrictByProvinceId(situation.ProvinceID)" ng-model="situation.ProvinceID" ng-options="option.ID as option.Name for option in provinces">
                             <option value="">--Tỉnh/Thành phố--</option>
                         </select>                      
                     </div>
@@ -78,7 +86,8 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Quận/Huyện/Thị xã</label>
                     <div class="col-sm-6">
-                        <select name="provinceId" required ng-change="getWardByDistrictId(situation.DistrictID)" class="form-control" ng-model="situation.DistrictID" ng-options="option.ID as option.Name for option in districts">
+                        <select name="district" ng-disabled="districtid" 
+                                required ng-change="getWardByDistrictId(situation.DistrictID)" class="form-control" ng-model="situation.DistrictID" ng-options="option.ID as option.Name for option in districts">
                             <option value="">--Quận/Huyện/Thị xã--</option>
                         </select>
                     </div>
@@ -93,7 +102,9 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Xã/Phường/Thị Trấn</label>
                     <div class="col-sm-6">
-                        <select name="provinceId" required class="form-control" ng-model="situation.WardID" ng-options="option.ID as option.Name for option in wards">
+                        <select name="ward" ng-disabled="wardid" required class="form-control"
+                                 ng-model="situation.WardID" ng-options="option.ID as option.Name for option in wards"
+                                ng-change="getHamletByWardId()">
                             <option value="">--Xã/Phường/Thị Trấn--</option>
                         </select>
                     </div>                    
@@ -101,7 +112,7 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Thôn/Xóm/TDP</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" name="hamlet" ng-model="situation.Hamlet">
+                        <input type="text" ng-disabled="hamletid" class="form-control" name="hamlet" ng-model="situation.Hamlet">
                     </div>                   
                 </div>
                 <div class="form-group">
@@ -156,20 +167,20 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Meta Keyword</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" name="metaKeyword" ng-model="situationCategory.MetaKeyword">
+                        <input type="text" class="form-control" ckeditor="ckeditorOptions" name="metaKeyword" ng-model="situation.MetaKeyword">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Meta Description</label>
                     <div class="col-sm-6">
-                        <textarea class="form-control" name="metaDescription" ng-model="situationCategory.MetaDescription"></textarea>
+                        <textarea class="form-control" name="metaDescription" ng-model="situation.MetaDescription"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Hình ảnh</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" name="image" ng-model="product.Image">                        
-                        <button class="btn btn-default" type="button" ng-click="chooseImage()">Chọn ảnh</button>
+                        <input type="text" class="form-control" name="image" ng-model="situation.Image">                        
+                        <button class="btn btn-default" type="button" ng-click="ChooseImage()">Chọn ảnh</button>
                     </div>
                 </div>
                 <div class="form-group">
@@ -178,7 +189,13 @@
                         <ul class="list-inline">
                             <li ng-repeat="img in moreImages"><img ng-src="{{img}}" width="100" /></li>
                         </ul>
-                        <button class="btn btn-default" type="button" ng-click="chooseMoreImage()">Chọn ảnh</button>
+                        <button class="btn btn-default" type="button" ng-click="ChooseMoreImage()">Chọn ảnh</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Nội dung</label>
+                    <div class="col-sm-6">
+                        <textarea class="form-control" ckeditor="ckeditorOptions" name="content" ng-model="situation.Content"></textarea>
                     </div>
                 </div>
                 <div class="form-group">

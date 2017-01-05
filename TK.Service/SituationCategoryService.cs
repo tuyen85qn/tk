@@ -11,7 +11,7 @@ namespace TK.Service
 {
     public interface ISituationCategoryService
     {
-        void Add(SituationCategory situationCategory);
+        SituationCategory Add(SituationCategory situationCategory);
 
         void Update(SituationCategory situationCategory);
 
@@ -36,9 +36,9 @@ namespace TK.Service
             this._unitOfWork = unitOfWork;
         }
 
-        public void Add(SituationCategory situationCategory)
+        public SituationCategory Add(SituationCategory situationCategory)
         {
-            _situationCategoryRepository.Add(situationCategory);
+            return _situationCategoryRepository.Add(situationCategory);
         }
 
         public SituationCategory Delete(int id)

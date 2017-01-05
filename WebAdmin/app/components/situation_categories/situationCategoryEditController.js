@@ -33,11 +33,11 @@
         }
 
         function loadParentCategories() {
-            apiService.get('/api/situationCategory/getallparents', null,
+            apiService.get('/api/situationCategory/getall', null,
                 function (result) {
                     $scope.parentCategories = result.data;
                 }, function (error) {
-                    notificationSerivce.displayError('Can not get parent category.')
+                    notificationSerivce.displayError('Không thể load danh sách danh mục.')
                 });
         }
 

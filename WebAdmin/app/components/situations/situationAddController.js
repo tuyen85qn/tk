@@ -6,39 +6,48 @@
         $scope.situation = {          
             Status: true
         };
-        $scope.situation = [];
+
+        $scope.ckeditorOptions = {
+            languague: 'vi',
+            height: '200px'
+        }
+
+        $scope.wardid = true;
+        $scope.districtid = true;
+        $scope.hamletid = true;
+
+        $scope.situationCategories = [];
         $scope.provinces = [];
         $scope.districts = [];
-        $scope.wards = [];       
+        $scope.wards = [];
+        $scope.resolvedSituations = [];
+        $scope.policeOrganizations = [];
 
         $scope.addSituation = addSituation;
         $scope.GetSeoTitle = GetSeoTitle;
         
-        function getDistrictByProvinceId(id) {
-            var config = {
-                params:{
-                    id:id
-                }
-            }
-            apiService.get('/api/province/getbyid',config,
+        $scope.getDistrictByProvinceId = function getDistrictByProvinceId(id) {
+            $scope.districtid = false;
+            apiService.get('/api/district/getbyprovinceid/' + id ,null,
                 function (result) {
                     $scope.districts = result.data;
                 }, function (error) {
-                    notificationService.displayError('Không load được danh sách các quận, huyện, thị xã.');
+                    notificationService.displayError('Không thể load được danh sách các quận, huyện, thị xã.');
                 });
         }
-        function getWardByDistrictId(id) {
-            var config = {
-                params: {
-                    id: id
-                }
-            }
-            apiService.get('/api/district/getbyid', config,
+
+        $scope.getWardByDistrictId = function getWardByDistrictId(id) {
+            $scope.wardid = false;
+            apiService.get('/api/ward/getbydistrictid/'+ id, null,
                 function (result) {
                     $scope.wards = result.data;
                 }, function (error) {
                     notificationService.displayError('Không load được danh sách các xã, phường, thị trấn.');
                 });
+        }
+
+        $scope.getHamletByWardId = function getHamletByWardId() {
+            $scope.hamletid = false;
         }
 
         function addSituation() {
@@ -66,14 +75,60 @@
         }
 
         function loadSituationCategories() {
-            apiService.get('/api/situation_categories/getallparents', null,
+            apiService.get('/api/situationCategory/getall', null,
                 function (result) {
-                    $scope.parentCategories = result.data;
-                }, function (error) {
-                    notificationSerivce.displayError('Không thể lấy các danh mục.')
+                    $scope.situationCategories = result.data;
+                },
+                function (error) {
+                    notificationService.displayError("Không thể load danh sách các mục lục tình hình");
                 });
         }
 
+        function loadPoliceOrganizations() {
+            apiService.get('/api/policeOrganization/getall', null,
+                function (result) {
+                    $scope.policeOrganizations = result.data;
+                },
+                function (error) {
+                    notificationService.displayError("Không thể load danh sách các cơ quan giải quyết");
+                });
+        }
+
+        function loadResolvedSituations() {
+            apiService.get('/api/resolvedSituation/getall', null,
+                function (result) {
+                    $scope.resolvedSituations = result.data;
+                },
+                function (error) {
+                    notificationService.displayError("Không thể load tình trạng giải quyết");
+                });
+        }
+
+        $scope.ChooseImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.product.Image = fileUrl;
+                })
+            }
+            finder.popup();
+        }
+
+        $scope.moreImages = [];
+
+        $scope.ChooseMoreImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.moreImages.push(fileUrl);
+                })
+
+            }
+            finder.popup();
+        }
+
+        loadPoliceOrganizations();
+        loadResolvedSituations();
         loadSituationCategories();
         loadProvinces();
     }

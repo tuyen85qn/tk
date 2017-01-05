@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TK.Model.Abstract;
 
@@ -22,6 +23,8 @@ namespace TK.Model.Models
 
         [Required]
         public int SituationCategoryID { set; get; }
+        [Required]
+        public DateTime OccurenceDay { set; get; }
         [StringLength(100)]
         public string Hamlet { set; get; }            
               
@@ -30,10 +33,6 @@ namespace TK.Model.Models
 
         [Column(TypeName = "xml")]
         public string MoreImages { set; get; }
-
-        [Required]
-        [MaxLength(500)]
-        public string Description { set; get; }
 
         public string Content { set; get; }
         public bool? HomeFlag { set; get; }

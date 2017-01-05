@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="box-body">
-            <di class="row">
+            <div class="row">
                 <div class="col-md-6">
                     <div class="input-group">
                         <input type="text" class="form-control" ng-model="keyword" placeholder="Từ khóa">
@@ -33,7 +33,7 @@
                 <div class="col-md-6">
                     <button class="btn btn-success" ui-sref="add_situation_category">Thêm mới</button>                    
                 </div>
-            </di>
+            </div>
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-bordered">
@@ -49,7 +49,7 @@
 
                             <td>{{item.Name}}</td>
                             <td>
-                                {{item.CreatedDate  | date:'dd/MM/yyyy hh:mm:ss'}}
+                                {{item.CreatedDate}}
                             </td>
                             <!--class="badge bg-red"-->
                             <td>

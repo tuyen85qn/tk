@@ -42,9 +42,14 @@ namespace WebAdmin.Api
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                int totalRow = 0;
                 var model = _userManager.Users;
-                IEnumerable<ApplicationUserViewModel> modelVm = Mapper.Map<IEnumerable<ApplicationUser>, IEnumerable<ApplicationUserViewModel>>(model);
+                if(!String.IsNullOrEmpty(filter))
+                {
+                    model = model.Where(x => x.UserName.Contains(filter));
+                }
+                var query = model.OrderByDescending(x=>x.FullName).Skip(page * pageSize).Take(pageSize);
+                int totalRow = model.Count();
+                IEnumerable<ApplicationUserViewModel> modelVm = Mapper.Map<IEnumerable<ApplicationUser>, IEnumerable<ApplicationUserViewModel>>(query);
 
                 PaginationSet<ApplicationUserViewModel> pagedSet = new PaginationSet<ApplicationUserViewModel>()
                 {
@@ -79,7 +84,7 @@ namespace WebAdmin.Api
             {
                 var applicationUserViewModel = Mapper.Map<ApplicationUser, ApplicationUserViewModel>(user.Result);
                 var listGroup = _appGroupService.GetListGroupByUserId(applicationUserViewModel.Id);
-                applicationUserViewModel.Groups = Mapper.Map<IEnumerable<ApplicationGroup>, IEnumerable<ApplicationGroupViewModel>>(listGroup);
+                applicationUserViewModel.Groups = Mapper.Map<IEnumerable<ApplicationGroup>, IEnumerable<ApplicationGroupViewModel>>(listGroup);               
                 return request.CreateResponse(HttpStatusCode.OK, applicationUserViewModel);
             }
 

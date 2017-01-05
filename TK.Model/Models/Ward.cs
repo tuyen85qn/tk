@@ -12,7 +12,7 @@ namespace TK.Model.Models
     public class Ward
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { set; get; }
         [StringLength(100)]
         public string Name { set; get; }

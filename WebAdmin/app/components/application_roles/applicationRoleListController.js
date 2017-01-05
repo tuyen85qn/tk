@@ -38,8 +38,8 @@
             var config = {
                 params: {
                     page: page,
-                    pageSize: 10,
-                    filter: $scope.keyword
+                    pageSize: 5,
+                    filter: $scope.filterExpression
                 }
             }
 

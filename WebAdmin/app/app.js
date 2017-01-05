@@ -5,12 +5,14 @@
          'tk.situation_categories',
          'tk.application_groups',
          'tk.application_users',
-         'tk.application_roles'])
+         'tk.application_roles',
+         'tk.situations'])
         .config(config)
-        .config(configAuthentication);
+        .config(configAuthentication);              
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
-    configAuthentication.$inject = ['$httpProvider'];
+    configAuthentication.$inject = ['$httpProvider']; 
+ 
 
     function config($stateProvider, $urlRouterProvider) {
         $stateProvider.state('base', {
@@ -23,7 +25,7 @@
             controller: "loginController"
         }).state('home', {
             url: "/admin",
-            parent:'base',
+            parent: 'base',
             templateUrl: "/app/components/home/homeView.html",
             controller: "homeController"
         });
