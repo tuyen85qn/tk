@@ -5,14 +5,10 @@
         $scope.situationCategories = [];
         $scope.page = 0;
         $scope.pagesCount = 0;
-        $scope.keyword = '';
-        $scope.search = search;
-        $scope.getSituationCategories = getSituationCategories;
+        $scope.filterExpression = '';
+        $scope.loading = true;
+        $scope.search = search;     
         $scope.delSituationCategory = delSituationCategory;
-
-        function search() {
-            $scope.getSituationCategories();
-        }
 
         function delSituationCategory(id) {
             $ngBootbox.confirm('Bạn có muốn xóa không?').then(function(){
@@ -30,15 +26,17 @@
             });
             
         }
-        function getSituationCategories(page) {
+        function search(page) {
             page = page || 0;
+
+            $scope.loading = true;
             var config = {
                 params: {
-                    keyword: $scope.keyword,
                     page: page,
-                    pageSize: 5
+                    pageSize: 5,
+                    filter: $scope.filterExpression
                 }
-            };
+            }
 
             apiService.get('/api/situationCategory/getlistpaging', config, function (result) {
                 if (result.data.TotalCount == 0) {
@@ -48,10 +46,14 @@
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;
                 $scope.totalCount = result.data.TotalCount;
-            }, function () {
-                console.log('Load situation categories failed.');
+                if ($scope.filterExpression && $scope.filterExpression.length) {
+                    notificationService.displayInfo(result.data.Items.length + ' items found');
+                }
+            }, function (error) {
+                notificationService.displayError(error.data);
             });
         }
-        $scope.getSituationCategories();
+
+        $scope.search();
     }
 })(angular.module('tk.situation_categories'));

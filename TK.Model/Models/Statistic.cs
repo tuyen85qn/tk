@@ -28,7 +28,8 @@ namespace TK.Model.Models
         [Required]
         public DateTime ToDate { set; get; }
                     
-        public string Content { set; get; }     
+        public string Content { set; get; }
+        public int TotalSituationCount { set; get; }        
         public bool? HomeFlag { set; get; }
         public bool? HotFlag { set; get; }
         public int? ViewCount { set; get; }

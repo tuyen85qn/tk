@@ -1,5 +1,10 @@
-﻿body {
-
+﻿.show-rs{
+    font-weight:bold;
+    color:green;
+}
+.box-rs{
+    margin:15px;
+    padding:15px;
 }
 input.ng-dirty{
    border-bottom: 1px solid yellow;

@@ -51,7 +51,8 @@
         }
 
         function addSituation() {
-            apiService.post('/api/situation/create', $scope.situation,
+            $scope.situation.OccurenceDay = $scope.situation.OccurenceDay.toISOString().slice(0,10);
+            apiService.post('/api/situation/create', $scope.situation,                
                 function (result) {
                     notificationService.displaySuccess(result.data.Name + ' đã được thêm mới.');
                     $state.go('situations');

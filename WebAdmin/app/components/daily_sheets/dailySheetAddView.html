@@ -1,0 +1,83 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Thêm mới
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li><a ui-sref="statistics">Báo cáo ngày</a></li>
+        <li class="active">Thêm mới</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Horizontal Form -->
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Thêm mới</h3>            
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" novalidate name="frmAddDailySheet" role="form" ng-submit="addDailySheet()">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered">
+                            <tr>                               
+                                <th style="width:10%">Ngày báo cáo</th>
+                                <th style="width: 30%">Đơn vị báo cáo</th>
+                                <th style="width: 10%">Kiểu báo cáo</th>
+                                <th style="width: 15%">Trực chỉ huy</th>
+                                <th style="width: 10%">Trực ban</th>
+                                <th style="width: 10%">Nội dung</th>
+                                <th style="width: 10%">Xóa</th>
+                            </tr>
+                            <tr ng-repeat="item in dailySheets">
+                                <td>{{item.DayReport}}</td>
+                                <td>
+                                    {{item.PoliceOrganizationName}}
+                                </td>
+                                <td>
+                                    {{item.TypeReportName}}
+                                </td>
+                                <td>
+                                    {{item.DirectCommand}}
+                                </td>
+                                <td>
+                                    {{item.OnDuty}}
+                                </td>
+                                <td>
+                                    {{item.Description}}
+                                </td>
+                                <td>
+                                    <span ng-class="{'badge bg-red':item.Status==false,'badge bg-green':item.Status==true}">
+                                        {{item.Status | statusFilter}}
+                                    </span>
+                                </td>
+                                <td>                                   
+                                    <button class="btn  btn-sm btn-danger" ng-click="delstatistic(item.ID)"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="8"><span class="pull-right">Trang {{page+1}}Tổng số bản ghi: {{totalCount}}</span></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <div ng-if="loading">
+                            <div class="col-xs-4"></div>
+                            <div class="col-xs-4">
+                                <i class="fa fa-refresh fa-4x fa-spin"></i> <label class="label label-primary">Đang tải...</label>
+                            </div>
+                            <div class="col-xs-4"></div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div><!-- /.box-body -->
+            <div class="box-footer">
+                <button ui-sref="daily_sheets" class="btn btn-default">Hủy</button>                
+                <button type="submit" class="btn btn-success pull-right">Lưu<i class="fa fa-save"></i></button>
+            </div><!-- /.box-footer -->
+        </form>
+    </div><!-- /.box -->
+</section><!-- /.content -->

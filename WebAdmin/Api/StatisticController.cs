@@ -75,8 +75,7 @@ namespace WebAdmin.Api
             });
         }
         [Route("create")]
-        [HttpPost]
-        [AllowAnonymous]
+        [HttpPost]       
         public HttpResponseMessage Create(HttpRequestMessage request, StatisticViewModel statisticVm)
         {
             return CreateHttpResponse(request, () =>
@@ -91,19 +90,18 @@ namespace WebAdmin.Api
                     var newStatistic = new Statistic();
                     newStatistic.UpdateStatistic(statisticVm);
                     newStatistic.CreatedDate = DateTime.Now;
+                    newStatistic.CreatedBy = User.Identity.Name;
                     _statisticService.Add(newStatistic);
                     _statisticService.Save();
 
                     var responeData = Mapper.Map<Statistic, StatisticViewModel>(newStatistic);
                     respone = request.CreateResponse(HttpStatusCode.OK, responeData);
-
                 }
                 return respone;
             });
         }
         [Route("update")]
-        [HttpPut]
-        [AllowAnonymous]
+        [HttpPut]       
         public HttpResponseMessage Update(HttpRequestMessage request, StatisticViewModel statisticVm)
         {
             return CreateHttpResponse(request, () =>
@@ -118,12 +116,12 @@ namespace WebAdmin.Api
                     var oldStatistic = _statisticService.GetById(statisticVm.ID);
                     oldStatistic.UpdateStatistic(statisticVm);
                     oldStatistic.UpdatedDate = DateTime.Now;
+                    oldStatistic.UpdatedBy = User.Identity.Name;
                     _statisticService.Update(oldStatistic);
                     _statisticService.Save();
 
                     var responeData = Mapper.Map<Statistic, StatisticViewModel>(oldStatistic);
                     respone = request.CreateResponse(HttpStatusCode.OK, responeData);
-
                 }
                 return respone;
             });

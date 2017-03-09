@@ -1,0 +1,67 @@
+﻿<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">Thêm mới</h3>
+    </div><!-- /.box-header -->
+    <form class="form-horizontal" novalidate name="frmAddSheet" role="form">
+        <div class="box-body">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Tên</label>
+                <div class="col-sm-4">
+                    <select name="policeorganizationname" required class="form-control" ng-model="sheet.PoliceOrganizationName" ng-options="option.ID as option.Name for option in policeOrganizations ">
+                        <option value="">Đơn vị, địa phương báo cáo</option>
+                    </select>
+                </div>               
+                <div class="col-sm-4">
+                    <i class="fa fa-check text-success" ng-show="frmAddSheet.policeorganizationname.$dirty && frmAddSheet.policeorganizationname.$valid"></i>
+                    <div ng-show="frmAddSheet.policeorganizationname.$pristine && frmAddSheet.policeorganizationname.$invalid" class="text-danger">
+                        <i class="fa fa-times text-danger"></i>
+                        <span ng-show="frmAddSheet.$error.required">Không được bỏ trống</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">                
+                <label for="inputEmail3" class="col-sm-2 control-label">Kiểu báo cáo</label>
+                <div class="col-sm-4">
+                    <select name="typereport" required class="form-control" ng-model="sheet.TypeReportName" ng-options="option.ID as option.Name for option in typeReports ">
+                        <option value="">Chọn hình thức báo cáo</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <i class="fa fa-check text-success" ng-show="frmAddSheet.policeorganizationname.$dirty && frmAddSheet.policeorganizationname.$valid"></i>
+                    <div ng-show="frmAddSheet.policeorganizationname.$pristine && frmAddSheet.policeorganizationname.$invalid" class="text-danger">
+                        <i class="fa fa-times text-danger"></i>
+                        <span ng-show="frmAddSheet.$error.required">Không được bỏ trống</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Ngày báo cáo</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="dayreport"
+                           datetime-directive options="{format:'YYYY-MM-DD'}" ng-model="sheet.DayReport">
+                </div>
+                <div class="col-sm-4 pull-left">
+                    <i class="fa fa-check text-success" ng-show="frmAddSheet.dayreport.$dirty && frmAddSheet.dayreport.$valid"></i>
+                    <div ng-show="frmAddSheet.dayreport.$pristine && frmAddSheet.dayreport.$invalid" class="text-danger">
+                        <i class="fa fa-times text-danger"></i>
+                        <span ng-show="frmAddSheet.$error.required">Không được để trống</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Trực chỉ huy</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="directcommand" ng-model="sheet.DirectCommand">
+                </div>
+                <label for="inputEmail3" class="col-sm-2 control-label">Trực ban</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="onduty" ng-model="sheet.OnDuty">
+                </div>
+            </div>
+            <div class="box-footer">
+                <button ui-sref="daily_sheets" class="btn btn-default">Hủy</button>
+                <button type="button" class="btn btn-success pull-right" ng-click="addSheet()">Lưu<i class="fa fa-save"></i></button>
+            </div><!-- /.box-footer -->
+        </div><!-- /.box-body -->
+    </form>
+    </div>

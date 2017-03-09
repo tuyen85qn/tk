@@ -1,3 +1,3 @@
 ﻿(function () {
-    angular.module('tk.common', ['ui.router', 'ngBootbox','ngCkeditor', 'checklist-model']);
+    angular.module('tk.common', ['ui.router', 'ngBootbox', 'ngCkeditor', 'checklist-model', 'ngDialog', 'ui.bootstrap']);
 })();

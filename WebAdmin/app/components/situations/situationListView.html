@@ -39,18 +39,21 @@
                     <table class="table table-bordered">
                         <tr>
                             <th style="width: 5%">ID</th>
-                            <th style="width:35%">Tiêu đề</th>
-                            <th style="width: 20%">Ngày xảy ra</th>                            
+                            <th style="width: 15%">Loại tình hình</th>                           
+                            <th style="width: 20%">Ngày xảy ra</th> 
+                            <th style="width: 20%">Địa điểm</th>                           
                             <th style="width: 10%">Trạng thái</th>
                             <th style="width: 10%">Thao tác</th>
                         </tr>
                         <tr ng-repeat="item in situations | filter:filterExpression">
                             <td>{{item.ID}}</td>
-
-                            <td>{{item.Name}}</td>
+                            <td>{{item.SituationCategoryName}}</td>
                             <td>
-                                {{item.OccurenceDay | filter: date}}
-                            </td>                                                      
+                                {{item.OccurenceDay}}
+                            </td>
+                            <td>
+                                {{item.Place}}
+                            </td>                                                       
                             <td>
                                 <span ng-class="{'badge bg-red':item.Status==false,'badge bg-green':item.Status==true}">
                                     {{item.Status | statusFilter}}
@@ -78,7 +81,7 @@
             </div>
         </div><!-- /.box-body -->
         <div class="box-footer">
-            <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="getSituations(page)"></pager-directive>
+            <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="search(page)"></pager-directive>
         </div><!-- /.box-footer-->
     </div><!-- /.box -->
 </section><!-- /.content -->

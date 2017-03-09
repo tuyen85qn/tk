@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TK.Data;
 using TK.Data.Infrastructure;
 using TK.Data.Repositories;
 using TK.Model.Models;
@@ -18,8 +19,8 @@ namespace TK.Service
         Situation Delete(int id);       
 
         IEnumerable<Situation> GetAll(string keyword);
-        IEnumerable<Situation> GetAll();    
-      
+        IEnumerable<Situation> GetAll();
+        IEnumerable<Situation> GetListByDate(DateTime fromDate, DateTime toDate, int provinceId);
         Situation GetById(int id);     
 
         void Save();        
@@ -56,6 +57,11 @@ namespace TK.Service
                 return _situationRepository.GetMulti(x => x.Name.Contains(keyword));
             else
                 return _situationRepository.GetAll();
+        }
+        public IEnumerable<Situation> GetListByDate(DateTime fromDate, DateTime toDate, int provinceId)
+        {            
+            DateTime tempDate = toDate.AddDays(1);
+            return _situationRepository.GetMulti(x => x.ProvinceID == provinceId && x.OccurenceDay >= fromDate && x.OccurenceDay < tempDate);           
         }
         public Situation GetById(int id)
         {

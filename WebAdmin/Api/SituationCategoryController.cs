@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using TK.Data;
 using TK.Model.Models;
 using TK.Service;
 using WebAdmin.Infrastructure.Core;
@@ -27,12 +28,12 @@ namespace WebAdmin.Api
         #endregion
         [Route("getlistpaging")]
         [HttpGet]
-        public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
+        public HttpResponseMessage GetAll(HttpRequestMessage request, string filter, int page, int pageSize = 20)
         {
             return CreateHttpResponse(request, () =>
             {
                 int totalRow = 0;
-                var model = _situationCategoryService.GetAll(keyword);
+                var model = _situationCategoryService.GetAll(filter);
                 totalRow = model.Count();
                 var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
                 var responeData = Mapper.Map<IEnumerable<SituationCategory>, IEnumerable<SituationCategoryViewModel>>(query);
@@ -156,6 +157,38 @@ namespace WebAdmin.Api
                 }
                 return respone;
             });
+        }
+        public static List<SituationCategory> GetSubCascading(int situationCategoryID, TKDbContext dbContext)
+        {
+            List<SituationCategory> lstSituationCategory = new List<SituationCategory>();
+
+            List<SituationCategory> matches = dbContext.SituationCategories.Where(x => x.ID == situationCategoryID).ToList();
+
+            if (matches.Any())
+            {
+                lstSituationCategory.AddRange(TraverseSubs(matches, dbContext));
+            }
+
+            return lstSituationCategory;
+        }
+        private static List<SituationCategory> TraverseSubs(List<SituationCategory> resultSet, TKDbContext dbContext)
+        {
+            List<SituationCategory> lstSituationCategory = new List<SituationCategory>();
+
+            lstSituationCategory.AddRange(resultSet);
+
+            for (int i = 0; i < resultSet.Count; i++)
+            {
+                //Get all subcompList of each folder
+                List<SituationCategory> children = dbContext.SituationCategories.Where(x => x.ParentID == resultSet[i].ID).ToList();
+
+                if (children.Any())
+                {
+                    lstSituationCategory.AddRange(TraverseSubs(children, dbContext));
+                }
+            }
+
+            return lstSituationCategory;
         }
     }
 }

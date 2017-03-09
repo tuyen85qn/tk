@@ -1,12 +1,14 @@
-﻿
-(function () {
+﻿(function () {
     angular.module('tk',
         ['tk.common',
          'tk.situation_categories',
          'tk.application_groups',
          'tk.application_users',
          'tk.application_roles',
-         'tk.situations'])
+         'tk.situations',
+         'tk.statistic_categories',         
+         'tk.statistics',
+         'tk.daily_sheets'])
         .config(config)
         .config(configAuthentication);              
 

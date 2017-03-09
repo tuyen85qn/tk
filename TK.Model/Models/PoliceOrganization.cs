@@ -14,6 +14,8 @@ namespace TK.Model.Models
         [Required]
         [MaxLength(256)]
         public string Name { set; get; }
+        [StringLength(30)]
+        public string Type { set; get; }
         public virtual IEnumerable<Situation> Situations { set; get; }
         public virtual IEnumerable<Statistic> Statistics { set; get; }
     }

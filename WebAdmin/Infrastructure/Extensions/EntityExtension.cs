@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
+using TK.Data;
 using TK.Model.Models;
 using WebAdmin.Models;
 
@@ -15,7 +17,7 @@ namespace WebAdmin.Infrastructure.Extensions
             situation.Name = situationVm.Name;
             situation.Alias = situationVm.Alias;
             situation.SituationCategoryID = situationVm.SituationCategoryID;
-            situation.OccurenceDay = situationVm.OccurenceDay;
+            situation.OccurenceDay = DateTime.ParseExact(situationVm.OccurenceDay,"yyyy-MM-dd", CultureInfo.InvariantCulture);           
             situation.Image = situationVm.Image;
             situation.MoreImages = situationVm.MoreImages;           
             situation.Content = situationVm.Content;
@@ -41,15 +43,54 @@ namespace WebAdmin.Infrastructure.Extensions
             situation.Status = situationVm.Status;
 
         }
+        public static void UpdateSituationListView(this SituationListViewModel situationLVm, Situation situation)
+        {
+            TKDbContext db = new TKDbContext();
+            situationLVm.ID = situation.ID;
+            situationLVm.Name = situation.Name;
+            situationLVm.OccurenceDay = situation.OccurenceDay.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+            situationLVm.TheInjured = situation.TheInjured;
+            situationLVm.TheDead = situation.TheDead;          
+            situationLVm.PropertyDamage = situation.PropertyDamage;
+            situationLVm.Status = situation.Status;
+            SituationCategory situationCategory = db.SituationCategories.FirstOrDefault(x => x.ID == situation.SituationCategoryID);
+            PoliceOrganization policeOrganization = db.PoliceOrganizations.FirstOrDefault(x => x.ID == situation.PoliceOrganizationID);
+            ResolvedSituation resolvedSituation = db.ResolvedSituations.FirstOrDefault(x => x.ID == situation.ResolvedSituationID);
+            if( situationCategory != null)
+            {
+                situationLVm.SituationCategoryName = situationCategory.Name;
+            }
+            if (policeOrganization !=null)
+            {
+                situationLVm.PoliceOrganizationName = policeOrganization.Name;
+            }
+            if (resolvedSituation != null)
+            {
+                situationLVm.ResolvedSituationName = resolvedSituation.Name;
+            }            
+            
+            District district = db.Districts.FirstOrDefault(x => x.ID == situation.DistrictID);
+            Province province = db.Provinces.FirstOrDefault(x => x.ID == situation.ProvinceID);
+            if(district == null)
+            {
+                situationLVm.Place = province.Type + " " + province.Name; 
+            }
+            else
+            {
+                situationLVm.Place = district.Type + " " + district.Name + ", " +
+                    province.Type + " " + province.Name;
+            }
+              
+        }
         public static void UpdateStatistic(this Statistic statistic, StatisticViewModel statisticVm)
         {
             statistic.ID = statisticVm.ID;
             statistic.Name = statisticVm.Name;
             statistic.Alias = statisticVm.Alias;
             statistic.StatisticCategoryID = statisticVm.StatisticCategoryID;
-            statistic.ToDate = statisticVm.ToDate;
-            statistic.FromDate = statisticVm.FromDate;       
-            statistic.Content = statisticVm.Content;
+            statistic.ToDate = DateTime.ParseExact(statisticVm.ToDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            statistic.FromDate = DateTime.ParseExact(statisticVm.FromDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            statistic.Content = statisticVm.Content;            
             statistic.HomeFlag = statisticVm.HomeFlag;
             statistic.HotFlag = statisticVm.HotFlag;
             statistic.ViewCount = statisticVm.ViewCount;
@@ -59,8 +100,8 @@ namespace WebAdmin.Infrastructure.Extensions
             statistic.WardID = statisticVm.WardID;
             statistic.TheInjured = statisticVm.TheInjured;
             statistic.TheDead = statisticVm.TheDead;
-            statistic.PropertyDamage = statisticVm.PropertyDamage;
-            statistic.PoliceOrganizationID = statisticVm.PoliceOrganizationID;
+            statistic.TotalSituationCount = statisticVm.TotalSituationCount;
+            statistic.PropertyDamage = statisticVm.PropertyDamage;           
             statistic.ResolvedSituationID = statisticVm.ResolvedSituationID;
             statistic.CreatedDate = statisticVm.CreatedDate;
             statistic.CreatedBy = statisticVm.CreatedBy;
@@ -131,6 +172,29 @@ namespace WebAdmin.Infrastructure.Extensions
             appUser.Email = appUserViewModel.Email;
             appUser.UserName = appUserViewModel.UserName;
             appUser.PhoneNumber = appUserViewModel.PhoneNumber;
+        }
+        public static void UpdateDailySheet(this DailySheet dailySheet, DailySheetViewModel dailySheetVm)
+        {
+            TKDbContext db = new TKDbContext();
+            dailySheet.ID = dailySheetVm.ID;
+            dailySheet.DayReport = DateTime.ParseExact(dailySheetVm.DayReport, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            PoliceOrganization policeOrganization = db.PoliceOrganizations.FirstOrDefault(x => x.Name == dailySheetVm.PoliceOrganizationName);
+            TypeReport typeReport = db.TypeReports.FirstOrDefault(x => x.Name == dailySheetVm.TypeReportName);
+            dailySheet.PoliceOrganizationID = policeOrganization.ID;
+            dailySheet.TypeReportID = typeReport.ID;
+            dailySheet.OnDuty = dailySheetVm.OnDuty;
+            dailySheet.DirectCommand = dailySheetVm.DirectCommand;
+            dailySheet.Description = dailySheetVm.Description;
+
+
+            dailySheet.CreatedDate = dailySheetVm.CreatedDate;
+            dailySheet.CreatedBy = dailySheetVm.CreatedBy;
+            dailySheet.UpdatedBy = dailySheetVm.UpdatedBy;
+            dailySheet.UpdatedDate = dailySheetVm.UpdatedDate;
+            dailySheet.MetaKeyword = dailySheetVm.MetaKeyword;
+            dailySheet.MetaDescription = dailySheetVm.MetaDescription;
+            dailySheet.Status = dailySheetVm.Status;
+
         }
     }
 }

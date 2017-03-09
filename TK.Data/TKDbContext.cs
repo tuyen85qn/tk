@@ -30,7 +30,9 @@ namespace TK.Data
         public DbSet<ApplicationRole> ApplicationRoles { set; get; }        
         public DbSet<Province> Provinces { set; get; }
         public DbSet<District> Districts { set; get; }
-        public DbSet<Ward> Wards { set; get; }      
+        public DbSet<Ward> Wards { set; get; }
+        public DbSet<DailySheet> DailySheets { set; get; }
+        public DbSet<TypeReport> TypeReports { set; get; }
 
         public static TKDbContext Create()
         {

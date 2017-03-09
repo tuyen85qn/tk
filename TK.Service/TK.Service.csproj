@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="ApplicationGroupService.cs" />
     <Compile Include="ApplicationRoleService.cs" />
+    <Compile Include="DailySheetService.cs" />
     <Compile Include="DistrictService.cs" />
     <Compile Include="ErrorService.cs" />
     <Compile Include="PoliceOrganizationService.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="SituationService.cs" />
     <Compile Include="StatisticCategoryService.cs" />
     <Compile Include="StatisticService.cs" />
+    <Compile Include="TypeReportService.cs" />
     <Compile Include="WardService.cs" />
   </ItemGroup>
   <ItemGroup>

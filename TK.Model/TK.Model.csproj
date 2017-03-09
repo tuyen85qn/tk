@@ -65,6 +65,8 @@
     <Compile Include="Models\ApplicationRole.cs" />
     <Compile Include="Models\ApplicationRoleGroup.cs" />
     <Compile Include="Models\ApplicationUserGroup.cs" />
+    <Compile Include="Models\DailySheet.cs" />
+    <Compile Include="Models\TypeReport.cs" />
     <Compile Include="Models\Ward.cs" />
     <Compile Include="Models\District.cs" />
     <Compile Include="Models\Footer.cs" />

@@ -68,16 +68,34 @@
     <Compile Include="Migrations\201612280801524_AddDB.Designer.cs">
       <DependentUpon>201612280801524_AddDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701170303073_AddAttTblStatistic.cs" />
+    <Compile Include="Migrations\201701170303073_AddAttTblStatistic.Designer.cs">
+      <DependentUpon>201701170303073_AddAttTblStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702160710527_AddTbStatistic.cs" />
+    <Compile Include="Migrations\201702160710527_AddTbStatistic.Designer.cs">
+      <DependentUpon>201702160710527_AddTbStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703030818198_AddTbDailySheet.cs" />
+    <Compile Include="Migrations\201703030818198_AddTbDailySheet.Designer.cs">
+      <DependentUpon>201703030818198_AddTbDailySheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703040220222_AddTbTypeReport.cs" />
+    <Compile Include="Migrations\201703040220222_AddTbTypeReport.Designer.cs">
+      <DependentUpon>201703040220222_AddTbTypeReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
     <Compile Include="Repositories\ApplicationRoleGroupRepository.cs" />
     <Compile Include="Repositories\ApplicationRoleRepository.cs" />
     <Compile Include="Repositories\ApplicationUserGroupRepository.cs" />
+    <Compile Include="Repositories\DailySheetRepository.cs" />
     <Compile Include="Repositories\DistrictRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
     <Compile Include="Repositories\FooterRepository.cs" />
     <Compile Include="Repositories\ProvinceRepository.cs" />
+    <Compile Include="Repositories\TypeReportRepository.cs" />
     <Compile Include="Repositories\WardRepository.cs" />
     <Compile Include="Repositories\ResolvedSituationRepository.cs" />
     <Compile Include="Repositories\PoliceOrganizationRepository.cs" />
@@ -107,6 +125,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201612280801524_AddDB.resx">
       <DependentUpon>201612280801524_AddDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701170303073_AddAttTblStatistic.resx">
+      <DependentUpon>201701170303073_AddAttTblStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702160710527_AddTbStatistic.resx">
+      <DependentUpon>201702160710527_AddTbStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703030818198_AddTbDailySheet.resx">
+      <DependentUpon>201703030818198_AddTbDailySheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703040220222_AddTbTypeReport.resx">
+      <DependentUpon>201703040220222_AddTbTypeReport.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

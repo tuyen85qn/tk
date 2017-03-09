@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -23,7 +24,7 @@ namespace WebAdmin.Api
         public SituationController(IErrorService errorService, ISituationService situationService)
             : base(errorService)
         {
-            _situationService = situationService;
+            _situationService = situationService;           
         }
         #endregion
         [Route("getlistpaging")]
@@ -37,8 +38,69 @@ namespace WebAdmin.Api
                 var model = _situationService.GetAll(filter);
                 totalRow = model.Count();
                 var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
-                var responeData = Mapper.Map<IEnumerable<Situation>, IEnumerable<SituationViewModel>>(query);
-                var paginationSet = new PaginationSet<SituationViewModel>()
+                List<SituationListViewModel> responeData = new List<SituationListViewModel>();
+                foreach (var item in query)
+                {
+                    var newSituationVm = new SituationListViewModel();
+                    newSituationVm.UpdateSituationListView(item);
+                    responeData.Add(newSituationVm);                 
+                }
+                               
+                var paginationSet = new PaginationSet<SituationListViewModel>()
+                {
+                    Items = responeData,
+                    Page = page,
+                    TotalCount = totalRow,
+                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
+                };                
+                var respone = request.CreateResponse(HttpStatusCode.OK, paginationSet);
+                return respone;
+            });
+        }
+        [Route("getlistpagingbydate")]
+        [HttpGet]
+        public HttpResponseMessage GetListByDate(HttpRequestMessage request, string fromDate, string toDate,int provinceID, int? districtID = null,
+            int? resolvedSituationID= null, int page = 0, int pageSize =20, string filter = null)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                int totalRow = 0;
+                DateTime FromDate = DateTime.ParseExact(fromDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime ToDate = DateTime.ParseExact(toDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+                var model = _situationService.GetListByDate(FromDate, ToDate, provinceID);
+                if (districtID != null)
+                {
+                    model = model.Where(x => x.DistrictID == districtID);
+                }
+                if (resolvedSituationID != null)
+                {
+                    model = model.Where(x => x.ResolvedSituationID == resolvedSituationID);
+                }
+
+                if (!string.IsNullOrEmpty(filter))
+                {
+                    TKDbContext dbContex = new TKDbContext();
+                    List<SituationCategory> lstCategory = new List<SituationCategory>();
+                    List<Situation> lstSituation = new List<Situation>();
+                    SituationCategory situationCategory = dbContex.SituationCategories.SingleOrDefault(x => x.Name == filter);
+                    lstCategory = SituationCategoryController.GetSubCascading(situationCategory.ID, dbContex);
+                    for( int i = 0; i < lstCategory.Count(); i++)
+                    {
+                        lstSituation.AddRange(model.Where(x => x.SituationCategoryID == lstCategory[i].ID).ToList());
+                    }
+                    model = lstSituation;
+                }
+                totalRow = model.Count();
+                var query = model.OrderByDescending(x => x.OccurenceDay).Skip(page * pageSize).Take(pageSize);
+                List<SituationListViewModel> responeData = new List<SituationListViewModel>();
+                foreach (var item in query)
+                {
+                    var newSituationVm = new SituationListViewModel();
+                    newSituationVm.UpdateSituationListView(item);
+                    responeData.Add(newSituationVm);
+                }
+                var paginationSet = new PaginationSet<SituationListViewModel>()
                 {
                     Items = responeData,
                     Page = page,
@@ -49,7 +111,7 @@ namespace WebAdmin.Api
                 return respone;
             });
         }
-
+        
         [Route("getall")]
         [HttpGet]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
@@ -88,13 +150,13 @@ namespace WebAdmin.Api
                     respone = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
                 }
                 else
-                {
+                {                    
                     var newSituation = new Situation();
                     newSituation.UpdateSituation(situationVm);
                     newSituation.CreatedDate = DateTime.Now;
+                    newSituation.CreatedBy = User.Identity.Name;
                     _situationService.Add(newSituation);
                     _situationService.Save();
-
                     var responeData = Mapper.Map<Situation, SituationViewModel>(newSituation);
                     respone = request.CreateResponse(HttpStatusCode.OK, responeData);
 
@@ -117,7 +179,7 @@ namespace WebAdmin.Api
                 else
                 {
                     var oldSituation = _situationService.GetById(situationVm.ID);
-                    oldSituation.UpdateSituation(situationVm);
+                    oldSituation.UpdateSituation(situationVm);                   
                     oldSituation.UpdatedDate = DateTime.Now;
                     _situationService.Update(oldSituation);
                     _situationService.Save();

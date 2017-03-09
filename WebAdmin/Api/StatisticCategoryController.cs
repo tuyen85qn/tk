@@ -19,25 +19,28 @@ namespace WebAdmin.Api
     {
         #region
         private IStatisticCategoryService _statisticCategoryService;
-
         public StatisticCategoryController(IErrorService errorService, IStatisticCategoryService statisticCategoryService)
             : base(errorService)
         {
             _statisticCategoryService = statisticCategoryService;
         }
-       
         #endregion
         [Route("getlistpaging")]
         [HttpGet]
-        public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
+        public HttpResponseMessage GetAll(HttpRequestMessage request, string filter, int page, int pageSize = 20)
         {
             return CreateHttpResponse(request, () =>
             {
                 int totalRow = 0;
-                var model = _statisticCategoryService.GetAll(keyword);
+                var model = _statisticCategoryService.GetAll(filter);
                 totalRow = model.Count();
-                var query = model.OrderByDescending(x => x.Name).Skip(page * pageSize).Take(pageSize);
-                var responeData = Mapper.Map<IEnumerable<StatisticCategoryController>, IEnumerable<StatisticCategoryViewModel>>(query);
+                var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
+                var responeData = Mapper.Map<IEnumerable<StatisticCategory>, IEnumerable<StatisticCategoryViewModel>>(query);
+                foreach(var item in responeData)
+                {
+                    string st= String.Format("{0:MM/dd/yyyy}", item.CreatedDate);
+                    item.CreatedDate = DateTime.ParseExact(st, "MM/dd/yyyy",null);
+                }
                 var paginationSet = new PaginationSet<StatisticCategoryViewModel>()
                 {
                     Items = responeData,
@@ -56,7 +59,7 @@ namespace WebAdmin.Api
             return CreateHttpResponse(request, () =>
             {
                 var model = _statisticCategoryService.GetAll();
-                var responeData = Mapper.Map<IEnumerable<StatisticCategoryController>, IEnumerable<StatisticCategoryViewModel>>(model);
+                var responeData = Mapper.Map<IEnumerable<StatisticCategory>, IEnumerable<StatisticCategoryViewModel>>(model);
                 var respone = request.CreateResponse(HttpStatusCode.OK, responeData);
                 return respone;
             });
@@ -68,7 +71,7 @@ namespace WebAdmin.Api
             return CreateHttpResponse(request, () =>
             {
                 var model = _statisticCategoryService.GetById(id);
-                var responeData = Mapper.Map<StatisticCategoryController, StatisticCategoryViewModel>(model);
+                var responeData = Mapper.Map<StatisticCategory, StatisticCategoryViewModel>(model);
                 var respone = request.CreateResponse(HttpStatusCode.OK, responeData);
                 return respone;
             });
@@ -87,21 +90,19 @@ namespace WebAdmin.Api
                 }
                 else
                 {
-                    var newStatisticCategory = new StatisticCategoryController();
+                    var newStatisticCategory = new StatisticCategory();
                     newStatisticCategory.UpdateStatisticCategory(statisticCategoryVm);
                     newStatisticCategory.CreatedDate = DateTime.Now;
                     _statisticCategoryService.Add(newStatisticCategory);
                     _statisticCategoryService.Save();
 
-                    var responeData = Mapper.Map<StatisticCategoryController, StatisticCategoryViewModel>(newStatisticCategory);
+                    var responeData = Mapper.Map<StatisticCategory, StatisticCategoryViewModel>(newStatisticCategory);
                     respone = request.CreateResponse(HttpStatusCode.OK, responeData);
 
                 }
                 return respone;
             });
         }
-              
-
         [Route("update")]
         [HttpPut]
         [AllowAnonymous]
@@ -122,7 +123,7 @@ namespace WebAdmin.Api
                     _statisticCategoryService.Update(oldStatisticCategory);
                     _statisticCategoryService.Save();
 
-                    var responeData = Mapper.Map<StatisticCategoryController, StatisticCategoryViewModel>(oldStatisticCategory);
+                    var responeData = Mapper.Map<StatisticCategory, StatisticCategoryViewModel>(oldStatisticCategory);
                     respone = request.CreateResponse(HttpStatusCode.OK, responeData);
 
                 }
@@ -149,7 +150,7 @@ namespace WebAdmin.Api
                         dbStatisticCategory = _statisticCategoryService.Delete(id);
                         _statisticCategoryService.Save();
 
-                        var responeData = Mapper.Map<StatisticCategoryController, StatisticCategoryViewModel>(dbStatisticCategory);
+                        var responeData = Mapper.Map<StatisticCategory, StatisticCategoryViewModel>(dbStatisticCategory);
                         respone = request.CreateResponse(HttpStatusCode.OK, responeData);
                     }
                     else

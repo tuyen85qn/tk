@@ -20,7 +20,7 @@ namespace WebAdmin.Models
 
       
         public int SituationCategoryID { set; get; }
-        public DateTime OccurenceDay { set; get; }
+        public String OccurenceDay { set; get; }
 
         public string Image { set; get; }
 
@@ -36,8 +36,8 @@ namespace WebAdmin.Models
         public int? ViewCount { set; get; }
         public string Tags { set; get; }
         public int ProvinceID { set; get; }
-        public int DistrictID { set; get; }
-        public int WardID { set; get; }
+        public int? DistrictID { set; get; }
+        public int? WardID { set; get; }
         public string Hamlet { set; get; }
         public int? TheInjured { set; get; }
         public int? TheDead { set; get; }
