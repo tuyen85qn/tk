@@ -180,7 +180,8 @@ namespace WebAdmin.Api
             for (int i = 0; i < resultSet.Count; i++)
             {
                 //Get all subcompList of each folder
-                List<SituationCategory> children = dbContext.SituationCategories.Where(x => x.ParentID == resultSet[i].ID).ToList();
+                var id = resultSet[i].ID;
+                List<SituationCategory> children = dbContext.SituationCategories.Where(x => x.ParentID == id).ToList();
 
                 if (children.Any())
                 {

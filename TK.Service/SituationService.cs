@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace TK.Service
 
         IEnumerable<Situation> GetAll(string keyword);
         IEnumerable<Situation> GetAll();
+        IEnumerable<Situation> GetListByCategory(int id);
         IEnumerable<Situation> GetListByDate(DateTime fromDate, DateTime toDate, int provinceId);
         Situation GetById(int id);     
 
@@ -61,7 +63,8 @@ namespace TK.Service
         public IEnumerable<Situation> GetListByDate(DateTime fromDate, DateTime toDate, int provinceId)
         {            
             DateTime tempDate = toDate.AddDays(1);
-            return _situationRepository.GetMulti(x => x.ProvinceID == provinceId && x.OccurenceDay >= fromDate && x.OccurenceDay < tempDate);           
+            return _situationRepository.GetMulti(x => x.ProvinceID == provinceId &&
+            DbFunctions.TruncateTime(x.OccurenceDay) >= DbFunctions.TruncateTime(fromDate) && DbFunctions.TruncateTime(x.OccurenceDay) < DbFunctions.TruncateTime(tempDate));           
         }
         public Situation GetById(int id)
         {
@@ -77,7 +80,11 @@ namespace TK.Service
         {
             _situationRepository.Update(situation);
         }
-        
+
+        public IEnumerable<Situation> GetListByCategory(int id)
+        {
+            return _situationRepository.GetMulti(x => x.SituationCategoryID == id);
+        }
     }
     
 }

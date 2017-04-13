@@ -22,10 +22,15 @@
 
         };
     });
-    app.filter('brDateFilter', function () {
-        return function (dateSTR) {
-            var o = dateSTR.replace(/-/g, "/"); // Replaces hyphens with slashes
-            return Date.parse(o + " -0000"); // No TZ subtraction on this sample
-        }
+    app.filter('strDate', function ($filter) {
+        return function (input) {
+            if (input == null)
+            {
+                return "";
+            }
+
+            return input.slice(0, 10);
+            
+        };
     });
 })(angular.module('tk.common'));

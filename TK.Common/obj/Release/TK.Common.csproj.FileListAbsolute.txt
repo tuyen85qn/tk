@@ -1,0 +1,5 @@
+D:\tuyen\Develop\tk\TK.Common\bin\Release\TK.Common.dll
+D:\tuyen\Develop\tk\TK.Common\bin\Release\TK.Common.pdb
+D:\tuyen\Develop\tk\TK.Common\obj\Release\TK.Common.csprojResolveAssemblyReference.cache
+D:\tuyen\Develop\tk\TK.Common\obj\Release\TK.Common.dll
+D:\tuyen\Develop\tk\TK.Common\obj\Release\TK.Common.pdb

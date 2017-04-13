@@ -1,0 +1,100 @@
+﻿<section class="content-header">
+  <h1>
+    Cập nhất người dùng
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+    <li><a ui-sref="accounts">Danh mục người dùng</a></li>
+    <li class="active"><a href="#">Cập nhật</a></li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">{{account.FullName}}</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+          <form class="form-horizontal" role="form" novalidate name="frmEditApplicationUser" ng-submit="updateAccount()">
+              <div class="box-body">
+                  <div class="box-body">
+                      <div class="form-group">
+                          <label for="inputEmail3" class="col-sm-2 control-label">Họ và tên</label>
+                          <div class="col-sm-6">
+                              <input type="text" class="form-control" name="name" required ng-model="account.FullName">
+                          </div>
+                          <div class="col-sm-4 pull-left">
+                              <i class="fa fa-check text-success" ng-show="frmEditApplicationUser.name.$dirty && frmEditApplicationUser.name.$valid"></i>
+                              <div ng-show="frmEditApplicationUser.name.$dirty && frmEditApplicationUser.name.$invalid" class="text-danger">
+                                  <i class="fa fa-times text-danger"></i>
+                                  <span ng-show="frmEditApplicationUser.$error.required">Họ và tên không được bỏ trống</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="inputEmail3" class="col-sm-2 control-label">Tên tài khoản</label>
+                          <div class="col-sm-6">
+                              <input type="text" class="form-control" name="username" ng-model="account.UserName" required>
+                          </div>
+                          <div class="col-sm-4 pull-left">
+                              <i class="fa fa-check text-success" ng-show="frmEditApplicationUser.name.$dirty && frmEditApplicationUser.username.$valid"></i>
+                              <div ng-show="frmEditApplicationUser.username.$dirty && frmEditApplicationUser.username.$invalid" class="text-danger">
+                                  <i class="fa fa-times text-danger"></i>
+                                  <span ng-show="frmEditApplicationUser.$error.required">Tên tài khoản không được bỏ trống</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="inputEmail3" class="col-sm-2 control-label">Mật khẩu</label>
+                          <div class="col-sm-6">
+                              <input type="password" class="form-control" name="password" ng-model="account.Password" required ng-minlength="6">
+                          </div>                          
+                      </div>
+                      <div class="form-group">
+                          <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                          <div class="col-sm-6">
+                              <input type="email" class="form-control" name="email" ng-model="account.Email" required>
+                          </div>
+                          <div class="col-sm-4 pull-left">
+                              <i class="fa fa-check text-success" ng-show="frmEditApplicationUser.email.$dirty && frmAddApplicationUser.email.$valid"></i>
+                              <div ng-show="frmEditApplicationUser.email.$dirty && frmEditApplicationUser.email.$invalid" class="text-danger">
+                                  <i class="fa fa-times text-danger"></i>
+                                  <span ng-show="frmEditApplicationUser.$error.email">Email không đúng định dạng</span>
+                                  <span ng-show="frmEditApplicationUser.$error.required">Email không được bỏ trống</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="inputEmail3" class="col-sm-2 control-label">Số điện thoại</label>
+                          <div class="col-sm-6">
+                              <input type="text" class="form-control" name="phonenumber" ng-model="account.PhoneNumber" />
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="inputEmail3" class="col-sm-2 control-label">Ngày sinh</label>
+                          <div class="col-sm-6">
+                              <input class="form-control" type="text" name="birthday"
+                                     ng-model="account.BirthDay" datetime-directive options ="{format:'YYYY-MM-DD'}" />
+                                    
+                          </div>                         
+                      </div>
+                      <div class="form-group">
+                          <label for="inputEmail3" class="col-sm-2 control-label">Danh sách nhóm</label>
+                          <div class="col-sm-6">
+                              <label ng-repeat="group in groups">
+                                  <input type="checkbox" checklist-model="account.Groups" checklist-value="group"> {{group.Name}}
+                              </label>
+                          </div>
+                      </div>
+                  </div>
+              </div><!-- /.box-body -->
+              <div class="box-footer">
+                  <button ui-sref="application_users" class="btn btn-default">Hủy</button>
+                  <button type="submit" class="btn btn-success pull-right" ng-disabled="frmEditApplicationUser.$invalid">Lưu <i class="fa fa-save"></i></button>
+              </div><!-- /.box-footer -->
+          </form>
+      </div><!-- /.box -->
+    </div>
+  </div>
+</section>

@@ -13,7 +13,7 @@ using WebAdmin.Models;
 namespace WebAdmin.Api
 {
     [RoutePrefix("api/policeOrganization")]
-    [Authorize]
+    [AllowAnonymous]
     public class PoliceOrganizationController : ApiControllerBase
     {
         #region

@@ -24,6 +24,8 @@ namespace WebAdmin.Mappings
             Mapper.CreateMap<Ward, WardViewModel>();
             Mapper.CreateMap<PoliceOrganization, PoliceOrganizationViewModel>();
             Mapper.CreateMap<ResolvedSituation, ResolvedSituationViewModel>();
+            Mapper.CreateMap<TypeReport, TypeReportViewModel>();
+            Mapper.CreateMap<DailySheet, DailySheetViewModel>();
         }
         
     }

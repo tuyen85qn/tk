@@ -173,7 +173,32 @@ namespace WebAdmin.Infrastructure.Extensions
             appUser.UserName = appUserViewModel.UserName;
             appUser.PhoneNumber = appUserViewModel.PhoneNumber;
         }
-        public static void UpdateDailySheet(this DailySheet dailySheet, DailySheetViewModel dailySheetVm)
+        public static void UpdateDailySheetVM(this DailySheetShowViewModel dailySheetVm, DailySheet dailySheet)
+        {
+            TKDbContext db = new TKDbContext();
+            dailySheetVm.ID = dailySheet.ID;
+            dailySheetVm.DayReport = dailySheet.DayReport.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+            PoliceOrganization policeOrganization = db.PoliceOrganizations.FirstOrDefault(x => x.ID == dailySheet.PoliceOrganizationID);
+            if(dailySheet.TypeReportID != null)
+            {
+                TypeReport typeReport = db.TypeReports.FirstOrDefault(x => x.ID == dailySheet.TypeReportID);
+                dailySheetVm.TypeReportName = typeReport.Name;
+            }
+           
+            dailySheetVm.PoliceOrganizationName = policeOrganization.Name;
+            dailySheetVm.OnDuty = dailySheet.OnDuty;
+            dailySheetVm.DirectCommand = dailySheet.DirectCommand;
+            dailySheetVm.Description = dailySheet.Description;
+            dailySheetVm.CreatedDate = dailySheet.CreatedDate;
+            dailySheetVm.CreatedBy = dailySheet.CreatedBy;
+            dailySheetVm.UpdatedBy = dailySheet.UpdatedBy;
+            dailySheetVm.UpdatedDate = dailySheet.UpdatedDate;
+            dailySheetVm.MetaKeyword = dailySheet.MetaKeyword;
+            dailySheetVm.MetaDescription = dailySheet.MetaDescription;
+            dailySheetVm.Status = dailySheet.Status;
+
+        }
+        public static void UpdateDailySheet(this DailySheet dailySheet, DailySheetShowViewModel dailySheetVm)
         {
             TKDbContext db = new TKDbContext();
             dailySheet.ID = dailySheetVm.ID;
@@ -181,12 +206,34 @@ namespace WebAdmin.Infrastructure.Extensions
             PoliceOrganization policeOrganization = db.PoliceOrganizations.FirstOrDefault(x => x.Name == dailySheetVm.PoliceOrganizationName);
             TypeReport typeReport = db.TypeReports.FirstOrDefault(x => x.Name == dailySheetVm.TypeReportName);
             dailySheet.PoliceOrganizationID = policeOrganization.ID;
-            dailySheet.TypeReportID = typeReport.ID;
+            if(typeReport !=null)
+            {
+                dailySheet.TypeReportID = typeReport.ID;
+            }            
             dailySheet.OnDuty = dailySheetVm.OnDuty;
             dailySheet.DirectCommand = dailySheetVm.DirectCommand;
             dailySheet.Description = dailySheetVm.Description;
+            dailySheet.CreatedDate = dailySheetVm.CreatedDate;
+            dailySheet.CreatedBy = dailySheetVm.CreatedBy;
+            dailySheet.UpdatedBy = dailySheetVm.UpdatedBy;
+            dailySheet.UpdatedDate = dailySheetVm.UpdatedDate;
+            dailySheet.MetaKeyword = dailySheetVm.MetaKeyword;
+            dailySheet.MetaDescription = dailySheetVm.MetaDescription;
+            dailySheet.Status = dailySheetVm.Status;
 
-
+        }
+        public static void UpdateDailySheetDB(this DailySheet dailySheet, DailySheetViewModel dailySheetVm)
+        {
+            TKDbContext db = new TKDbContext();
+            dailySheet.ID = dailySheetVm.ID;
+            dailySheet.DayReport = DateTime.ParseExact(dailySheetVm.DayReport, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            dailySheet.PoliceOrganizationID = dailySheetVm.PoliceOrganizationID;
+            if(dailySheetVm.TypeReportID > 0) {
+                dailySheet.TypeReportID = dailySheetVm.TypeReportID;
+            }            
+            dailySheet.OnDuty = dailySheetVm.OnDuty;
+            dailySheet.DirectCommand = dailySheetVm.DirectCommand;
+            dailySheet.Description = dailySheetVm.Description;
             dailySheet.CreatedDate = dailySheetVm.CreatedDate;
             dailySheet.CreatedBy = dailySheetVm.CreatedBy;
             dailySheet.UpdatedBy = dailySheetVm.UpdatedBy;

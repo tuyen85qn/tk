@@ -20,7 +20,8 @@ namespace TK.Service
         IEnumerable<PoliceOrganization> GetAll(string keyword);
         IEnumerable<PoliceOrganization> GetAll();
 
-        PoliceOrganization GetById(int id);    
+        PoliceOrganization GetById(int id);
+        IEnumerable<PoliceOrganization> GetListByType(string type);
 
         void Save();
     }
@@ -61,7 +62,15 @@ namespace TK.Service
         {
             return _policeOrganizationRepository.GetSingleById(id);
         }
-     
+
+        public IEnumerable<PoliceOrganization> GetListByType(string type)
+        {
+            if (!string.IsNullOrEmpty(type))
+                return _policeOrganizationRepository.GetMulti(x => type.Contains(x.Type));
+            else
+                return null;
+        }
+
         public void Save()
         {
             _unitOfWork.Commit();

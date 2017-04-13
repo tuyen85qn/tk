@@ -225,6 +225,8 @@
     <Compile Include="Models\ApplicationGroupViewModel.cs" />
     <Compile Include="Models\ApplicationRoleViewModel.cs" />
     <Compile Include="Models\ApplicationUserViewModel.cs" />
+    <Compile Include="Models\DailySheetShowViewModel.cs" />
+    <Compile Include="Models\DailySheetStatistic.cs" />
     <Compile Include="Models\DailySheetViewModel.cs" />
     <Compile Include="Models\DistrictViewModel.cs" />
     <Compile Include="Models\KeywordStatistic.cs" />
@@ -270,11 +272,11 @@
     <Content Include="app\components\daily_sheets\dailySheetEditView.html" />
     <Content Include="app\components\daily_sheets\dailySheetListController.js" />
     <Content Include="app\components\daily_sheets\dailySheetListView.html" />
-    <Content Include="app\components\daily_sheets\sheetAddView.html" />
+    <Content Include="app\components\daily_sheets\dailySheetStatisticController.js" />
+    <Content Include="app\components\daily_sheets\dailySheetStatisticView.html" />
     <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
     <Content Include="app\components\home\rootController.js" />
-    <Content Include="app\components\home\test.html" />
     <Content Include="app\components\login\loginController.js" />
     <Content Include="app\components\login\loginView.html" />
     <Content Include="app\components\situations\situations.module.js" />
@@ -310,6 +312,7 @@
     <Content Include="app\shared\directives\pagerDirective.html" />
     <Content Include="app\shared\directives\pagerDirective.js" />
     <Content Include="app\shared\filters\datetimeFilter.js" />
+    <Content Include="app\shared\filters\reportStatusFilter.js" />
     <Content Include="app\shared\filters\statusFilter.js" />
     <Content Include="app\shared\services\apiService.js" />
     <Content Include="app\shared\services\authData.js" />
@@ -319,7 +322,6 @@
     <Content Include="app\shared\services\notificationService.js" />
     <Content Include="app\shared\views\baseView.html" />
     <Content Include="Assets\admin\css\AdminLTE.css" />
-    <Content Include="Assets\admin\css\AdminLTE.min.css" />
     <Content Include="Assets\admin\css\skins\skin-black-light.css" />
     <Content Include="Assets\admin\css\skins\skin-black-light.min.css" />
     <Content Include="Assets\admin\css\skins\skin-black.css" />
@@ -400,6 +402,9 @@
     <Content Include="Assets\admin\libs\angular-local-storage\dist\angular-local-storage.js" />
     <Content Include="Assets\admin\libs\angular-local-storage\dist\angular-local-storage.min.js" />
     <Content Include="Assets\admin\libs\angular-local-storage\index.js" />
+    <Content Include="Assets\admin\libs\angular-sanitize\angular-sanitize.js" />
+    <Content Include="Assets\admin\libs\angular-sanitize\angular-sanitize.min.js" />
+    <Content Include="Assets\admin\libs\angular-sanitize\index.js" />
     <Content Include="Assets\admin\libs\angular-ui-router\release\angular-ui-router.js" />
     <Content Include="Assets\admin\libs\angular-ui-router\release\angular-ui-router.min.js" />
     <Content Include="Assets\admin\libs\angular-ui-router\src\common.js" />
@@ -4802,6 +4807,13 @@
     <Content Include="Assets\admin\libs\ui-bootstrap\bower.json" />
     <Content Include="Assets\admin\libs\ui-bootstrap\package.json" />
     <Content Include="Assets\admin\libs\ui-bootstrap\README.md" />
+    <Content Include="Assets\admin\libs\angular-sanitize\.bower.json" />
+    <Content Include="Assets\admin\libs\angular-sanitize\angular-sanitize.min.js.map" />
+    <Content Include="Assets\admin\libs\angular-sanitize\bower.json" />
+    <Content Include="Assets\admin\libs\angular-sanitize\LICENSE.md" />
+    <Content Include="Assets\admin\libs\angular-sanitize\package.json" />
+    <Content Include="Assets\admin\libs\angular-sanitize\README.md" />
+    <None Include="Properties\PublishProfiles\tkbc.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

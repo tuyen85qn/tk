@@ -57,6 +57,57 @@ namespace WebAdmin.Api
                 return respone;
             });
         }
+        [Route("getlistbycategory")]
+        [HttpGet]
+        public HttpResponseMessage GetListByCategory(HttpRequestMessage request, string filter, int page, int pageSize = 20)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                if (!string.IsNullOrEmpty(filter))
+                {
+                    TKDbContext dbContex = new TKDbContext();
+                    List<SituationCategory> lstCategory = new List<SituationCategory>();
+                    List<Situation> lstSituation = new List<Situation>();
+                    SituationCategory situationCategory = dbContex.SituationCategories.SingleOrDefault(x => x.Name == filter);
+                    if(situationCategory == null)
+                    {
+                        return null;
+                    }
+                    lstCategory = SituationCategoryController.GetSubCascading(situationCategory.ID, dbContex);
+                    for (int i = 0; i < lstCategory.Count(); i++)
+                    {
+                        lstSituation.AddRange(_situationService.GetListByCategory(lstCategory[i].ID));
+                    }
+                    int totalRow = 0;
+
+                    totalRow = lstSituation.Count();
+                    var query = lstSituation.OrderByDescending(x => x.Name).Skip(page * pageSize).Take(pageSize);
+                    List<SituationListViewModel> responeData = new List<SituationListViewModel>();
+                    foreach (var item in query)
+                    {
+                        var newSituationVm = new SituationListViewModel();
+                        newSituationVm.UpdateSituationListView(item);
+                        responeData.Add(newSituationVm);
+                    }
+
+                    var paginationSet = new PaginationSet<SituationListViewModel>()
+                    {
+                        Items = responeData,
+                        Page = page,
+                        TotalCount = totalRow,
+                        TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
+                    };
+                    var respone = request.CreateResponse(HttpStatusCode.OK, paginationSet);
+                    return respone;
+
+                }
+                else
+                {
+                    return null;
+                }                
+
+            });
+        }
         [Route("getlistpagingbydate")]
         [HttpGet]
         public HttpResponseMessage GetListByDate(HttpRequestMessage request, string fromDate, string toDate,int provinceID, int? districtID = null,
@@ -139,7 +190,7 @@ namespace WebAdmin.Api
         }
         [Route("create")]
         [HttpPost]
-        [AllowAnonymous]
+        
         public HttpResponseMessage Create(HttpRequestMessage request, SituationViewModel situationVm)
         {
             return CreateHttpResponse(request, () =>
@@ -166,7 +217,7 @@ namespace WebAdmin.Api
         }
         [Route("update")]
         [HttpPut]
-        [AllowAnonymous]
+        
         public HttpResponseMessage Update(HttpRequestMessage request, SituationViewModel situationVm)
         {
             return CreateHttpResponse(request, () =>
@@ -181,6 +232,7 @@ namespace WebAdmin.Api
                     var oldSituation = _situationService.GetById(situationVm.ID);
                     oldSituation.UpdateSituation(situationVm);                   
                     oldSituation.UpdatedDate = DateTime.Now;
+                    oldSituation.UpdatedBy = User.Identity.Name;
                     _situationService.Update(oldSituation);
                     _situationService.Save();
 
@@ -193,7 +245,7 @@ namespace WebAdmin.Api
         }
         [Route("delete")]
         [HttpDelete]
-        [AllowAnonymous]
+       
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>

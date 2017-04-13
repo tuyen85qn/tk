@@ -1,0 +1,14 @@
+D:\tuyen\Develop\tk\TK.Model\bin\Release\TK.Model.dll.config
+D:\tuyen\Develop\tk\TK.Model\bin\Release\TK.Model.dll
+D:\tuyen\Develop\tk\TK.Model\bin\Release\TK.Model.pdb
+D:\tuyen\Develop\tk\TK.Model\bin\Release\EntityFramework.dll
+D:\tuyen\Develop\tk\TK.Model\bin\Release\EntityFramework.SqlServer.dll
+D:\tuyen\Develop\tk\TK.Model\bin\Release\Microsoft.AspNet.Identity.Core.dll
+D:\tuyen\Develop\tk\TK.Model\bin\Release\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\tuyen\Develop\tk\TK.Model\bin\Release\EntityFramework.xml
+D:\tuyen\Develop\tk\TK.Model\bin\Release\EntityFramework.SqlServer.xml
+D:\tuyen\Develop\tk\TK.Model\bin\Release\Microsoft.AspNet.Identity.Core.xml
+D:\tuyen\Develop\tk\TK.Model\bin\Release\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\tuyen\Develop\tk\TK.Model\obj\Release\TK.Model.csprojResolveAssemblyReference.cache
+D:\tuyen\Develop\tk\TK.Model\obj\Release\TK.Model.dll
+D:\tuyen\Develop\tk\TK.Model\obj\Release\TK.Model.pdb
