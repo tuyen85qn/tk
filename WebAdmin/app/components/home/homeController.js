@@ -84,10 +84,11 @@
             });
         }
        
-     
-        loadListOtherIncidents();
+      
+       loadListOtherIncidents();
        loadListSocialSecurities();
-        loadListTrafficSafeties();
+       loadListTrafficSafeties();
+  
        
     }
 })(angular.module('tk'));

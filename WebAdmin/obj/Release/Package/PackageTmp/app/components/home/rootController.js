@@ -8,5 +8,6 @@
             $state.go('login');
         }
         $scope.authentication = authData.authenticationData;
+        $scope.sideBar = "/app/shared/views/sideBar.html";
     }
 })(angular.module('tk'));

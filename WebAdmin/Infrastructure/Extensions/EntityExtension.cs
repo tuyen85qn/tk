@@ -189,6 +189,7 @@ namespace WebAdmin.Infrastructure.Extensions
             dailySheetVm.OnDuty = dailySheet.OnDuty;
             dailySheetVm.DirectCommand = dailySheet.DirectCommand;
             dailySheetVm.Description = dailySheet.Description;
+            dailySheetVm.FileDailySheet = dailySheet.FileDailySheet;
             dailySheetVm.CreatedDate = dailySheet.CreatedDate;
             dailySheetVm.CreatedBy = dailySheet.CreatedBy;
             dailySheetVm.UpdatedBy = dailySheet.UpdatedBy;
@@ -213,6 +214,7 @@ namespace WebAdmin.Infrastructure.Extensions
             dailySheet.OnDuty = dailySheetVm.OnDuty;
             dailySheet.DirectCommand = dailySheetVm.DirectCommand;
             dailySheet.Description = dailySheetVm.Description;
+            dailySheet.FileDailySheet = dailySheetVm.FileDailySheet;
             dailySheet.CreatedDate = dailySheetVm.CreatedDate;
             dailySheet.CreatedBy = dailySheetVm.CreatedBy;
             dailySheet.UpdatedBy = dailySheetVm.UpdatedBy;
@@ -234,6 +236,7 @@ namespace WebAdmin.Infrastructure.Extensions
             dailySheet.OnDuty = dailySheetVm.OnDuty;
             dailySheet.DirectCommand = dailySheetVm.DirectCommand;
             dailySheet.Description = dailySheetVm.Description;
+            dailySheet.FileDailySheet = dailySheetVm.FileDailySheet;
             dailySheet.CreatedDate = dailySheetVm.CreatedDate;
             dailySheet.CreatedBy = dailySheetVm.CreatedBy;
             dailySheet.UpdatedBy = dailySheetVm.UpdatedBy;

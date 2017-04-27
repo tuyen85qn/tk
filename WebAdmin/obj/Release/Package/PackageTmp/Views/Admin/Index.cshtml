@@ -6,22 +6,25 @@
     <title>Trang quản trị</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    
+
     <!-- Bootstrap 3.3.5 -->
     <link href="~/Assets/admin/libs/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <link href="~/Assets/admin/libs/toastr/toastr.css" rel="stylesheet" />
     <!--angular-loading-bar-->
     <link href="~/Assets/admin/libs/angular-loading-bar/src/loading-bar.css" rel="stylesheet" />
-   
+
     <link href="~/Assets/admin/libs/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet" />
     <link href="~/Assets/admin/libs/ng-ckeditor/ng-ckeditor.css" rel="stylesheet" />
-      
+
     <!---Modal-->
     <link href="~/Assets/admin/libs/ui-bootstrap/ui-bootstrap-csp.css" rel="stylesheet" />
     <link href="~/Assets/admin/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
     <!--ngDialog-->
     <link href="~/Assets/admin/libs/ng-dialog/css/ngDialog.css" rel="stylesheet" />
     <link href="~/Assets/admin/libs/ng-dialog/css/ngDialog-theme-default.css" rel="stylesheet" />
+    <!--angular-ui-select-->
+    <link href="~/Assets/admin/libs/angular-ui-select/dist/select.css" rel="stylesheet" />
+
     <!-- Theme style -->
     <link href="~/Assets/admin/css/AdminLTE.css" rel="stylesheet" />
     <link href="~/Assets/admin/css/skins/_all-skins.css" rel="stylesheet" />
@@ -35,16 +38,15 @@
     <![endif]-->
 </head>
 <body class="hold-transition skin-blue sidebar-mini" ng-app="tk" ng-controller="rootController">
-    <!-- Site wrapper -->
-    <div class="wrapper">
-        <div ui-view></div>
-    </div><!-- ./wrapper -->
+   
+    <div ui-view></div>
+       
     <!-- jQuery 2.2.3 -->
     <script src="~/Assets/admin/libs/jquery/dist/jquery.js"></script>
     <!-- AdminLTE App -->
     <script src="/Assets/admin/js/app.min.js"></script>
     <!--moment-->
-    <script src="~/Assets/admin/libs/moment/moment.js"></script> 
+    <script src="~/Assets/admin/libs/moment/moment.js"></script>
 
     <script src="~/Assets/admin/libs/moment/min/locales.js"></script>
     <script src="~/Assets/admin/libs/moment/min/moment-with-locales.js"></script>
@@ -52,14 +54,15 @@
     <script src="~/Assets/admin/libs/fastclick/lib/fastclick.js"></script>
     <!-- SlimScroll -->
     <script src="~/Assets/admin/libs/slimScroll/jquery.slimscroll.js"></script>
+
     <!--datetimepicker-->
-    <script src="~/Assets/admin/libs/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js"></script>    
-    
-    
+    <script src="~/Assets/admin/libs/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js"></script>
+
+
     <!-- Begin embed angularJS -->
     <script src="~/Assets/admin/libs/angular/angular.js"></script>
-    
-    <script src="~/Assets/admin/libs/angular-ui-router/release/angular-ui-router.js"></script> 
+
+    <script src="~/Assets/admin/libs/angular-ui-router/release/angular-ui-router.js"></script>
 
     <script src="~/Assets/admin/libs/angular-sanitize/angular-sanitize.js"></script>
 
@@ -71,15 +74,17 @@
     <script src="~/Assets/admin/libs/ng-ckeditor/ng-ckeditor.js"></script>
     <script src="~/Assets/admin/libs/angular-local-storage/dist/angular-local-storage.js"></script>
     <script src="~/Assets/admin/libs/angular-loading-bar/src/loading-bar.js"></script>
-    <script src="~/Assets/admin/libs/checklist-model/checklist-model.js"></script>  
+    <script src="~/Assets/admin/libs/checklist-model/checklist-model.js"></script>
     <script src="~/Assets/admin/libs/ng-dialog/js/ngDialog.js"></script>
-       
+    <script src="~/Assets/admin/libs/angular-ui-select/dist/select.js"></script>
+
+
     <!-- Bootstrap 3.3.5 -->
-    <script src="~/Assets/admin/libs/bootstrap/dist/js/bootstrap.js"></script> 
+    <script src="~/Assets/admin/libs/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/Assets/admin/libs/ui-bootstrap/ui-bootstrap.js"></script>
     <script src="~/Assets/admin/libs/ui-bootstrap/ui-bootstrap-tpls.min.js"></script>
-    <script src="~/Assets/admin/libs/ui-bootstrap/ui-bootstrap-tpls.js"></script>  
-   
+    <script src="~/Assets/admin/libs/ui-bootstrap/ui-bootstrap-tpls.js"></script>
+
 
     <script src="~/app/shared/modules/tk.common.js"></script>
     <script src="~/app/shared/directives/pagerDirective.js"></script>
@@ -94,7 +99,7 @@
     <script src="~/app/shared/services/authenticationService.js"></script>
     <script src="~/app/shared/services/loginService.js"></script>
 
-   
+
     <script src="~/app/components/situation_categories/situationCategories.module.js"></script>
     <script src="~/app/components/application_groups/applicationGroups.module.js"></script>
     <script src="~/app/components/application_roles/applicationRoles.module.js"></script>
@@ -104,11 +109,11 @@
     <script src="~/app/components/statistics/statistic.module.js"></script>
     <script src="~/app/components/daily_sheets/dailySheets.module.js"></script>
     <script src="~/app/app.js"></script>
-    
+
 
     <script src="~/app/components/home/rootController.js"></script>
     <script src="~/app/components/home/homeController.js"></script>
-    <script src="~/app/components/login/loginController.js"></script>   
+    <script src="~/app/components/login/loginController.js"></script>
 
     <script src="~/app/components/application_users/applicationUserAddController.js"></script>
     <script src="~/app/components/application_users/applicationUserEditController.js"></script>
@@ -129,7 +134,7 @@
     <script src="~/app/components/situations/situationListController.js"></script>
     <script src="~/app/components/situations/situationAddController.js"></script>
     <script src="~/app/components/situations/situationEditController.js"></script>
-    
+
     <script src="~/app/components/statistic_categories/statisticCategoryAddController.js"></script>
     <script src="~/app/components/statistic_categories/statisticCategoryEditController.js"></script>
     <script src="~/app/components/statistic_categories/statisticCategoryListController.js"></script>
@@ -141,6 +146,8 @@
     <script src="~/app/components/daily_sheets/dailySheetAddController.js"></script>
     <script src="~/app/components/daily_sheets/dailySheetEditController.js"></script>
     <script src="~/app/components/daily_sheets/dailySheetListController.js"></script>
-    <script src="~/app/components/daily_sheets/dailySheetStatisticController.js"></script>
+    <script src="~/app/components/daily_sheets/dailySheetStatisticController.js"></script>  
+  
+    
 </body>
 </html>

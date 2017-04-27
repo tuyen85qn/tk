@@ -19,7 +19,9 @@
     "ng-dialog": "~1.0.0",
     "slimScroll": "~1.3.7",
     "toastr": "~2.1.2",
-    "angular-sanitize": "~1.6.0"
+    "angular-sanitize": "~1.6.0",
+    "angular-ui-select": "~0.19.6",
+    "ng-file-upload": "~12.2.13"
   },
   "resolutions": {
     "angular": ">=1.0.8"

@@ -21,7 +21,7 @@ namespace TK.Model.Models
         public string DirectCommand { set; get; }
         [StringLength(20)]
         public string OnDuty { set; get; }
-        
+        public string FileDailySheet { set; get; }
         public int? TypeReportID { set; get; }
         [MaxLength(500)]
         public string Description { set; get; }       

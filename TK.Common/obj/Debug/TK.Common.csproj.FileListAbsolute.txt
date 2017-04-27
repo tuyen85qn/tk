@@ -7,3 +7,12 @@ D:\tuyen\Develop\tk\TK.Common\bin\Debug\TK.Common.dll
 D:\tuyen\Develop\tk\TK.Common\bin\Debug\TK.Common.pdb
 D:\tuyen\Develop\tk\TK.Common\obj\Debug\TK.Common.dll
 D:\tuyen\Develop\tk\TK.Common\obj\Debug\TK.Common.pdb
+D:\tuyen\Develop\tk\TK.Common\obj\Debug\TK.Common.csprojResolveAssemblyReference.cache
+D:\tuyen\Develop\tk\TK.Common\bin\Debug\Newtonsoft.Json.dll
+D:\tuyen\Develop\tk\TK.Common\bin\Debug\System.Net.Http.Formatting.dll
+D:\tuyen\Develop\tk\TK.Common\bin\Debug\System.Web.Http.dll
+D:\tuyen\Develop\tk\TK.Common\bin\Debug\System.Web.Http.WebHost.dll
+D:\tuyen\Develop\tk\TK.Common\bin\Debug\Newtonsoft.Json.xml
+D:\tuyen\Develop\tk\TK.Common\bin\Debug\System.Net.Http.Formatting.xml
+D:\tuyen\Develop\tk\TK.Common\bin\Debug\System.Web.Http.xml
+D:\tuyen\Develop\tk\TK.Common\bin\Debug\System.Web.Http.WebHost.xml

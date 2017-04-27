@@ -11,7 +11,9 @@
         $scope.wards = [];
         $scope.resolvedSituations = [];
         $scope.policeOrganizations = [];
-
+        $scope.disabledDistrict = true;
+        $scope.disabledWard = true;
+        $scope.disabledHamlet = true;
         $scope.updateSituation = updateSituation;
         $scope.GetSeoTitle = GetSeoTitle;
         $scope.loadDetailSituation = loadDetailSituation;
@@ -20,14 +22,24 @@
         {
             apiService.get('/api/situation/getbyid/'+ $stateParams.id,null,
                 function (result) {
-                    $scope.situation = result.data;
+                    $scope.situation = result.data;                    
+                    $scope.districts = $scope.getDistrictByProvinceId($scope.situation.ProvinceID);
+                    if($scope.situation.DistrictID!=null)
+                    {                       
+                        $scope.wards = $scope.getWardByDistrictId($scope.situation.DistrictID);
+                        if($scope.situation.WardID !=null)
+                        {
+                            $scope.disabledHamlet = false;
+                        }
+                        
+                    }
                 },
                 function (error) {
                     notificationService('Không thể load chi tiết tình hình');
                 });
         }
-        $scope.getDistrictByProvinceId = function getDistrictByProvinceId(id) {
-            $scope.districtid = false;
+        $scope.getDistrictByProvinceId = function(id) {
+            $scope.disabledDistrict = false;
             apiService.get('/api/district/getbyprovinceid/' + id, null,
                 function (result) {
                     $scope.districts = result.data;
@@ -36,8 +48,8 @@
                 });
         }
 
-        $scope.getWardByDistrictId = function getWardByDistrictId(id) {
-            $scope.wardid = false;
+        $scope.getWardByDistrictId = function(id) {
+            $scope.disabledWard = false;
             apiService.get('/api/ward/getbydistrictid/' + id, null,
                 function (result) {
                     $scope.wards = result.data;
@@ -48,6 +60,7 @@
 
 
         function updateSituation() {
+            $scope.situation.OccurenceDay = moment($scope.situation.OccurenceDay.toString()).format('YYYY-MM-DD');;
             apiService.put('/api/situation/update', $scope.situation,
                 function (result) {
                     notificationService.displaySuccess(result.data.Name + ' đã được cập nhật thành công.');
@@ -74,7 +87,10 @@
         function loadSituationCategories() {
             apiService.get('/api/situationCategory/getall', null,
                 function (result) {
-                    $scope.situationCategories = result.data;
+                    var tempData = commonService.getTree(result.data, "ID", "ParentID");
+                    tempData.forEach(function (item) {
+                        commonService.recur(item, 0, $scope.situationCategories);
+                    });
                 },
                 function (error) {
                     notificationService.displayError("Không thể load danh sách các mục lục tình hình");

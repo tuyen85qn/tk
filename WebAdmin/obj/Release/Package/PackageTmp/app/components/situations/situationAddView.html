@@ -55,10 +55,15 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Danh mục</label>
                     <div class="col-sm-6">
-                        <select name="situationCategoryId" required class="form-control" ng-model="situation.SituationCategoryID" ng-options="option.ID as option.Name for option in situationCategories">
+                        <!--<select name="situationCategoryId" required class="form-control" ng-model="situation.SituationCategoryID" ng-options="option.ID as option.Name for option in situationCategories">
                             <option value="">Danh mục tình hình</option>
-                        </select>
-                        <input type="hidden" name="situationCategoryId" ng-model="situation.SituationCategoryID" />
+                        </select>-->
+                        <ui-select ng-model="situation.SituationCategoryID" name="situationCategoryId" theme="bootstrap" style="min-width: 300px;" title="Chọn danh mục">
+                            <ui-select-match placeholder="Vui lòng chọn danh mục">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="item.ID as item in situationCategories | filter: $select.search">
+                                <div ng-bind-html="item.Name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
                     </div>
                     <div class="col-sm-4 pull-left">
                         <i class="fa fa-check text-success" ng-show="frmAddSituation.situationCategoryId.$dirty && frmAddSituation.situationCategoryId.$valid"></i>
@@ -86,7 +91,7 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Quận/Huyện/Thị xã</label>
                     <div class="col-sm-6">
-                        <select name="district" ng-disabled="districtid" 
+                        <select name="districtid" ng-disabled="disabledDistrict" 
                                 required ng-change="getWardByDistrictId(situation.DistrictID)" class="form-control" ng-model="situation.DistrictID" ng-options="option.ID as option.Name for option in districts">
                             <option value="">--Quận/Huyện/Thị xã--</option>
                         </select>
@@ -102,7 +107,7 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Xã/Phường/Thị Trấn</label>
                     <div class="col-sm-6">
-                        <select name="ward" ng-disabled="wardid" required class="form-control"
+                        <select name="wardid" ng-disabled="disabledWard" required class="form-control"
                                  ng-model="situation.WardID" ng-options="option.ID as option.Name for option in wards"
                                 ng-change="getHamletByWardId()">
                             <option value="">--Xã/Phường/Thị Trấn--</option>
@@ -112,7 +117,7 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Thôn/Xóm/TDP</label>
                     <div class="col-sm-6">
-                        <input type="text" ng-disabled="hamletid" class="form-control" name="hamlet" ng-model="situation.Hamlet">
+                        <input type="text" ng-disabled="disabledHamlet" class="form-control" name="hamlet" ng-model="situation.Hamlet">
                     </div>                   
                 </div>
                 <div class="form-group">
@@ -137,15 +142,15 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Cơ quan thụ lý</label>
                     <div class="col-sm-6">
-                        <select name="policeOrganizationId" required class="form-control" ng-model="situation.PoliceOrginazationID" ng-options="option.ID as option.Name for option in policeOrganizations">
+                        <select name="policeOrganizationId" required class="form-control" ng-model="situation.PoliceOrganizationID" ng-options="option.ID as option.Name for option in policeOrganizations">
                             <option value="">Cơ quan thụ lý</option>
                         </select>                        
                     </div>
                     <div class="col-sm-4 pull-left">
-                        <i class="fa fa-check text-success" ng-show="frmAddSituation.PoliceOrginazationID.$dirty && frmAddSituation.PoliceOrginazationID.$valid"></i>
-                        <div ng-show="frmAddSituation.PoliceOrginazationID.$pristine && frmAddSituation.PoliceOrginazationID.$invalid" class="text-danger">
+                        <i class="fa fa-check text-success" ng-show="frmAddSituation.PoliceOrganizationID.$dirty && frmAddSituation.PoliceOrganizationID.$valid"></i>
+                        <div ng-show="frmAddSituation.PoliceOrganizationID.$pristine && frmAddSituation.PoliceOrganizationID.$invalid" class="text-danger">
                             <i class="fa fa-times text-danger"></i>
-                            <span ng-show="frmAddSituation.$error.required">Phải chọn danh mục</span>
+                            <span ng-show="frmAddSituation.$error.required">Phải chọn cơ quan thụ lý</span>
                         </div>
                     </div>
                 </div>

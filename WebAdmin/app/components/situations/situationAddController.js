@@ -12,9 +12,9 @@
             height: '200px'
         }
 
-        $scope.wardid = true;
-        $scope.districtid = true;
-        $scope.hamletid = true;
+        $scope.disabledDistrict = true;
+        $scope.disabledWard = true;
+        $scope.disabledHamlet = true;
 
         $scope.situationCategories = [];
         $scope.provinces = [];
@@ -26,8 +26,8 @@
         $scope.addSituation = addSituation;
         $scope.GetSeoTitle = GetSeoTitle;
         
-        $scope.getDistrictByProvinceId = function getDistrictByProvinceId(id) {
-            $scope.districtid = false;
+        $scope.getDistrictByProvinceId = function(id) {
+            $scope.disabledDistrict = false;
             apiService.get('/api/district/getbyprovinceid/' + id ,null,
                 function (result) {
                     $scope.districts = result.data;
@@ -36,8 +36,8 @@
                 });
         }
 
-        $scope.getWardByDistrictId = function getWardByDistrictId(id) {
-            $scope.wardid = false;
+        $scope.getWardByDistrictId = function(id) {
+            $scope.disabledWard = false;
             apiService.get('/api/ward/getbydistrictid/'+ id, null,
                 function (result) {
                     $scope.wards = result.data;
@@ -46,12 +46,12 @@
                 });
         }
 
-        $scope.getHamletByWardId = function getHamletByWardId() {
-            $scope.hamletid = false;
+        $scope.getHamletByWardId = function() {
+            $scope.disabledHamlet = false;
         }
 
         function addSituation() {
-            $scope.situation.OccurenceDay = $scope.situation.OccurenceDay.toISOString().slice(0,10);
+            $scope.situation.OccurenceDay = moment($scope.situation.OccurenceDay.toString()).format('YYYY-MM-DD');;
             apiService.post('/api/situation/create', $scope.situation,                
                 function (result) {
                     notificationService.displaySuccess(result.data.Name + ' đã được thêm mới.');
@@ -78,7 +78,10 @@
         function loadSituationCategories() {
             apiService.get('/api/situationCategory/getall', null,
                 function (result) {
-                    $scope.situationCategories = result.data;
+                    var tempData = commonService.getTree(result.data, "ID", "ParentID");
+                    tempData.forEach(function (item) {
+                        commonService.recur(item, 0, $scope.situationCategories);
+                    });                   
                 },
                 function (error) {
                     notificationService.displayError("Không thể load danh sách các mục lục tình hình");

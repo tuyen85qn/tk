@@ -73,15 +73,14 @@
             page = page || 0;
             var filter = "";
             if ($scope.filterDate != null)
-            {
-                $scope.filterDate = $scope.filterDate.toISOString().slice(0, 10);
-                filter = $scope.filterDate;
+            {                
+                filter = moment($scope.filterDate.toString()).format('YYYY-MM-DD');
             }
             $scope.loading = true;            
             var config = {
                 params: {
                     page: page,
-                    pageSize:10,
+                    pageSize:20,
                     filterDate: filter
                 }
             }

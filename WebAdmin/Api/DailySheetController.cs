@@ -2,11 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
+using TK.Common;
 using TK.Model.Models;
 using TK.Service;
 using WebAdmin.Infrastructure.Core;
@@ -35,7 +39,7 @@ namespace WebAdmin.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                int totalRow = 0;                
+                int totalRow = 0;
                 var model = _dailySheetService.GetAll(filterDate);
                 totalRow = model.Count();
                 var query = model.OrderByDescending(x => x.DayReport).Skip(page * pageSize).Take(pageSize);
@@ -62,8 +66,8 @@ namespace WebAdmin.Api
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
-            {                
-                var model = _dailySheetService.GetAll();                                
+            {
+                var model = _dailySheetService.GetAll();
                 List<DailySheetShowViewModel> responeData = new List<DailySheetShowViewModel>();
                 foreach (var item in model)
                 {
@@ -71,39 +75,69 @@ namespace WebAdmin.Api
                     newDailySheetVm.UpdateDailySheetVM(item);
                     responeData.Add(newDailySheetVm);
                 }
-                
+
                 var respone = request.CreateResponse(HttpStatusCode.OK, responeData);
                 return respone;
             });
         }
+        
         [Route("create")]
         [HttpPost]
-        public HttpResponseMessage Create(HttpRequestMessage request, DailySheetViewModel dailySheetVm)
+        public async Task<HttpResponseMessage> Create(HttpRequestMessage request)
         {
-            return CreateHttpResponse(request, () =>
-            {
-                HttpResponseMessage respone = null;
-                if (!ModelState.IsValid)
-                {
-                    respone = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-                else
-                {
-                    DailySheet dailySheet = new DailySheet();
-                    dailySheet.UpdateDailySheetDB(dailySheetVm);
-                    dailySheet.CreatedDate = DateTime.Now;
-                    dailySheet.CreatedBy = User.Identity.Name;
-                    _dailySheetService.Add(dailySheet);
-                    _dailySheetService.Save();                 
-                    respone = request.CreateResponse(HttpStatusCode.OK, dailySheetVm);
 
+            if (!Request.Content.IsMimeMultipartContent())
+            {
+                Request.CreateErrorResponse(HttpStatusCode.UnsupportedMediaType, "Định dạng không được server hỗ trợ");
+            }
+
+            var root = HttpContext.Current.Server.MapPath(CommonConstants.pathDailySheet);
+            if (!Directory.Exists(root))
+            {
+                Directory.CreateDirectory(root);
+            }
+
+            var provider = new CustomMultipartFormDataStreamProvider(root);
+            try
+            {
+                await Request.Content.ReadAsMultipartAsync(provider);
+                DailySheetViewModel dailySheetVm = Helper.AsObject<DailySheetViewModel>(provider.FormData.GetValues("dailySheet").FirstOrDefault());
+                DailySheet dailySheet = new DailySheet();               
+                if (provider.FileData.Count > 0)
+                {
+                    string fileName = provider.FileData[0].Headers.ContentDisposition.FileName;
+                    if (fileName.StartsWith("\"") && fileName.EndsWith("\""))
+                    {
+                        fileName = fileName.Trim('"');
+                    }
+                    if (fileName.Contains(@"/") || fileName.Contains(@"\"))
+                    {
+                        fileName = Path.GetFileName(fileName);
+                    }
+                    var tmpFileName = Helper.RandomString(20) + '_' + fileName;
+                    var fullPath = Path.Combine(root, tmpFileName);
+                    File.Move(provider.FileData[0].LocalFileName, fullPath);
+                    dailySheetVm.FileDailySheet = CommonConstants.pathDailySheet + "/" + tmpFileName;
+                    
                 }
-                return respone;
-            });
+
+                dailySheet.UpdateDailySheetDB(dailySheetVm);
+                dailySheet.CreatedDate = DateTime.Now;
+                dailySheet.CreatedBy = User.Identity.Name;
+                _dailySheetService.Add(dailySheet);
+                _dailySheetService.Save();
+                return Request.CreateResponse(HttpStatusCode.OK, dailySheetVm);
+
+            }
+            catch (System.Exception)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Invalid file type or other error.");
+            }
+             
         }
         [Route("statistic")]
         [HttpGet]
-        public HttpResponseMessage DailySheetStatistic(HttpRequestMessage request, string fromDate, string toDate, int policeOrganizationID=0)
+        public HttpResponseMessage DailySheetStatistic(HttpRequestMessage request, string fromDate, string toDate, int policeOrganizationID = 0)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -115,21 +149,21 @@ namespace WebAdmin.Api
                 }
                 else
                 {
-                   if(policeOrganizationID>0)
-                    {                        
-                        lstDailySheetStatistic.Add(AddDailySheetStatistic(fromDate,toDate,policeOrganizationID));                       
-                    }
-                   else
+                    if (policeOrganizationID > 0)
                     {
-                        var lstPoliceOrganization = _policeOrganizationService.GetListByType("Huyện, Thành phố");                      
+                        lstDailySheetStatistic.Add(AddDailySheetStatistic(fromDate, toDate, policeOrganizationID));
+                    }
+                    else
+                    {
+                        var lstPoliceOrganization = _policeOrganizationService.GetListByType("Huyện, Thành phố");
                         foreach (var item in lstPoliceOrganization)
                         {
                             lstDailySheetStatistic.Add(AddDailySheetStatistic(fromDate, toDate, item.ID));
-                            
+
                         }
-                       
+
                     }
-                    
+
                 }
                 respone = request.CreateResponse(HttpStatusCode.OK, lstDailySheetStatistic);
                 return respone;
@@ -153,38 +187,72 @@ namespace WebAdmin.Api
                 dailySheetStatistic.TotalDailySheet = dailySheetStatistic.TotalDay - lstDailySheet.Count();
                 dailySheetStatistic.Content = "Các ngày không báo cáo:";
                 foreach (var item in lstDailySheet)
-                {                    
+                {
                     dailySheetStatistic.Content += "\n" + "-" + item.DayReport.ToString("yyyy-mm-dd");
                 }
             }
             return dailySheetStatistic;
         }
-        
+
         [Route("update")]
         [HttpPut]
-        public HttpResponseMessage Update(HttpRequestMessage request, DailySheetViewModel dailySheetVm)
+        public async Task<HttpResponseMessage> Update(HttpRequestMessage request)
         {
-            return CreateHttpResponse(request, () =>
+            if(!Request.Content.IsMimeMultipartContent())
             {
-                HttpResponseMessage respone = null;
-                if (!ModelState.IsValid)
-                {
-                    respone = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-                else
-                {
-                    DailySheet dailySheet = _dailySheetService.GetById(dailySheetVm.ID);
-                    dailySheet.UpdateDailySheetDB(dailySheetVm);
-                    dailySheet.UpdatedDate = DateTime.Now;
-                    dailySheet.UpdatedBy = User.Identity.Name;
-                    _dailySheetService.Update(dailySheet);
-                    _dailySheetService.Save();
-                    respone = request.CreateResponse(HttpStatusCode.OK, dailySheetVm);
+                Request.CreateErrorResponse(HttpStatusCode.UnsupportedMediaType, "Định dạng không được server hỗ trợ");
+            }
 
+            var root = HttpContext.Current.Server.MapPath(CommonConstants.pathDailySheet);
+            if (!Directory.Exists(root))
+            {
+                Directory.CreateDirectory(root);
+            }
+
+            var provider = new CustomMultipartFormDataStreamProvider(root);
+            try
+            {
+                await Request.Content.ReadAsMultipartAsync(provider);
+                DailySheetViewModel dailySheetVm = Helper.AsObject<DailySheetViewModel>(provider.FormData.GetValues("dailySheet").FirstOrDefault());
+                DailySheet dailySheet = _dailySheetService.GetById(dailySheetVm.ID);
+                if (provider.FileData.Count > 0)
+                {
+                    string fileName = provider.FileData[0].Headers.ContentDisposition.FileName;
+                    if (fileName.StartsWith("\"") && fileName.EndsWith("\""))
+                    {
+                        fileName = fileName.Trim('"');
+                    }
+                    if (fileName.Contains(@"/") || fileName.Contains(@"\"))
+                    {
+                        fileName = Path.GetFileName(fileName);
+                    }
+                    var tmpFileName = Helper.RandomString(20) + '_' + fileName;
+                    var fullPath = Path.Combine(root, tmpFileName);                    
+                    if (!String.IsNullOrEmpty(dailySheet.FileDailySheet))
+                    {
+                        var oldFileName = dailySheet.FileDailySheet.Split('/').Last();
+                        if (!String.IsNullOrEmpty(Directory.GetFiles(root, oldFileName).FirstOrDefault()))
+                        {
+                            File.Delete(Path.Combine(root, oldFileName));
+                        }
+                    }
+                    File.Move(provider.FileData[0].LocalFileName, fullPath);
+                    dailySheetVm.FileDailySheet = CommonConstants.pathDailySheet + "/" + tmpFileName;
                 }
-                return respone;
-            });
-        }        
+
+                dailySheet.UpdateDailySheetDB(dailySheetVm);
+                dailySheet.UpdatedDate = DateTime.Now;
+                dailySheet.UpdatedBy = User.Identity.Name;
+                _dailySheetService.Update(dailySheet);
+                _dailySheetService.Save();
+                return Request.CreateResponse(HttpStatusCode.OK, dailySheetVm);
+
+            }
+            catch (System.Exception)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Invalid file type or other error.");
+            }            
+        }
         [Route("getbyid/{id:int}")]
         [HttpGet]
         public HttpResponseMessage GetById(HttpRequestMessage request, int id)
@@ -213,10 +281,15 @@ namespace WebAdmin.Api
 
                     var delDailySheet = _dailySheetService.Delete(id);
                     _dailySheetService.Save();
-
+                    var root = HttpContext.Current.Server.MapPath(CommonConstants.pathDailySheet);
+                    var delFileName = delDailySheet.FileDailySheet.Split('/').Last();                   
+                    if (!String.IsNullOrEmpty(System.IO.Directory.GetFiles(root, delFileName).FirstOrDefault()))
+                    {
+                        File.Delete(Path.Combine(root, delFileName));
+                    }
                     var responeData = Mapper.Map<DailySheet, DailySheetViewModel>(delDailySheet);
                     respone = request.CreateResponse(HttpStatusCode.OK, responeData);
-                    
+
                 }
                 return respone;
             });

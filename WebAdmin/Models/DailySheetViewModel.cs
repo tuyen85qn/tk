@@ -18,6 +18,7 @@ namespace WebAdmin.Models
         public int TypeReportID { set; get; }
 
         public string Description { set; get; }
+        public string FileDailySheet { set; get; }
         public DateTime? CreatedDate { set; get; }
 
 

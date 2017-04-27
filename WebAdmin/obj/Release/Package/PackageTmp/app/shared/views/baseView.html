@@ -1,7 +1,8 @@
-﻿<div class="wrapper">
+﻿ <!-- Site wrapper -->
+<div class="wrapper">
     <header class="main-header">
         <!-- Logo -->
-        <a href="#" class="logo">
+        <a href="javascript:void(0);" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>A</b>LT</span>
             <!-- logo for regular state and mobile devices -->
@@ -10,7 +11,7 @@
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
             <!-- Sidebar toggle button-->
-            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <a href="javascript:void(0);" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -80,10 +81,10 @@
                             <li class="user-header">
                                 <img src="./Assets/admin/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                                 <p>
-                                    {{authentication.userName}}                                    
+                                    {{authentication.userName}}
                                 </p>
                             </li>
-                             <!--Menu Body 
+                            <!--Menu Body
                             <li class="user-body">
                                 <div class="col-xs-4 text-center">
                                     <a href="#">Followers</a>
@@ -116,84 +117,7 @@
     </header>
     <!-- =============================================== -->
     <!-- Left side column. contains the sidebar -->
-    <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-            <!-- Sidebar user panel -->
-            <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="/Assets/admin/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                </div>
-                <div class="pull-left info">
-                    <p>{{authentication.userName}}</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                </div>
-            </div>
-            <!-- search form -->
-            <form action="#" method="get" class="sidebar-form">
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                        <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-                    </span>
-                </div>
-            </form>
-            <!-- /.search form -->
-            <!-- sidebar menu: : style can be found in sidebar.less -->
-            <ul class="sidebar-menu">
-                <li class="header">MAIN NAVIGATION</li>
-                <li class="treeview">
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-dashboard"></i> <span>Trang chủ</span> <i class="fa fa-angle-left pull-right"></i>
-                    </a>
-                </li>
-                <li class="treeview">
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-files-o"></i>
-                        <span>Hệ thống</span>                        
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a ui-sref="application_groups"><i class="fa fa-circle-o"></i> Nhóm người dùng</a></li>
-                        <li><a ui-sref="application_roles"><i class="fa fa-circle-o"></i> Quyền</a></li>
-                        <li><a ui-sref="application_users"><i class="fa fa-circle-o"></i> Người dùng</a></li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-files-o"></i>
-                        <span>Tình hình</span>                       
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a ui-sref="situation_categories"><i class="fa fa-circle-o"></i> Danh mục tình hình</a></li>
-                        <li><a ui-sref="situations"><i class="fa fa-circle-o"></i> Tình hình</a></li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-files-o"></i>
-                        <span>Thống kê</span>                       
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a ui-sref="statistic_categories"><i class="fa fa-circle-o"></i>Danh mục Thống kê</a></li>
-                        <li><a ui-sref="statistics"><i class="fa fa-circle-o"></i> Thống kê</a></li>                       
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a ui-sref="daily_sheets">
-                        <i class="fa fa-files-o"></i>
-                        <span>Báo cáo ngày</span>
-                    </a>                   
-                </li>
-                <li class="treeview">
-                    <a ui-sref="daily_sheet_statistic">
-                        <i class="fa fa-files-o"></i>
-                        <span>Thống kê báo cáo ngày</span>
-                    </a>
-                </li>
-            </ul>
-        </section>
-        <!-- /.sidebar -->
-    </aside>
+    <aside class="main-sidebar" ng-include="sideBar"></aside>
     <!-- =============================================== -->
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -361,5 +285,5 @@
     </aside><!-- /.control-sidebar -->
     <!-- Add the sidebar's background. This div must be placed
          immediately after the control sidebar -->
-    <div class="control-sidebar-bg"></div>   
+    <div class="control-sidebar-bg"></div>
 </div><!-- ./wrapper -->

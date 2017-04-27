@@ -38,3 +38,4 @@ D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.Migrations.AddAttTblStatistic.reso
 D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.Migrations.AddTbStatistic.resources
 D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.Migrations.AddTbDailySheet.resources
 D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.Migrations.AddTbTypeReport.resources
+D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.Migrations.AddAttFileDailySheet.resources

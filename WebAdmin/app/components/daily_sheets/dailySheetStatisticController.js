@@ -21,8 +21,8 @@
 
 
         $scope.dailySheetStatistic = function () {
-            var fromDate = $scope.dailySheetST.FromDate.toISOString().slice(0, 10);
-            var toDate = $scope.dailySheetST.ToDate.toISOString().slice(0, 10);
+            var fromDate = moment($scope.dailySheetST.FromDate.toString()).format('YYYY-MM-DD');
+            var toDate = moment($scope.dailySheetST.ToDate.toString()).format('YYYY-MM-DD');;
             var config = {
                 params:{
                     fromDate: fromDate,

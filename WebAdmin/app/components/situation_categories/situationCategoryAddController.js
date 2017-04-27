@@ -29,9 +29,13 @@
         function loadParentCategories() {
             apiService.get('/api/situationCategory/getall', null,
                 function (result) {
-                    $scope.parentCategories = result.data;
+                    var tempData = commonService.getTree(result.data, "ID", "ParentID");
+                    tempData.forEach(function (item) {
+                        commonService.recur(item, 0, $scope.parentCategories);
+                    });
+                  
                 }, function (error) {
-                    notificationSerivce.displayError('Can not get parent category.')
+                    notificationSerivce.displayError('Không thể load danh mục.')
                 });
         }
         loadParentCategories();

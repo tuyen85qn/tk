@@ -6,19 +6,19 @@
     applicationUserAddController.$inject = ['$scope', 'apiService', 'notificationService', '$location', 'commonService'];
 
     function applicationUserAddController($scope, apiService, notificationService, $location, commonService) {
-        $scope.account = {
-            Groups: [],
-            Birthday: Date.now()
+        $scope.account = {          
+            Groups: []           
         }
 
         $scope.addAccount = addAccount;
 
         function addAccount() {
+            $scope.account.BirthDay = $scope.account.BirthDay.toISOString().slice(0, 10);
             apiService.post('/api/applicationUser/add', $scope.account, addSuccessed, addFailed);
         }
 
         function addSuccessed(result) {
-            notificationService.displaySuccess(result.data.Name + ' đã được thêm mới.');
+            notificationService.displaySuccess(result.data.UserName + ' đã được thêm mới.');
 
             $location.url('application_users');
         }

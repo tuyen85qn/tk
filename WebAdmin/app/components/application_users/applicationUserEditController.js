@@ -6,12 +6,13 @@
     applicationUserEditController.$inject = ['$scope', 'apiService', 'notificationService', '$location', '$stateParams','$filter'];
 
     function applicationUserEditController($scope, apiService, notificationService, $location, $stateParams, $filter) {
-        $scope.account = {}
+        $scope.account = {};
 
 
         $scope.updateAccount = updateAccount;
 
         function updateAccount() {
+            $scope.account.BirthDay = $scope.account.BirthDay.toISOString().slice(0, 10);
             apiService.put('/api/applicationUser/update', $scope.account, addSuccessed, addFailed);
         }
         function loadDetail() {

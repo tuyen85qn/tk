@@ -220,6 +220,7 @@
     </Compile>
     <Compile Include="Infrastructure\Core\ApiControllerBase.cs" />
     <Compile Include="Infrastructure\Core\PaginationSet.cs" />
+    <Compile Include="Infrastructure\Core\ServiceFactory.cs" />
     <Compile Include="Infrastructure\Extensions\EntityExtension.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Models\ApplicationGroupViewModel.cs" />
@@ -309,6 +310,7 @@
     <Content Include="app\components\statistic_categories\statisticCategoryListController.js" />
     <Content Include="app\components\statistic_categories\statisticCategoryListView.html" />
     <Content Include="app\shared\directives\datetimeDirective.js" />
+    <Content Include="app\shared\directives\fileUploadDirective.js" />
     <Content Include="app\shared\directives\pagerDirective.html" />
     <Content Include="app\shared\directives\pagerDirective.js" />
     <Content Include="app\shared\filters\datetimeFilter.js" />
@@ -321,6 +323,7 @@
     <Content Include="app\shared\services\loginService.js" />
     <Content Include="app\shared\services\notificationService.js" />
     <Content Include="app\shared\views\baseView.html" />
+    <Content Include="app\shared\views\sideBar.html" />
     <Content Include="Assets\admin\css\AdminLTE.css" />
     <Content Include="Assets\admin\css\skins\skin-black-light.css" />
     <Content Include="Assets\admin\css\skins\skin-black-light.min.css" />
@@ -418,6 +421,18 @@
     <Content Include="Assets\admin\libs\angular-ui-router\src\view.js" />
     <Content Include="Assets\admin\libs\angular-ui-router\src\viewDirective.js" />
     <Content Include="Assets\admin\libs\angular-ui-router\src\viewScroll.js" />
+    <Content Include="Assets\admin\libs\angular-ui-select\dist\select.css" />
+    <Content Include="Assets\admin\libs\angular-ui-select\dist\select.js" />
+    <Content Include="Assets\admin\libs\angular-ui-select\dist\select.min.css" />
+    <Content Include="Assets\admin\libs\angular-ui-select\dist\select.min.js" />
+    <Content Include="Assets\admin\libs\angular-ui-select\docs\assets\app.js" />
+    <Content Include="Assets\admin\libs\angular-ui-select\docs\assets\demo.js" />
+    <Content Include="Assets\admin\libs\angular-ui-select\docs\assets\docs.css" />
+    <Content Include="Assets\admin\libs\angular-ui-select\docs\assets\plunkr.js" />
+    <Content Include="Assets\admin\libs\angular-ui-select\docs\index.html" />
+    <Content Include="Assets\admin\libs\angular-ui-select\docs\partials\_footer.html" />
+    <Content Include="Assets\admin\libs\angular-ui-select\docs\partials\_header.html" />
+    <Content Include="Assets\admin\libs\angular-ui-select\index.js" />
     <Content Include="Assets\admin\libs\angular\angular-csp.css" />
     <Content Include="Assets\admin\libs\angular\angular.js" />
     <Content Include="Assets\admin\libs\angular\angular.min.js" />
@@ -3890,6 +3905,7 @@
     <Content Include="Assets\admin\libs\jquery\src\wrap.js" />
     <Content Include="Assets\admin\libs\moment\locale\af.js" />
     <Content Include="Assets\admin\libs\moment\locale\ar-dz.js" />
+    <Content Include="Assets\admin\libs\moment\locale\ar-kw.js" />
     <Content Include="Assets\admin\libs\moment\locale\ar-ly.js" />
     <Content Include="Assets\admin\libs\moment\locale\ar-ma.js" />
     <Content Include="Assets\admin\libs\moment\locale\ar-sa.js" />
@@ -3897,7 +3913,6 @@
     <Content Include="Assets\admin\libs\moment\locale\ar.js" />
     <Content Include="Assets\admin\libs\moment\locale\az.js" />
     <Content Include="Assets\admin\libs\moment\locale\be.js" />
-    <Content Include="Assets\admin\libs\moment\locale\bg-x.js" />
     <Content Include="Assets\admin\libs\moment\locale\bg.js" />
     <Content Include="Assets\admin\libs\moment\locale\bn.js" />
     <Content Include="Assets\admin\libs\moment\locale\bo.js" />
@@ -3909,6 +3924,7 @@
     <Content Include="Assets\admin\libs\moment\locale\cy.js" />
     <Content Include="Assets\admin\libs\moment\locale\da.js" />
     <Content Include="Assets\admin\libs\moment\locale\de-at.js" />
+    <Content Include="Assets\admin\libs\moment\locale\de-ch.js" />
     <Content Include="Assets\admin\libs\moment\locale\de.js" />
     <Content Include="Assets\admin\libs\moment\locale\dv.js" />
     <Content Include="Assets\admin\libs\moment\locale\el.js" />
@@ -3931,6 +3947,7 @@
     <Content Include="Assets\admin\libs\moment\locale\fy.js" />
     <Content Include="Assets\admin\libs\moment\locale\gd.js" />
     <Content Include="Assets\admin\libs\moment\locale\gl.js" />
+    <Content Include="Assets\admin\libs\moment\locale\gom-latn.js" />
     <Content Include="Assets\admin\libs\moment\locale\he.js" />
     <Content Include="Assets\admin\libs\moment\locale\hi.js" />
     <Content Include="Assets\admin\libs\moment\locale\hr.js" />
@@ -3944,6 +3961,7 @@
     <Content Include="Assets\admin\libs\moment\locale\ka.js" />
     <Content Include="Assets\admin\libs\moment\locale\kk.js" />
     <Content Include="Assets\admin\libs\moment\locale\km.js" />
+    <Content Include="Assets\admin\libs\moment\locale\kn.js" />
     <Content Include="Assets\admin\libs\moment\locale\ko.js" />
     <Content Include="Assets\admin\libs\moment\locale\ky.js" />
     <Content Include="Assets\admin\libs\moment\locale\lb.js" />
@@ -3969,6 +3987,7 @@
     <Content Include="Assets\admin\libs\moment\locale\pt.js" />
     <Content Include="Assets\admin\libs\moment\locale\ro.js" />
     <Content Include="Assets\admin\libs\moment\locale\ru.js" />
+    <Content Include="Assets\admin\libs\moment\locale\sd.js" />
     <Content Include="Assets\admin\libs\moment\locale\se.js" />
     <Content Include="Assets\admin\libs\moment\locale\si.js" />
     <Content Include="Assets\admin\libs\moment\locale\sk.js" />
@@ -3990,9 +4009,12 @@
     <Content Include="Assets\admin\libs\moment\locale\tzm-latn.js" />
     <Content Include="Assets\admin\libs\moment\locale\tzm.js" />
     <Content Include="Assets\admin\libs\moment\locale\uk.js" />
+    <Content Include="Assets\admin\libs\moment\locale\ur.js" />
+    <Content Include="Assets\admin\libs\moment\locale\uz-latn.js" />
     <Content Include="Assets\admin\libs\moment\locale\uz.js" />
     <Content Include="Assets\admin\libs\moment\locale\vi.js" />
     <Content Include="Assets\admin\libs\moment\locale\x-pseudo.js" />
+    <Content Include="Assets\admin\libs\moment\locale\yo.js" />
     <Content Include="Assets\admin\libs\moment\locale\zh-cn.js" />
     <Content Include="Assets\admin\libs\moment\locale\zh-hk.js" />
     <Content Include="Assets\admin\libs\moment\locale\zh-tw.js" />
@@ -4026,6 +4048,7 @@
     <Content Include="Assets\admin\libs\moment\src\lib\duration\humanize.js" />
     <Content Include="Assets\admin\libs\moment\src\lib\duration\iso-string.js" />
     <Content Include="Assets\admin\libs\moment\src\lib\duration\prototype.js" />
+    <Content Include="Assets\admin\libs\moment\src\lib\duration\valid.js" />
     <Content Include="Assets\admin\libs\moment\src\lib\format\format.js" />
     <Content Include="Assets\admin\libs\moment\src\lib\locale\base-config.js" />
     <Content Include="Assets\admin\libs\moment\src\lib\locale\calendar.js" />
@@ -4106,6 +4129,7 @@
     <Content Include="Assets\admin\libs\moment\src\lib\utils\zero-fill.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\af.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\ar-dz.js" />
+    <Content Include="Assets\admin\libs\moment\src\locale\ar-kw.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\ar-ly.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\ar-ma.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\ar-sa.js" />
@@ -4113,7 +4137,6 @@
     <Content Include="Assets\admin\libs\moment\src\locale\ar.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\az.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\be.js" />
-    <Content Include="Assets\admin\libs\moment\src\locale\bg-x.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\bg.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\bn.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\bo.js" />
@@ -4125,6 +4148,7 @@
     <Content Include="Assets\admin\libs\moment\src\locale\cy.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\da.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\de-at.js" />
+    <Content Include="Assets\admin\libs\moment\src\locale\de-ch.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\de.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\dv.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\el.js" />
@@ -4147,6 +4171,7 @@
     <Content Include="Assets\admin\libs\moment\src\locale\fy.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\gd.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\gl.js" />
+    <Content Include="Assets\admin\libs\moment\src\locale\gom-latn.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\he.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\hi.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\hr.js" />
@@ -4160,6 +4185,7 @@
     <Content Include="Assets\admin\libs\moment\src\locale\ka.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\kk.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\km.js" />
+    <Content Include="Assets\admin\libs\moment\src\locale\kn.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\ko.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\ky.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\lb.js" />
@@ -4185,6 +4211,7 @@
     <Content Include="Assets\admin\libs\moment\src\locale\pt.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\ro.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\ru.js" />
+    <Content Include="Assets\admin\libs\moment\src\locale\sd.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\se.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\si.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\sk.js" />
@@ -4206,9 +4233,12 @@
     <Content Include="Assets\admin\libs\moment\src\locale\tzm-latn.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\tzm.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\uk.js" />
+    <Content Include="Assets\admin\libs\moment\src\locale\ur.js" />
+    <Content Include="Assets\admin\libs\moment\src\locale\uz-latn.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\uz.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\vi.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\x-pseudo.js" />
+    <Content Include="Assets\admin\libs\moment\src\locale\yo.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\zh-cn.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\zh-hk.js" />
     <Content Include="Assets\admin\libs\moment\src\locale\zh-tw.js" />
@@ -4451,6 +4481,16 @@
     <Content Include="Assets\admin\libs\ng-dialog\karma.conf.js" />
     <Content Include="Assets\admin\libs\ng-dialog\protractor.conf.js" />
     <Content Include="Assets\admin\libs\ng-dialog\server.js" />
+    <Content Include="Assets\admin\libs\ng-file-upload\FileAPI.flash.swf" />
+    <Content Include="Assets\admin\libs\ng-file-upload\FileAPI.js" />
+    <Content Include="Assets\admin\libs\ng-file-upload\FileAPI.min.js" />
+    <Content Include="Assets\admin\libs\ng-file-upload\ng-file-upload-all.js" />
+    <Content Include="Assets\admin\libs\ng-file-upload\ng-file-upload-all.min.js" />
+    <Content Include="Assets\admin\libs\ng-file-upload\ng-file-upload-shim.js" />
+    <Content Include="Assets\admin\libs\ng-file-upload\ng-file-upload-shim.min.js" />
+    <Content Include="Assets\admin\libs\ng-file-upload\ng-file-upload.js" />
+    <Content Include="Assets\admin\libs\ng-file-upload\ng-file-upload.min.js" />
+    <Content Include="Assets\admin\libs\ng-file-upload\package.js" />
     <Content Include="Assets\admin\libs\ngBootbox\dist\ngBootbox.js" />
     <Content Include="Assets\admin\libs\ngBootbox\dist\ngBootbox.min.js" />
     <Content Include="Assets\admin\libs\ngBootbox\examples\example-1\app.js" />
@@ -4693,11 +4733,6 @@
     <Content Include="Assets\admin\libs\checklist-model\.bower.json" />
     <Content Include="Assets\admin\libs\checklist-model\bower.json" />
     <Content Include="Assets\admin\libs\checklist-model\readme.md" />
-    <Content Include="Assets\admin\libs\moment\.bower.json" />
-    <Content Include="Assets\admin\libs\moment\bower.json" />
-    <Content Include="Assets\admin\libs\moment\CHANGELOG.md" />
-    <Content Include="Assets\admin\libs\moment\LICENSE" />
-    <Content Include="Assets\admin\libs\moment\README.md" />
     <Content Include="Assets\admin\libs\jquery\.bower.json" />
     <Content Include="Assets\admin\libs\jquery\bower.json" />
     <Content Include="Assets\admin\libs\jquery\dist\jquery.min.map" />
@@ -4813,6 +4848,27 @@
     <Content Include="Assets\admin\libs\angular-sanitize\LICENSE.md" />
     <Content Include="Assets\admin\libs\angular-sanitize\package.json" />
     <Content Include="Assets\admin\libs\angular-sanitize\README.md" />
+    <Content Include="Assets\admin\libs\angular-ui-select\.bower.json" />
+    <Content Include="Assets\admin\libs\angular-ui-select\bower.json" />
+    <Content Include="Assets\admin\libs\angular-ui-select\CHANGELOG.md" />
+    <Content Include="Assets\admin\libs\angular-ui-select\composer.json" />
+    <Content Include="Assets\admin\libs\angular-ui-select\CONTRIBUTING.md" />
+    <Content Include="Assets\admin\libs\angular-ui-select\deploy-docs.sh" />
+    <Content Include="Assets\admin\libs\angular-ui-select\dist\select.min.css.map" />
+    <Content Include="Assets\admin\libs\angular-ui-select\dist\select.min.js.map" />
+    <Content Include="Assets\admin\libs\angular-ui-select\LICENSE" />
+    <Content Include="Assets\admin\libs\angular-ui-select\package.json" />
+    <Content Include="Assets\admin\libs\angular-ui-select\README.md" />
+    <Content Include="Assets\admin\libs\ng-file-upload\.bower.json" />
+    <Content Include="Assets\admin\libs\ng-file-upload\.versions" />
+    <Content Include="Assets\admin\libs\ng-file-upload\bower.json" />
+    <Content Include="Assets\admin\libs\ng-file-upload\LICENSE" />
+    <Content Include="Assets\admin\libs\ng-file-upload\README.md" />
+    <Content Include="Assets\admin\libs\moment\.bower.json" />
+    <Content Include="Assets\admin\libs\moment\bower.json" />
+    <Content Include="Assets\admin\libs\moment\CHANGELOG.md" />
+    <Content Include="Assets\admin\libs\moment\LICENSE" />
+    <Content Include="Assets\admin\libs\moment\README.md" />
     <None Include="Properties\PublishProfiles\tkbc.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -4826,6 +4882,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="swf\lich.swf" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -4837,11 +4894,14 @@
     </Content>
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="UploadedFiles\DailySheets\BodyPart_100281c2-1e15-479f-aa38-127e7ff0b894" />
+    <Content Include="UploadedFiles\DailySheets\BodyPart_75847eec-97ca-4aca-b9c7-3f58effb6787" />
+    <Content Include="UploadedFiles\DailySheets\trabong20.4.doc" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Assets\admin\libs\checklist-model\test\" />
-    <Folder Include="UploadFiles\" />
+    <Folder Include="UploadedFiles\files\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

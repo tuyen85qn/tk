@@ -23,12 +23,9 @@ namespace WebAdmin.Models
         public String OccurenceDay { set; get; }
 
         public string Image { set; get; }
-
-       
+        
         public string MoreImages { set; get; }
-
-      
-        public string Description { set; get; }
+        
 
         public string Content { set; get; }
         public bool? HomeFlag { set; get; }
