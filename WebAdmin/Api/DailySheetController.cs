@@ -117,7 +117,7 @@ namespace WebAdmin.Api
                     var tmpFileName = Helper.RandomString(20) + '_' + fileName;
                     var fullPath = Path.Combine(root, tmpFileName);
                     File.Move(provider.FileData[0].LocalFileName, fullPath);
-                    dailySheetVm.FileDailySheet = CommonConstants.pathDailySheet + "/" + tmpFileName;
+                    dailySheetVm.FileDailySheet = CommonConstants.pathDailySheet.Substring(CommonConstants.pathDailySheet.IndexOf("/") + 1) + "/" + tmpFileName;
                     
                 }
 
@@ -237,7 +237,7 @@ namespace WebAdmin.Api
                         }
                     }
                     File.Move(provider.FileData[0].LocalFileName, fullPath);
-                    dailySheetVm.FileDailySheet = CommonConstants.pathDailySheet + "/" + tmpFileName;
+                    dailySheetVm.FileDailySheet = CommonConstants.pathDailySheet.Substring(CommonConstants.pathDailySheet.IndexOf("/")+1) + "/" + tmpFileName;
                 }
 
                 dailySheet.UpdateDailySheetDB(dailySheetVm);
@@ -282,10 +282,13 @@ namespace WebAdmin.Api
                     var delDailySheet = _dailySheetService.Delete(id);
                     _dailySheetService.Save();
                     var root = HttpContext.Current.Server.MapPath(CommonConstants.pathDailySheet);
-                    var delFileName = delDailySheet.FileDailySheet.Split('/').Last();                   
-                    if (!String.IsNullOrEmpty(System.IO.Directory.GetFiles(root, delFileName).FirstOrDefault()))
+                    if(!string.IsNullOrEmpty(delDailySheet.FileDailySheet))
                     {
-                        File.Delete(Path.Combine(root, delFileName));
+                        var delFileName = delDailySheet.FileDailySheet.Split('/').Last();
+                        if (!String.IsNullOrEmpty(System.IO.Directory.GetFiles(root, delFileName).FirstOrDefault()))
+                        {
+                            File.Delete(Path.Combine(root, delFileName));
+                        }
                     }
                     var responeData = Mapper.Map<DailySheet, DailySheetViewModel>(delDailySheet);
                     respone = request.CreateResponse(HttpStatusCode.OK, responeData);

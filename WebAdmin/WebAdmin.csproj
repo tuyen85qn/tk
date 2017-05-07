@@ -4894,14 +4894,11 @@
     </Content>
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="UploadedFiles\DailySheets\BodyPart_100281c2-1e15-479f-aa38-127e7ff0b894" />
-    <Content Include="UploadedFiles\DailySheets\BodyPart_75847eec-97ca-4aca-b9c7-3f58effb6787" />
-    <Content Include="UploadedFiles\DailySheets\trabong20.4.doc" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Assets\admin\libs\checklist-model\test\" />
-    <Folder Include="UploadedFiles\files\" />
+    <Folder Include="UploadedFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

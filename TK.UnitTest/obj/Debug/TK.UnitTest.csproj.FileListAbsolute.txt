@@ -9,5 +9,6 @@ D:\tuyen\Develop\tk\TK.UnitTest\bin\Debug\TK.UnitTest.dll
 D:\tuyen\Develop\tk\TK.UnitTest\bin\Debug\TK.UnitTest.pdb
 D:\tuyen\Develop\tk\TK.UnitTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 D:\tuyen\Develop\tk\TK.UnitTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+D:\tuyen\Develop\tk\TK.UnitTest\obj\Debug\TK.UnitTest.csprojResolveAssemblyReference.cache
 D:\tuyen\Develop\tk\TK.UnitTest\obj\Debug\TK.UnitTest.dll
 D:\tuyen\Develop\tk\TK.UnitTest\obj\Debug\TK.UnitTest.pdb

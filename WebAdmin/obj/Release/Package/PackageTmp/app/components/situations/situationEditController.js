@@ -60,7 +60,7 @@
 
 
         function updateSituation() {
-            $scope.situation.OccurenceDay = $scope.situation.OccurenceDay.toISOString().slice(0, 10);
+            $scope.situation.OccurenceDay = moment($scope.situation.OccurenceDay.toString()).format('YYYY-MM-DD');;
             apiService.put('/api/situation/update', $scope.situation,
                 function (result) {
                     notificationService.displaySuccess(result.data.Name + ' đã được cập nhật thành công.');

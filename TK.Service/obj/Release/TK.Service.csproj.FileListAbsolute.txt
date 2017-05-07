@@ -18,3 +18,7 @@ D:\tuyen\Develop\tk\TK.Service\bin\Release\Microsoft.AspNet.Identity.EntityFrame
 D:\tuyen\Develop\tk\TK.Service\obj\Release\TK.Service.csprojResolveAssemblyReference.cache
 D:\tuyen\Develop\tk\TK.Service\obj\Release\TK.Service.dll
 D:\tuyen\Develop\tk\TK.Service\obj\Release\TK.Service.pdb
+D:\tuyen\Develop\tk\TK.Service\bin\Release\System.Net.Http.Formatting.dll
+D:\tuyen\Develop\tk\TK.Service\bin\Release\Newtonsoft.Json.dll
+D:\tuyen\Develop\tk\TK.Service\bin\Release\System.Net.Http.Formatting.xml
+D:\tuyen\Develop\tk\TK.Service\bin\Release\Newtonsoft.Json.xml

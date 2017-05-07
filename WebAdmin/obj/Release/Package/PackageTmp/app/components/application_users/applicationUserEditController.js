@@ -6,7 +6,7 @@
     applicationUserEditController.$inject = ['$scope', 'apiService', 'notificationService', '$location', '$stateParams','$filter'];
 
     function applicationUserEditController($scope, apiService, notificationService, $location, $stateParams, $filter) {
-        $scope.account = {}
+        $scope.account = {};
 
 
         $scope.updateAccount = updateAccount;

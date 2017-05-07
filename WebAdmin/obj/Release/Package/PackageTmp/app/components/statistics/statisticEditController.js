@@ -39,8 +39,8 @@
         }
 
         function updateStatistic() {
-            $scope.statistic.FromDate = $scope.statistic.FromDate.toISOString().slice(0, 10);
-            $scope.statistic.ToDate = $scope.statistic.ToDate.toISOString().slice(0, 10);
+            $scope.statistic.FromDate = moment($scope.statistic.FromDate.toString()).format('YYYY-MM-DD');
+            $scope.statistic.ToDate = moment($scope.statistic.ToDate.toString()).format('YYYY-MM-DD');
             apiService.put('/api/statistic/update', $scope.statistic,
                 function (result) {
                     notificationService.displaySuccess(result.data.Name + ' được cập nhật thành công.');

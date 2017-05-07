@@ -73,9 +73,6 @@ D:\tuyen\TK\TK\WebAdmin\bin\Microsoft.AspNet.Identity.Core.xml
 D:\tuyen\TK\TK\WebAdmin\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 D:\tuyen\TK\TK\WebAdmin\bin\Microsoft.Owin.xml
 D:\tuyen\TK\TK\WebAdmin\bin\Microsoft.Owin.Host.SystemWeb.xml
-D:\tuyen\Develop\tk\WebAdmin\obj\Debug\WebAdmin.csprojResolveAssemblyReference.cache
-D:\tuyen\Develop\tk\WebAdmin\obj\Debug\WebAdmin.dll
-D:\tuyen\Develop\tk\WebAdmin\obj\Debug\WebAdmin.pdb
 D:\tuyen\Develop\tk\WebAdmin\bin\roslyn\csc.exe
 D:\tuyen\Develop\tk\WebAdmin\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 D:\tuyen\Develop\tk\WebAdmin\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -96,6 +93,7 @@ D:\tuyen\Develop\tk\WebAdmin\bin\Autofac.dll
 D:\tuyen\Develop\tk\WebAdmin\bin\Autofac.Integration.Mvc.dll
 D:\tuyen\Develop\tk\WebAdmin\bin\Autofac.Integration.WebApi.dll
 D:\tuyen\Develop\tk\WebAdmin\bin\AutoMapper.dll
+D:\tuyen\Develop\tk\WebAdmin\bin\CKFinder.dll
 D:\tuyen\Develop\tk\WebAdmin\bin\EntityFramework.dll
 D:\tuyen\Develop\tk\WebAdmin\bin\EntityFramework.SqlServer.dll
 D:\tuyen\Develop\tk\WebAdmin\bin\Microsoft.AspNet.Identity.Core.dll
@@ -144,8 +142,8 @@ D:\tuyen\Develop\tk\WebAdmin\bin\Microsoft.Owin.Host.SystemWeb.xml
 D:\tuyen\Develop\tk\WebAdmin\bin\Microsoft.Owin.Security.xml
 D:\tuyen\Develop\tk\WebAdmin\bin\Microsoft.Owin.Security.Cookies.xml
 D:\tuyen\Develop\tk\WebAdmin\bin\Microsoft.Owin.Security.OAuth.xml
-D:\tuyen\Develop\tk\WebAdmin\bin\System.Web.Helpers.xml
 D:\tuyen\Develop\tk\WebAdmin\bin\System.Web.Mvc.xml
+D:\tuyen\Develop\tk\WebAdmin\bin\System.Web.Helpers.xml
 D:\tuyen\Develop\tk\WebAdmin\bin\System.Web.Optimization.xml
 D:\tuyen\Develop\tk\WebAdmin\bin\System.Web.Razor.xml
 D:\tuyen\Develop\tk\WebAdmin\bin\System.Web.WebPages.xml
@@ -156,4 +154,6 @@ D:\tuyen\Develop\tk\WebAdmin\bin\Newtonsoft.Json.xml
 D:\tuyen\Develop\tk\WebAdmin\bin\System.Net.Http.Formatting.xml
 D:\tuyen\Develop\tk\WebAdmin\bin\System.Web.Http.xml
 D:\tuyen\Develop\tk\WebAdmin\bin\System.Web.Http.WebHost.xml
-D:\tuyen\Develop\tk\WebAdmin\bin\CKFinder.dll
+D:\tuyen\Develop\tk\WebAdmin\obj\Debug\WebAdmin.csprojResolveAssemblyReference.cache
+D:\tuyen\Develop\tk\WebAdmin\obj\Debug\WebAdmin.dll
+D:\tuyen\Develop\tk\WebAdmin\obj\Debug\WebAdmin.pdb

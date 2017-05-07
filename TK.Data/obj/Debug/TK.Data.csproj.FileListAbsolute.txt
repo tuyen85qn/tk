@@ -30,12 +30,12 @@ D:\tuyen\Develop\tk\TK.Data\bin\Debug\EntityFramework.SqlServer.xml
 D:\tuyen\Develop\tk\TK.Data\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 D:\tuyen\Develop\tk\TK.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
 D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.csprojResolveAssemblyReference.cache
-D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.dll
-D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.pdb
 D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.Migrations.AddDB.resources
-D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.csproj.GenerateResource.Cache
 D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.Migrations.AddAttTblStatistic.resources
 D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.Migrations.AddTbStatistic.resources
 D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.Migrations.AddTbDailySheet.resources
 D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.Migrations.AddTbTypeReport.resources
 D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.Migrations.AddAttFileDailySheet.resources
+D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.csproj.GenerateResource.Cache
+D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.dll
+D:\tuyen\Develop\tk\TK.Data\obj\Debug\TK.Data.pdb

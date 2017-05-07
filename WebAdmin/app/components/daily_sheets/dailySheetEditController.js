@@ -11,14 +11,16 @@
             height: '200px'
         }
 
-        $scope.dailySheet = {            
+        $scope.dailySheet = {
         };
         $scope.files = [];
+        $scope.fileName = "";
 
         function loadDetailDailySheet() {
             apiService.get('/api/dailySheet/getbyid/' + $rootScope.editId, null,
                 function (result) {
                     $scope.dailySheet = result.data;
+                    $scope.fileName = $scope.dailySheet.FileDailySheet.substr($scope.dailySheet.FileDailySheet.lastIndexOf('/')+1);
                 }, function (error) {
                     notificationService.displayError('Không load được báo cáo ngày');
                 });
@@ -44,12 +46,22 @@
         //add file
         $scope.selectedFile = function (files) {
 
-            $scope.files.push(files[0]);
+            var allowed_extensions = new Array("jpg", "png", "gif","doc","docx","pdf","text");
+            var file_extension = files[0].name.split('.').pop(); // split function will split the filename by dot(.), and pop function will pop the last element from the array which will give you the extension as well. If there will be no extension then it will return the filename.
+
+            for (var i = 0; i <= allowed_extensions.length; i++) {
+                if (allowed_extensions[i] == file_extension) {
+                    $scope.files.push(files[0]);
+                    return true;
+                }
+            }
+            
+            notificationService.displayError("Không đúng định dạng file");
+            return false;
 
         }
+        $scope.UpdateSheet = function () {
 
-        $scope.UpdateSheet = function () {           
-            
             $scope.dailySheet.DayReport = moment($scope.dailySheet.DayReport.toString()).format('YYYY-MM-DD');
             authenticationService.setHeader();
             $http({
@@ -72,7 +84,7 @@
                     // in the value '[Object object]' on the server.
                     formData.append("dailySheet", angular.toJson(data.dailySheet));
                     formData.append("file", data.files[0]);
-                   
+
                     return formData;
                 },
                 //Create an object that contains the model and files which will be transformed
@@ -92,7 +104,7 @@
             });
 
         }
-        
+
         $scope.CancelSheet = function () {
             $scope.dailySheet = null;
             $scope.closeThisDialog();
