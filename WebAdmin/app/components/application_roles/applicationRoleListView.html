@@ -13,14 +13,7 @@
 <!-- Main content -->
 <section class="content">
     <!-- Default box -->
-    <div class="box">
-        <div class="box-header with-border">
-            <h3 class="box-title">Danh mục quyền</h3>
-            <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
-            </div>
-        </div>
+    <div class="box">       
         <div class="box-body">
             <di class="row">
                 <div class="col-md-6">
@@ -28,16 +21,14 @@
                         <input type="text" class="form-control" ng-model="filterExpression" placeholder="Từ khóa">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button" ng-click="search()">Tìm kiếm</button>
+                            <button class="btn btn-success" style="margin-left:5px;" ui-sref="add_application_role">Thêm mới</button>
                         </span>
                     </div><!-- /input-group -->
-                </div>
-                <div class="col-md-6">
-                    <button class="btn btn-success" ui-sref="add_application_role">Thêm mới</button>
-                </div>
+                </div>              
             </di>
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table table-bordered">
+                    <table class="responstable">
                         <tr>                         
                             <th style="width:20%">Tên quyền</th>
                             <th style="width: 60%">Mô tả</th>

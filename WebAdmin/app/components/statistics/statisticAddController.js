@@ -117,7 +117,7 @@
                     toDate: $scope.statistic.ToDate.toISOString().slice(0, 10),
                     provinceID: $scope.statistic.ProvinceID,
                     page: page,
-                    pageSize: 5,
+                    pageSize: 10,
                     districID: $scope.statistic.DistrictID,
                     resolvedSituationID: $scope.statistic.ResolvedSituationID,
                     filter: ""

@@ -36,6 +36,8 @@
                 authData.authenticationData.IsAuthenticated = false;
                 authData.authenticationData.userName = "";
                 authData.authenticationData.accessToken = "";
+                delete $http.defaults.headers.common['Authorization'];
+                delete $http.defaults.headers.common['Content-Type'];
 
             }, null);
 

@@ -12,71 +12,74 @@
 <section class="content">
     <!-- Default box -->
     <div class="box">
-        <div class="box-header with-border">
-            <h3 class="box-title">Thống kê</h3>
-            <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
-            </div>
-        </div>
         <form class="form-horizontal" novalidate name="frmDailySheetStatistic" role="form">
-            <div class="box-body">                
-                    <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-1 control-label">Từ ngày</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" name="fromdate"
-                                   datetime-directive options="{format:'YYYY-MM-DD'}" ng-model="dailySheetST.FromDate">
-                        </div>
-                        <label for="inputEmail3" class="col-sm-1 control-label">Đến ngày</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" name="todate"
-                                   datetime-directive options="{format:'YYYY-MM-DD'}" ng-model="dailySheetST.ToDate">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-1 control-label">Từ ngày</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" name="fromdate"
+                               datetime-directive options="{format:'YYYY-MM-DD'}" ng-model="dailySheetST.FromDate">
+                    </div>
+                    <label for="inputEmail3" class="col-sm-1 control-label">Đến ngày</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" name="todate"
+                               datetime-directive options="{format:'YYYY-MM-DD'}" ng-model="dailySheetST.ToDate">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-1 control-label">Đơn vị</label>
+                    <div class="col-sm-6">
+                        <select name="policeorganizationname"
+                                required class="form-control" ng-model="policeOrganizationID" ng-options="option.ID as option.Name for option in policeOrganizations">
+                            <option value="">--Đơn vị/địa phương--</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-success" type="button" ng-click="dailySheetStatistic()">Thống kê</button>
+
+                </div>
+
+                <div class="form-group" ng-hide="hideResult">
+                    <div class="box-result">
+                        <div class="panel panel-primary">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">
+                                <h3 style="font-weight:bold">Kết quả</h3>
+                            </div>
+                            <div class="panel-body">
+                               
+                                    <table class="responstable">
+                                        <tr>
+                                            <th style="width: 5%">STT</th>
+                                            <th style="width:30%">Đơn vị</th>
+                                            <th style="width: 15%">Số ngày không báo cáo</th>
+                                            <th style="width: 50%">Các ngày không báo cáo</th>
+                                        </tr>
+                                        <tr ng-repeat="item in dailySheetStatistics">
+                                            <td>{{$index + 1}}</td>
+                                            <td>
+                                                {{item.PoliceOrganizationName}}
+                                            </td>
+                                            <td>
+                                                {{item.TotalDay - item.TotalDailySheet}}/{{item.TotalDay}}
+                                            </td>
+                                            <td>
+                                               {{item.Content}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div ng-if="loading">
+                                    <div class="col-xs-4"></div>
+                                    <div class="col-xs-4">
+                                        <i class="fa fa-refresh fa-4x fa-spin"></i> <label class="label label-primary">Đang tải...</label>
+                                    </div>
+                                    <div class="col-xs-4"></div>
+                                </div>
+                           
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-1 control-label">Đơn vị</label>
-                        <div class="col-sm-6">
-                            <select name="policeorganizationname"
-                                    required class="form-control" ng-model="policeOrganizationID" ng-options="option.ID as option.Name for option in policeOrganizations">
-                                <option value="">--Đơn vị/địa phương--</option>
-                            </select>
-                        </div>
-                        <button class="btn btn-default" type="button" ng-click="dailySheetStatistic()">Thống kê</button>
-                        
-                    </div>               
-            
-                    <div class="form-group" ng-hide="hideResult">
-                        <div class="box-rs">
-                            <table class="table table-bordered">
-                                <tr>
-                                    <th style="width: 5%">STT</th>
-                                    <th style="width:10%">Đơn vị</th>
-                                    <th style="width: 15%">Số ngày không báo cáo</th>
-                                    <th style="width: 20%">Các ngày không báo cáo</th>
-                                </tr>
-                                <tr ng-repeat="item in dailySheetStatistics">
-                                    <td>{{$index + 1}}</td>
-                                    <td>
-                                        {{item.PoliceOrganizationName}}
-                                    </td>
-                                    <td>
-                                        {{item.TotalDay - item.TotalDailySheet}}/{{item.TotalDay}}
-                                    </td>
-                                    <td>
-                                        <textarea style="height:100px; border:none">{{item.Content}} </textarea>
-                                    </td>
-                                </tr>
-                            </table>
-                            <div ng-if="loading">
-                                <div class="col-xs-4"></div>
-                                <div class="col-xs-4">
-                                    <i class="fa fa-refresh fa-4x fa-spin"></i> <label class="label label-primary">Đang tải...</label>
-                                </div>
-                                <div class="col-xs-4"></div>
-                            </div>
-                        </div>
-                      </div>
-                
+                </div>
+
             </div><!-- /.box-body -->
             <div class="box-footer">
             </div><!-- /.box-footer-->
