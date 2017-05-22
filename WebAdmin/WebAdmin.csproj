@@ -243,6 +243,7 @@
     <Compile Include="Models\TypeReportViewModel.cs" />
     <Compile Include="Models\WardViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\AuthorizationServerProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
