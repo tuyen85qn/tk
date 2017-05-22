@@ -40,10 +40,9 @@
 <body class="hold-transition skin-blue sidebar-mini" ng-app="tk" ng-controller="rootController">
    
     <div ui-view></div>
-       
     <!-- jQuery 2.2.3 -->
     <script src="~/Assets/admin/libs/jquery/dist/jquery.js"></script>
-    
+
     <!--moment-->
     <script src="~/Assets/admin/libs/moment/moment.js"></script>
 
@@ -78,77 +77,15 @@
     <script src="~/Assets/admin/libs/angular-ui-select/dist/select.js"></script>
     <script src="~/Assets/admin/libs/ng-file-upload/ng-file-upload-shim.js"></script>
     <script src="~/Assets/admin/libs/ng-file-upload/ng-file-upload.js"></script>
-
-
     <!-- Bootstrap 3.3.5 -->
     <script src="~/Assets/admin/libs/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/Assets/admin/libs/ui-bootstrap/ui-bootstrap.js"></script>
-    <script src="~/Assets/admin/libs/ui-bootstrap/ui-bootstrap-tpls.min.js"></script>
-    <script src="~/Assets/admin/libs/ui-bootstrap/ui-bootstrap-tpls.js"></script>
-
-
-    <script src="~/app/shared/modules/tk.common.js"></script>
-    <script src="~/app/shared/directives/pagerDirective.js"></script>
-    <script src="~/app/shared/directives/datetimeDirective.js"></script>
-    <script src="~/app/shared/services/apiService.js"></script>
-    <script src="~/app/shared/services/notificationService.js"></script>
-    <script src="~/app/shared/services/commonService.js"></script>
-    <script src="~/app/shared/filters/statusFilter.js"></script>
-    <script src="~/app/shared/filters/reportStatusFilter.js"></script>
-    <script src="~/app/shared/filters/datetimeFilter.js"></script>
-    <script src="~/app/shared/services/authData.js"></script>
-    <script src="~/app/shared/services/authenticationService.js"></script>
-    <script src="~/app/shared/services/loginService.js"></script>
-
-
-    <script src="~/app/components/situation_categories/situationCategories.module.js"></script>
-    <script src="~/app/components/application_groups/applicationGroups.module.js"></script>
-    <script src="~/app/components/application_roles/applicationRoles.module.js"></script>
-    <script src="~/app/components/application_users/applicationUsers.module.js"></script>
-    <script src="~/app/components/situations/situations.module.js"></script>
-    <script src="~/app/components/statistic_categories/statisticCategories.module.js"></script>
-    <script src="~/app/components/statistics/statistic.module.js"></script>
-    <script src="~/app/components/daily_sheets/dailySheets.module.js"></script>
-    <script src="~/app/app.js"></script>
-
-
-    <script src="~/app/components/home/rootController.js"></script>
-    <script src="~/app/components/home/homeController.js"></script>
-    <script src="~/app/components/login/loginController.js"></script>
-
-    <script src="~/app/components/application_users/applicationUserAddController.js"></script>
-    <script src="~/app/components/application_users/applicationUserEditController.js"></script>
-    <script src="~/app/components/application_users/applicationUserListController.js"></script>
-
-    <script src="~/app/components/application_roles/applicationRoleAddController.js"></script>
-    <script src="~/app/components/application_roles/applicationRoleEditController.js"></script>
-    <script src="~/app/components/application_roles/applicationRoleListController.js"></script>
-
-    <script src="~/app/components/application_groups/applicationGroupListController.js"></script>
-    <script src="~/app/components/application_groups/applicationGroupEditController.js"></script>
-    <script src="~/app/components/application_groups/applicationGroupAddController.js"></script>
-
-    <script src="~/app/components/situation_categories/situationCategoryAddController.js"></script>
-    <script src="~/app/components/situation_categories/situationCategoryListController.js"></script>
-    <script src="~/app/components/situation_categories/situationCategoryEditController.js"></script>
-
-    <script src="~/app/components/situations/situationListController.js"></script>
-    <script src="~/app/components/situations/situationAddController.js"></script>
-    <script src="~/app/components/situations/situationEditController.js"></script>
-
-    <script src="~/app/components/statistic_categories/statisticCategoryAddController.js"></script>
-    <script src="~/app/components/statistic_categories/statisticCategoryEditController.js"></script>
-    <script src="~/app/components/statistic_categories/statisticCategoryListController.js"></script>
-
-    <script src="~/app/components/statistics/statisticAddController.js"></script>
-    <script src="~/app/components/statistics/statisticEditController.js"></script>
-    <script src="~/app/components/statistics/statisticListController.js"></script>
-
-    <script src="~/app/components/daily_sheets/dailySheetAddController.js"></script>
-    <script src="~/app/components/daily_sheets/dailySheetEditController.js"></script>
-    <script src="~/app/components/daily_sheets/dailySheetListController.js"></script>
-    <script src="~/app/components/daily_sheets/dailySheetStatisticController.js"></script>  
-  
-    
+    <script src="~/Assets/admin/libs/ui-bootstrap/ui-bootstrap-tpls.js"></script> 
+      
+    @using System.Web.Optimization{
+      
+        @Scripts.Render("~/js/plugins");
+        @Scripts.Render("~/js/mains");
+    }
 </body>
 </html>
